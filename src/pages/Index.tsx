@@ -1,4 +1,3 @@
-
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
@@ -19,11 +18,15 @@ const Index = () => {
 
   const handleGetStarted = () => {
     setCurrentPage('payment');
+    // Scroll to top when navigating to payment page
+    window.scrollTo(0, 0);
   };
 
   const handleAuthAction = (action: 'signin' | 'signup') => {
     setAuthMode(action);
     setCurrentPage('auth');
+    // Scroll to top when navigating to auth page
+    window.scrollTo(0, 0);
   };
 
   const handleHowItWorks = () => {
@@ -36,6 +39,8 @@ const Index = () => {
 
   const handleBackToLanding = () => {
     setCurrentPage('landing');
+    // Scroll to top when navigating back to landing page
+    window.scrollTo(0, 0);
   };
 
   if (loading) {
