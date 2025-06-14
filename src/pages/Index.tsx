@@ -29,7 +29,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-12 pt-32">
+      <main className="container mx-auto px-4 py-12 pt-24">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
           {/* Main Chat Interface */}
           <div className="xl:col-span-3">
