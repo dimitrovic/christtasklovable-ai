@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -239,6 +238,68 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-4xl">
           <VerseReference />
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-24 px-6 bg-slate-800/50 backdrop-blur-sm border-t border-slate-700/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Get Started Today
+            </h2>
+            <p className="text-xl text-slate-200 max-w-3xl mx-auto">
+              Join ChristTask and equip yourself to defend the faith with confidence
+            </p>
+          </div>
+
+          {/* Pricing Card */}
+          <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20 dark:border-slate-700/50 hover:shadow-2xl transition-all duration-300 max-w-md mx-auto">
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <span className="text-2xl font-bold text-slate-400 line-through">£34.99</span>
+                <div className="text-4xl font-bold text-slate-800 dark:text-slate-100">£21.99</div>
+              </div>
+              <div className="text-slate-600 dark:text-slate-400 text-lg mb-4">per month</div>
+              <div className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-semibold px-4 py-2 rounded-full inline-block border border-amber-200 dark:border-amber-500/30">
+                Save £13 Monthly - Limited Time
+              </div>
+            </div>
+
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Unlimited apologetic questions</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">All topic categories covered</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Scripture-based responses</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">24/7 instant access</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <span className="text-slate-700 dark:text-slate-300">Cancel anytime</span>
+              </div>
+            </div>
+
+            <Button
+              onClick={onGetStarted}
+              className="w-full px-6 py-3 rounded-2xl bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+            >
+              Start Your Subscription
+            </Button>
+
+            <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-4">
+              Secure payment • Cancel anytime
+            </p>
+          </div>
         </div>
       </section>
 
