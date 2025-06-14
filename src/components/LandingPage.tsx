@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -13,6 +12,12 @@ interface LandingPageProps {
 }
 
 export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: LandingPageProps) => {
+  const handleTopicSelect = (topic: string) => {
+    console.log('Topic selected:', topic);
+    // For now, just log the topic selection
+    // This could be expanded to navigate to a specific topic page
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <Header onAuthAction={onAuthAction} />
@@ -152,7 +157,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
       {/* Stats Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-4xl">
-          <GameStats />
+          <GameStats score={1250} streak={7} level={3} />
         </div>
       </section>
 
@@ -167,7 +172,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               Explore the most important areas of Christian apologetics and build your confidence
             </p>
           </div>
-          <TopicCategories />
+          <TopicCategories onTopicSelect={handleTopicSelect} />
         </div>
       </section>
 
