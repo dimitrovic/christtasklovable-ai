@@ -144,7 +144,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             Ask any question. Get a Scripture-backed, logical response to Muslim, atheist, or skeptic objections.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex justify-center mb-12">
             <Button 
               size="lg" 
               onClick={onGetStarted}
@@ -152,15 +152,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Get Started
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              onClick={onHowItWorks}
-              className="text-lg px-8 py-4 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white rounded-full"
-            >
-              <Lightbulb className="mr-2 h-5 w-5" />
-              How It Works
             </Button>
           </div>
 
