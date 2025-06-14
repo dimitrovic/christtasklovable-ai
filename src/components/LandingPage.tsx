@@ -196,8 +196,10 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               <span className="text-amber-500">Debate. Defend. Disciple.</span>
             </span>
             <br />
-            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-12 block">
+            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-12 block relative inline-block">
               — Instantly.
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 animate-[draw-line_2s_ease-in-out_1s_forwards]"></span>
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-amber-500 rounded-full opacity-0 animate-[draw-dot_0.3s_ease-in-out_3s_forwards]"></span>
             </span>
           </h1>
           

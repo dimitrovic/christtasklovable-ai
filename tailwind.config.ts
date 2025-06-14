@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -83,6 +84,29 @@ export default {
 					},
 					to: {
 						height: '0'
+					}
+				},
+				'draw-line': {
+					'0%': {
+						width: '0%',
+						opacity: '0'
+					},
+					'50%': {
+						opacity: '1'
+					},
+					'100%': {
+						width: '100%',
+						opacity: '1'
+					}
+				},
+				'draw-dot': {
+					'0%': {
+						opacity: '0',
+						transform: 'translate(-50%, 0) scale(0)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translate(-50%, 0) scale(1)'
 					}
 				}
 			},
