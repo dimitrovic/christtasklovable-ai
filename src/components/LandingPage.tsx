@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu } from "lucide-react";
@@ -52,9 +51,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
 
             {/* Desktop Buttons */}
             <div className="hidden md:flex space-x-4">
-              <Button variant="outline" onClick={onHowItWorks}>
-                How It Works
-              </Button>
               <Button onClick={onGetStarted} className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
                 Get Started
               </Button>
@@ -75,9 +71,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                   Pricing
                 </a>
                 <div className="flex flex-col space-y-2 pt-2">
-                  <Button variant="outline" onClick={onHowItWorks} className="w-full">
-                    How It Works
-                  </Button>
                   <Button onClick={onGetStarted} className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 w-full">
                     Get Started
                   </Button>
