@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, Gamepad2, Users, BookOpen } from "lucide-react";
+import { MessageSquare, Users } from "lucide-react";
 
 interface NavigationProps {
   activeMode: string;
@@ -24,26 +24,12 @@ export const Navigation = ({ activeMode, onModeChange }: NavigationProps) => {
       description: "Challenging questions mode",
       icon: Users,
       gradient: "from-purple-500 to-pink-600"
-    },
-    {
-      id: "challenge",
-      title: "Challenge the AI",
-      description: "Gamified apologetics",
-      icon: Gamepad2,
-      gradient: "from-emerald-500 to-teal-600"
-    },
-    {
-      id: "study",
-      title: "Scripture Study",
-      description: "Deep biblical analysis",
-      icon: BookOpen,
-      gradient: "from-orange-500 to-red-600"
     }
   ];
 
   return (
     <div className="mb-8">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {modes.map((mode) => (
           <Card 
             key={mode.id}
@@ -54,12 +40,12 @@ export const Navigation = ({ activeMode, onModeChange }: NavigationProps) => {
             }`}
             onClick={() => onModeChange(mode.id)}
           >
-            <div className="p-4 text-center">
-              <div className={`mx-auto mb-3 p-3 rounded-xl bg-gradient-to-r ${mode.gradient} w-fit`}>
-                <mode.icon className="h-6 w-6 text-white" />
+            <div className="p-6 text-center">
+              <div className={`mx-auto mb-4 p-4 rounded-xl bg-gradient-to-r ${mode.gradient} w-fit`}>
+                <mode.icon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-bold text-sm text-slate-800 mb-1">{mode.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{mode.description}</p>
+              <h3 className="font-bold text-lg text-slate-800 mb-2">{mode.title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{mode.description}</p>
             </div>
           </Card>
         ))}

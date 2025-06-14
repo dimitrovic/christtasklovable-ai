@@ -2,18 +2,15 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, BookText, Send, Gamepad2, Users } from "lucide-react";
+import { MessageSquare, Send, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "./Navigation";
-import { GameStats } from "./GameStats";
-import { ModeSelector } from "./ModeSelector";
 
 interface Message {
   id: string;
   text: string;
   isUser: boolean;
   timestamp: Date;
-  points?: number;
 }
 
 interface ChatInterfaceProps {
@@ -25,8 +22,6 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [activeMode, setActiveMode] = useState("chat");
-  const [isDebateMode, setIsDebateMode] = useState(false);
-  const [gameStats, setGameStats] = useState({ score: 0, streak: 0, level: 1 });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -48,9 +43,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     // Initialize with mode-specific welcome message
     const welcomeMessages = {
       chat: "Welcome! I'm your personal AI apologist. I'm here to help you grow in faith and answer theological questions with love, truth, and Scripture. How can I support your spiritual journey today?",
-      debate: "Challenge Mode Active! I'll present tough questions from Muslim and atheist perspectives. Your job is to respond with biblical truth and love. Ready for the challenge?",
-      challenge: "Game Mode: Challenge the AI! Try to stump me with your hardest apologetics questions. You'll earn points for good questions and thoughtful responses. Let's see what you've got!",
-      study: "Scripture Study Mode: Let's dive deep into God's Word together. Ask me about biblical passages, theological concepts, or request detailed biblical analysis."
+      debate: "Challenge Mode Active! I'll present tough questions from Muslim and atheist perspectives. Your job is to respond with biblical truth and love. Ready for the challenge?"
     };
 
     setMessages([{
@@ -61,16 +54,17 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     }]);
   }, [activeMode]);
 
-  const analyzeAndRespond = (question: string) => {
-    // Simple analysis based on key concepts
-    const lowerQ = question.toLowerCase();
-    
-    if (lowerQ.includes("contradict")) return "Apparent contradictions resolve when we understand context, translation, and genre.";
-    if (lowerQ.includes("science")) return "True science and Scripture complement each other - both reveal God's truth.";
-    if (lowerQ.includes("other religion")) return "Jesus declared 'I am the way, the truth, and the life' (John 14:6) - exclusive but loving.";
-    if (lowerQ.includes("love") && lowerQ.includes("hell")) return "God's love and justice are both perfect - the cross demonstrates both.";
-    
-    return "This question reveals deep thinking about faith - let's explore what Scripture teaches.";
+  const analyzeQuestionType = (lowerInput: string) => {
+    if (lowerInput.includes("why") || lowerInput.includes("purpose")) {
+      return "God's purposes are revealed in Scripture, and His ways are higher than our ways (Isaiah 55:8-9). The 'why' questions often lead us to trust God's character when we can't see the full picture.";
+    }
+    if (lowerInput.includes("how") || lowerInput.includes("explain")) {
+      return "Scripture provides clear explanation for this, often using multiple passages to give us the complete picture. God's revelation is progressive and comprehensive.";
+    }
+    if (lowerInput.includes("what") || lowerInput.includes("definition")) {
+      return "Biblical definitions come from Scripture's own usage of terms, Hebrew and Greek word studies, and the consistent teaching across all of God's Word.";
+    }
+    return "This question requires careful biblical analysis to provide an accurate, Scripture-based response.";
   };
 
   const getDirectDebateResponse = (input: string) => {
@@ -466,19 +460,6 @@ This is exactly the kind of question that deserves a direct, biblical response. 
 Could you help me understand which specific aspect of this issue is most challenging for you? I want to give you the most helpful biblical response possible.`;
   };
 
-  const analyzeQuestionType = (lowerInput: string) => {
-    if (lowerInput.includes("why") || lowerInput.includes("purpose")) {
-      return "God's purposes are revealed in Scripture, and His ways are higher than our ways (Isaiah 55:8-9). The 'why' questions often lead us to trust God's character when we can't see the full picture.";
-    }
-    if (lowerInput.includes("how") || lowerInput.includes("explain")) {
-      return "Scripture provides clear explanation for this, often using multiple passages to give us the complete picture. God's revelation is progressive and comprehensive.";
-    }
-    if (lowerInput.includes("what") || lowerInput.includes("definition")) {
-      return "Biblical definitions come from Scripture's own usage of terms, Hebrew and Greek word studies, and the consistent teaching across all of God's Word.";
-    }
-    return "This question requires careful biblical analysis to provide an accurate, Scripture-based response.";
-  };
-
   const getAIResponse = (input: string, mode: string) => {
     if (mode === "debate") {
       return getDirectDebateResponse(input);
@@ -490,14 +471,6 @@ Could you help me understand which specific aspect of this issue is most challen
       chat: {
         triggers: ["jesus", "divine", "god", "deity"],
         response: "I understand you're seeking clarity about Jesus' divinity. This is beautiful - you're asking the right questions! Scripture is wonderfully clear about this. In John 1:1, we read 'In the beginning was the Word, and the Word was with God, and the Word was God.' Jesus Himself declared 'Before Abraham was, I am' (John 8:58), using God's sacred name. He accepted worship (Matthew 28:9) and forgave sins (Mark 2:5-7) - things only God can do. Remember, faith seeks understanding, and God honors our sincere questions. How does this resonate with your heart?"
-      },
-      challenge: {
-        triggers: ["try", "stump", "difficult"],
-        response: "Nice try! That's a classic question. Here's my response: The problem of evil actually points TO God, not away from Him. Without an absolute moral standard (God), we couldn't even identify something as 'evil.' Evil is the absence of good, like darkness is the absence of light. God gave us free will because love requires choice - and with choice comes the possibility of choosing wrongly. The cross shows God didn't remain distant from suffering but entered into it. Your turn - got something harder? 🎯 [+10 points for a thoughtful question!]"
-      },
-      study: {
-        triggers: ["study", "analyze", "scripture"],
-        response: "Excellent choice for deep study! Let's examine this passage in its original context. Looking at the Greek/Hebrew roots, historical background, and cross-references with other Scripture passages. The beauty of God's Word is that it interprets itself - Scripture with Scripture. What specific aspect would you like to explore further? The theological implications, the historical context, or perhaps how this applies to our daily walk with Christ?"
       }
     };
 
@@ -510,9 +483,7 @@ Could you help me understand which specific aspect of this issue is most challen
     // Default responses by mode
     const defaults = {
       chat: "Thank you for sharing your heart with me. This is such an important question, and I'm honored you're seeking biblical truth. Let me offer you some Scripture-based encouragement and wisdom...",
-      debate: getDirectDebateResponse(input),
-      challenge: "Interesting challenge! Let me see if I can tackle this one... 🎯",
-      study: "Let's dig deeper into God's Word on this topic. Here's what Scripture teaches us..."
+      debate: getDirectDebateResponse(input)
     };
 
     return defaults[mode as keyof typeof defaults] || defaults.chat;
@@ -538,21 +509,10 @@ Could you help me understand which specific aspect of this issue is most challen
         id: (Date.now() + 1).toString(),
         text: aiResponse,
         isUser: false,
-        timestamp: new Date(),
-        points: activeMode === "challenge" ? Math.floor(Math.random() * 20) + 5 : undefined
+        timestamp: new Date()
       };
 
       setMessages(prev => [...prev, botMessage]);
-      
-      // Update game stats for challenge mode
-      if (activeMode === "challenge" && botMessage.points) {
-        setGameStats(prev => ({
-          score: prev.score + botMessage.points!,
-          streak: prev.streak + 1,
-          level: Math.floor((prev.score + botMessage.points!) / 100) + 1
-        }));
-      }
-      
       setIsLoading(false);
     }, 1500);
   };
@@ -567,8 +527,7 @@ Could you help me understand which specific aspect of this issue is most challen
   const getModeIcon = () => {
     switch (activeMode) {
       case "debate": return Users;
-      case "challenge": return Gamepad2;
-      default: return BookText;
+      default: return MessageSquare;
     }
   };
 
@@ -577,14 +536,6 @@ Could you help me understand which specific aspect of this issue is most challen
   return (
     <div className="space-y-6">
       <Navigation activeMode={activeMode} onModeChange={setActiveMode} />
-      
-      {activeMode === "chat" && (
-        <ModeSelector isDebateMode={isDebateMode} onToggle={setIsDebateMode} />
-      )}
-      
-      {activeMode === "challenge" && (
-        <GameStats {...gameStats} />
-      )}
 
       <div className="h-[600px] flex flex-col bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* Chat Header */}
@@ -593,14 +544,10 @@ Could you help me understand which specific aspect of this issue is most challen
             <ModeIcon className="h-8 w-8" />
             <div>
               <h2 className="text-2xl font-bold">
-                {activeMode === "chat" ? "AI Apologist Chat" : 
-                 activeMode === "debate" ? "Debate Mode" :
-                 activeMode === "challenge" ? "Challenge Mode" : "Scripture Study"}
+                {activeMode === "chat" ? "AI Apologist Chat" : "Muslim-Atheist Asks Mode"}
               </h2>
               <p className="text-indigo-100">
-                {activeMode === "chat" ? "Personal guidance with love and truth" :
-                 activeMode === "debate" ? "Tackling tough questions together" :
-                 activeMode === "challenge" ? "Test your apologetics skills" : "Deep biblical analysis"}
+                {activeMode === "chat" ? "Personal guidance with love and truth" : "Tackling tough questions together"}
               </p>
             </div>
           </div>
@@ -623,9 +570,6 @@ Could you help me understand which specific aspect of this issue is most challen
                 </div>
                 <Card className={`p-5 shadow-lg border-0 ${message.isUser ? "bg-gradient-to-r from-indigo-50 to-purple-50" : "bg-white"}`}>
                   <p className="text-slate-800 leading-relaxed whitespace-pre-wrap">{message.text}</p>
-                  {message.points && (
-                    <div className="mt-3 text-emerald-600 font-bold text-sm">+{message.points} points!</div>
-                  )}
                   <p className="text-xs text-slate-500 mt-3 font-medium">
                     {message.timestamp.toLocaleTimeString()}
                   </p>
@@ -660,9 +604,7 @@ Could you help me understand which specific aspect of this issue is most challen
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder={
-                activeMode === "challenge" ? "Try to challenge me with a tough question..." :
-                activeMode === "debate" ? "Share your challenging theological question..." :
-                "Ask your apologetics question here..."
+                activeMode === "debate" ? "Share your challenging theological question..." : "Ask your apologetics question here..."
               }
               className="flex-1 min-h-[80px] resize-none border-2 border-slate-200 focus:border-indigo-400 rounded-xl"
               disabled={isLoading}
