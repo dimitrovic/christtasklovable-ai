@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown } from "lucide-react";
@@ -233,41 +232,29 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             <div className="bg-stone-50 dark:bg-slate-700 p-8 rounded-2xl border border-stone-200 dark:border-slate-600">
               <h2 className="text-3xl font-bold text-stone-800 dark:text-white mb-6 flex items-center">
                 <Shield className="mr-3 h-8 w-8 text-amber-500" />
-                Facing Challenges?
+                The Reality
               </h2>
               <div className="space-y-4 text-stone-700 dark:text-stone-300">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p>Skeptics challenge your faith and you feel unprepared</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p>You know God's truth but lack the knowledge to defend it</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p>You want to grow stronger in your apologetic understanding</p>
-                </div>
+                <p className="text-lg leading-relaxed">
+                  We're not here to promise you some fantasy of never being challenged again.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  You'll still face objections. The world won't stop debating.
+                </p>
               </div>
             </div>
             <div className="bg-stone-50 dark:bg-slate-700 p-8 rounded-2xl border border-stone-200 dark:border-slate-600">
               <h2 className="text-3xl font-bold text-stone-800 dark:text-white mb-6 flex items-center">
                 <Cross className="mr-3 h-8 w-8 text-amber-500" />
-                Stand Firm in Truth
+                The Difference
               </h2>
               <div className="space-y-4 text-stone-700 dark:text-stone-300">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
-                  <p>Receive instant, Scripture-backed responses to any challenge</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
-                  <p>Access Christian apologetics and biblical scholarship</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
-                  <p>Build confidence in defending your faith</p>
-                </div>
+                <p className="text-lg leading-relaxed">
+                  But with this app, you wouldn't be scrambling, doubting, or staying silent.
+                </p>
+                <p className="text-lg leading-relaxed font-semibold">
+                  You'd be standing firm — calmly defending the truth with confidence.
+                </p>
               </div>
             </div>
           </div>
