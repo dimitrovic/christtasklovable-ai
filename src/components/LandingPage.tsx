@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown } from "lucide-react";
@@ -63,19 +64,22 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                   onClick={() => setIsNavDropdownOpen(!isNavDropdownOpen)}
                   className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg p-2 shadow-sm hover:bg-stone-100 dark:hover:bg-slate-700 transition-colors"
                 >
-                  <Menu className="h-4 w-4 text-stone-600 dark:text-stone-300" />
+                  <div className="flex flex-col space-y-1">
+                    <div className="w-4 h-0.5 bg-stone-600 dark:bg-stone-300"></div>
+                    <div className="w-4 h-0.5 bg-stone-600 dark:bg-stone-300"></div>
+                  </div>
                 </button>
                 
                 {isNavDropdownOpen && (
                   <div className="absolute top-full right-0 mt-2 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 rounded-lg shadow-lg p-2 z-50">
-                    <div className="grid grid-cols-2 gap-2 min-w-[200px]">
-                      <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                    <div className="flex flex-col space-y-1 min-w-[150px]">
+                      <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
                         Home
                       </a>
-                      <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                      <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
                         How It Works
                       </a>
-                      <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center col-span-2">
+                      <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
                         Pricing
                       </a>
                     </div>
