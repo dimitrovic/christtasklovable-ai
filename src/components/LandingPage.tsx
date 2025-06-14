@@ -195,7 +195,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               Imagine If You Had the Perfect Answer in Every Debate…
             </span>
             <br />
-            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-4 block">
+            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-8 block">
               — Instantly.
             </span>
           </h1>
