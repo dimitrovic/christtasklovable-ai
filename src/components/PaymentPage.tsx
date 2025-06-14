@@ -1,23 +1,40 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { BookOpen, CheckCircle, ArrowLeft, Star } from "lucide-react";
-import { useState } from "react";
+import { BookOpen, CheckCircle, ArrowLeft, Star, RefreshCw } from "lucide-react";
+import { useSubscription } from "@/hooks/useSubscription";
+import { useAuth } from "@/hooks/useAuth";
 
 interface PaymentPageProps {
   onBack: () => void;
 }
 
 export const PaymentPage = ({ onBack }: PaymentPageProps) => {
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { user } = useAuth();
+  const { 
+    subscribed, 
+    subscriptionTier, 
+    subscriptionEnd, 
+    loading, 
+    createCheckout, 
+    openCustomerPortal,
+    checkSubscription 
+  } = useSubscription();
 
-  const handlePayment = async () => {
-    setIsProcessing(true);
-    // Payment logic will go here
-    setTimeout(() => {
-      setIsProcessing(false);
-      alert("Payment functionality will be implemented here!");
-    }, 2000);
+  const handleSubscribe = async () => {
+    if (!user) {
+      alert("Please sign in first to subscribe.");
+      return;
+    }
+    await createCheckout();
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
   };
 
   return (
@@ -40,14 +57,26 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                 ChristTask
               </h1>
             </div>
-            <Button
-              onClick={onBack}
-              variant="ghost"
-              className="flex items-center space-x-2 text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Button
+                onClick={checkSubscription}
+                variant="ghost"
+                size="sm"
+                disabled={loading}
+                className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+              >
+                <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+              <Button
+                onClick={onBack}
+                variant="ghost"
+                className="flex items-center space-x-2 text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -55,6 +84,48 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
       {/* Payment Section */}
       <section className="relative z-10 py-16 px-6">
         <div className="container mx-auto max-w-2xl">
+          {/* Current Subscription Status */}
+          {user && (
+            <div className="mb-8">
+              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 shadow-xl rounded-2xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">
+                        Subscription Status
+                      </h3>
+                      {loading ? (
+                        <p className="text-white/70">Checking subscription...</p>
+                      ) : subscribed ? (
+                        <div className="space-y-1">
+                          <p className="text-emerald-300 font-medium">
+                            ✓ Active Subscription ({subscriptionTier})
+                          </p>
+                          {subscriptionEnd && (
+                            <p className="text-white/70 text-sm">
+                              Renews on {formatDate(subscriptionEnd)}
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-amber-300">No active subscription</p>
+                      )}
+                    </div>
+                    {subscribed && (
+                      <Button
+                        onClick={openCustomerPortal}
+                        variant="outline"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                      >
+                        Manage Subscription
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
           <div className="text-center mb-12 space-y-6">
             <div className="inline-flex items-center bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full px-6 py-3 mb-8 shadow-lg">
               <Star className="h-4 w-4 text-amber-500 mr-2" />
@@ -62,75 +133,80 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Get Started Today
+              {subscribed ? "Manage Your Subscription" : "Get Started Today"}
             </h2>
             <p className="text-xl text-white font-light leading-relaxed max-w-2xl mx-auto">
-              Join ChristTask and equip yourself to defend the faith with confidence
+              {subscribed 
+                ? "You have full access to ChristTask. Manage your subscription below."
+                : "Join ChristTask and equip yourself to defend the faith with confidence"
+              }
             </p>
           </div>
 
           {/* Pricing Card */}
-          <Card className="bg-white/70 backdrop-blur-sm border border-white/20 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="text-center py-12 px-8">
-              <div className="flex items-center justify-center space-x-3 mb-6">
-                <span className="text-3xl font-bold text-slate-400 line-through">£34.99</span>
-                <div className="text-5xl font-bold text-slate-800">£21.99</div>
-              </div>
-              <div className="text-slate-600 text-lg mb-4">per month</div>
-              <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-6 py-3 rounded-full inline-block border border-amber-200">
-                Save £13 Monthly - Limited Time
-              </div>
-            </CardHeader>
+          {!subscribed && (
+            <Card className="bg-white/70 backdrop-blur-sm border border-white/20 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <CardHeader className="text-center py-12 px-8">
+                <div className="flex items-center justify-center space-x-3 mb-6">
+                  <span className="text-3xl font-bold text-slate-400 line-through">£34.99</span>
+                  <div className="text-5xl font-bold text-slate-800">£21.99</div>
+                </div>
+                <div className="text-slate-600 text-lg mb-4">per month</div>
+                <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-6 py-3 rounded-full inline-block border border-amber-200">
+                  Save £13 Monthly - Limited Time
+                </div>
+              </CardHeader>
 
-            <CardContent className="px-8 pb-12">
-              <div className="space-y-6 mb-10">
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">Unlimited apologetic questions</span>
+              <CardContent className="px-8 pb-12">
+                <div className="space-y-6 mb-10">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Unlimited apologetic questions</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">All topic categories covered</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Scripture-based responses</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">24/7 instant access</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Interactive dialogue feature</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Cancel anytime</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">All topic categories covered</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">Scripture-based responses</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">24/7 instant access</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">Interactive dialogue feature</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mr-4 flex-shrink-0" />
-                  <span className="text-slate-700 text-lg">Cancel anytime</span>
-                </div>
-              </div>
 
-              <Button
-                onClick={handlePayment}
-                disabled={isProcessing}
-                size="lg"
-                className="w-full bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-xl py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-              >
-                {isProcessing ? (
-                  <span>Processing...</span>
-                ) : (
-                  <>
-                    <BookOpen className="mr-3 h-6 w-6" />
-                    Start Your Subscription
-                  </>
-                )}
-              </Button>
+                <Button
+                  onClick={handleSubscribe}
+                  disabled={loading}
+                  size="lg"
+                  className="w-full bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-xl py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                >
+                  {user ? (
+                    <>
+                      <BookOpen className="mr-3 h-6 w-6" />
+                      Start Your Subscription
+                    </>
+                  ) : (
+                    "Sign In to Subscribe"
+                  )}
+                </Button>
 
-              <p className="text-center text-sm text-slate-600 mt-6">
-                Secure payment powered by Stripe. Cancel anytime.
-              </p>
-            </CardContent>
-          </Card>
+                <p className="text-center text-sm text-slate-600 mt-6">
+                  Secure payment powered by Stripe. Cancel anytime.
+                </p>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Trust Indicators */}
           <div className="mt-12 text-center">
