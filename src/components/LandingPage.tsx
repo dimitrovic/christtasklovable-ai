@@ -55,16 +55,20 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             </div>
             
             {/* Navigation - Center (Desktop) */}
-            <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
-              <a href="#home" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                Home
-              </a>
-              <a href="#how-it-works" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                How It Works
-              </a>
-              <a href="#pricing" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                Pricing
-              </a>
+            <nav className="hidden md:flex items-center justify-center flex-1">
+              <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg p-1 shadow-sm">
+                <div className="grid grid-cols-3 gap-1">
+                  <a href="#home" className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                    Home
+                  </a>
+                  <a href="#how-it-works" className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                    How It Works
+                  </a>
+                  <a href="#pricing" className="px-4 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                    Pricing
+                  </a>
+                </div>
+              </div>
             </nav>
 
             {/* Mobile Menu Button */}
