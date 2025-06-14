@@ -355,7 +355,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             Get Started
           </Button>
           
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-4">No commitment required</p>
         </div>
       </section>
     </div>
