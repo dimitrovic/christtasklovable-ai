@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target } from "lucide-react";
@@ -71,10 +70,13 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             </Button>
           </div>
 
-          {/* Pricing Badge */}
+          {/* Pricing Badge with Discount */}
           <div className="inline-flex items-center bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200 rounded-full px-6 py-3 mb-16">
             <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-            <span className="text-green-800 font-semibold">Only £21.99/month - Cancel anytime</span>
+            <span className="text-green-800 font-semibold">
+              <span className="line-through text-slate-500 mr-2">£34.99</span>
+              Only £21.99/month - Cancel anytime
+            </span>
           </div>
         </div>
       </section>
@@ -220,8 +222,14 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-auto mb-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-slate-800 mb-2">£21.99</div>
+              <div className="flex items-center justify-center mb-2">
+                <span className="text-2xl font-bold text-slate-400 line-through mr-3">£34.99</span>
+                <div className="text-4xl font-bold text-slate-800">£21.99</div>
+              </div>
               <div className="text-slate-600 mb-4">per month</div>
+              <div className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
+                Save £13/month
+              </div>
               <ul className="text-left space-y-2 mb-6">
                 <li className="flex items-center">
                   <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
