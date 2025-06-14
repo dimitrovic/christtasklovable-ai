@@ -50,10 +50,10 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Interactive AI-powered training to help you defend your faith with wisdom, 
+            <p className="text-xl md:text-2xl text-white font-medium mb-12 max-w-4xl mx-auto leading-relaxed">
+              An apologetics AI that equips you with the words — backed by Scripture, sharpened by logic, ready for every challenge.
               <br className="hidden md:block" />
-              knowledge, and biblical truth in every conversation.
+              <span className="text-lg md:text-xl">This is where silence becomes strength.</span>
             </p>
 
             <div className="flex items-center justify-center">
