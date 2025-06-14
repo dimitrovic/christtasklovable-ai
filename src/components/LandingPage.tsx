@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon } from "lucide-react";
@@ -76,7 +77,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 onClick={toggleDarkMode}
                 variant="outline"
                 size="sm"
-                className="p-2 border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
+                className="w-10 h-10 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
               >
                 {isDarkMode ? (
                   <Sun className="h-4 w-4 text-amber-500" />
@@ -109,7 +110,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                       onClick={toggleDarkMode}
                       variant="outline"
                       size="sm"
-                      className="p-2 border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
+                      className="w-10 h-10 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
                     >
                       {isDarkMode ? (
                         <Sun className="h-4 w-4 text-amber-500" />
