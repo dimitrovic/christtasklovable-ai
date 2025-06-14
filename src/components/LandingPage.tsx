@@ -211,18 +211,27 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
         </div>
       </section>
 
-      {/* Features Section - rename Topics section to Features */}
-      <section id="features" className="py-20 px-6 bg-slate-800">
+      {/* New AI Training Section - replacing the old Master Key Topics section */}
+      <section id="features" className="py-24 px-6 bg-slate-800/80 backdrop-blur-sm border-t border-slate-700/30">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
-              Master Key Topics
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+              A world-class AI built to sharpen your faith and confidence in debate.
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-              Explore the most important areas of Christian apologetics and build your confidence
+            <p className="text-2xl md:text-3xl text-amber-300 font-semibold mb-8">
+              Go from silent to spiritually unshakable — fast.
             </p>
+            <p className="text-xl text-slate-200 max-w-4xl mx-auto mb-12 leading-relaxed">
+              Advanced, Scripture-backed training for bold conversations with anyone, anytime.
+            </p>
+            
+            <Button
+              onClick={onGetStarted}
+              className="px-8 py-4 rounded-2xl bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+            >
+              Get Started
+            </Button>
           </div>
-          <TopicCategories onTopicSelect={handleTopicSelect} />
         </div>
       </section>
 
