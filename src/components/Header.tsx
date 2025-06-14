@@ -36,7 +36,7 @@ export const Header = () => {
               <h1 className={`font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent transition-all duration-300 ${
                 isScrolled ? 'text-sm' : 'text-lg'
               }`}>
-                FaithDefender
+                ChristTask
               </h1>
             </div>
           </div>
