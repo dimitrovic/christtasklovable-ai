@@ -225,7 +225,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             {/* Subtitle */}
             <div className="max-w-4xl mx-auto space-y-8">
               <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed font-light">
-                What if, the last time someone questioned your faith, you had replied with clarity, logic, and Scripture — without fear or hesitation?
+                An AI built to defend the faith — delivering fast, clear answers grounded in Scripture and logic.
+                The silence ends now. The truth speaks.
               </p>
             </div>
 
