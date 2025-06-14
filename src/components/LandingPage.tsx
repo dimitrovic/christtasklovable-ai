@@ -52,7 +52,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             {/* Desktop Buttons */}
             <div className="hidden md:flex space-x-4">
               <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 text-sm">
-                Begin Your Journey
+                Get Started
               </Button>
             </div>
           </div>
@@ -72,7 +72,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 </a>
                 <div className="flex flex-col space-y-2 pt-2">
                   <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold w-full">
-                    Begin Your Journey
+                    Get Started
                   </Button>
                 </div>
               </nav>
@@ -325,7 +325,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold"
           >
             <Cross className="mr-2 h-6 w-6" />
-            Begin Your Journey
+            Get Started
           </Button>
           
           <p className="text-sm text-stone-500 mt-4">7-day free trial • No commitment required</p>
