@@ -214,9 +214,9 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 </span>
               </h1>
               
-              {/* New Tagline */}
+              {/* New Tagline - Updated to gold */}
               <div className="max-w-4xl mx-auto">
-                <p className="text-2xl md:text-3xl lg:text-4xl text-slate-700 dark:text-slate-300 font-light leading-tight">
+                <p className="text-2xl md:text-3xl lg:text-4xl text-amber-500 font-light leading-tight">
                   — Imagine If You Had the Perfect Answer in Every Debate…
                 </p>
               </div>
