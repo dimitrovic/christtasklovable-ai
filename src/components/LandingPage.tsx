@@ -136,17 +136,13 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <div className="mb-8 flex justify-center">
-            <Cross className="h-16 w-16 text-amber-500 mx-auto mb-4" />
-          </div>
-
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             <span className="text-stone-800 dark:text-white">
-              Defend Your Faith
+              AI That Defends Christianity
             </span>
             <br />
             <span className="text-3xl md:text-5xl text-stone-600 dark:text-stone-300 font-light">
-              with Divine Wisdom
+              — Instantly.
             </span>
           </h1>
           
@@ -155,9 +151,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           </p>
 
           <p className="text-lg md:text-xl text-stone-700 dark:text-stone-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Equipped with Scripture-based wisdom and scholarly apologetics, face every challenge to your faith with 
-            <span className="font-semibold text-amber-600"> divine confidence</span>. From evolution debates to biblical contradictions — 
-            truth prevails through knowledge.
+            Ask any question. Get a Scripture-backed, logical response to Muslim, atheist, or skeptic objections.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
