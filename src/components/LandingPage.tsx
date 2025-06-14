@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown } from "lucide-react";
@@ -226,36 +227,91 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </section>
 
       {/* Problem/Solution Section */}
-      <section id="how-it-works" className="py-16 bg-white dark:bg-slate-800">
+      <section id="how-it-works" className="py-20 bg-gradient-to-br from-slate-50 via-white to-stone-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-stone-50 dark:bg-slate-700 p-8 rounded-2xl border border-stone-200 dark:border-slate-600">
-              <h2 className="text-3xl font-bold text-stone-800 dark:text-white mb-6 flex items-center">
-                <Shield className="mr-3 h-8 w-8 text-amber-500" />
-                The Reality
-              </h2>
-              <div className="space-y-4 text-stone-700 dark:text-stone-300">
-                <p className="text-lg leading-relaxed">
-                  We're not here to promise you some fantasy of never being challenged again.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  You'll still face objections. The world won't stop debating.
-                </p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-stone-800 dark:text-white mb-4">
+              Here's The <span className="text-amber-500">Truth</span>
+            </h2>
+            <p className="text-xl text-stone-600 dark:text-stone-300 max-w-2xl mx-auto">
+              We won't sugarcoat reality, but we'll show you the difference
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Reality Card */}
+            <div className="group relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10 dark:from-red-500/20 dark:to-orange-500/20 rounded-2xl"></div>
+              <div className="relative bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-8 rounded-2xl border-2 border-red-200 dark:border-red-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center mb-6">
+                  <div className="bg-gradient-to-br from-red-500 to-orange-600 p-3 rounded-xl shadow-lg">
+                    <Shield className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-stone-800 dark:text-white ml-4">
+                    The Reality
+                  </h3>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-3 h-3 bg-red-500 rounded-full mt-2 flex-shrink-0 shadow-lg"></div>
+                    <p className="text-lg leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+                      We're not here to promise you some fantasy of never being challenged again.
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-3 h-3 bg-orange-500 rounded-full mt-2 flex-shrink-0 shadow-lg"></div>
+                    <p className="text-lg leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+                      You'll still face objections. The world won't stop debating.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border-l-4 border-red-500">
+                  <p className="text-red-700 dark:text-red-300 font-semibold italic">
+                    "The struggles are real, and they're not going anywhere."
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="bg-stone-50 dark:bg-slate-700 p-8 rounded-2xl border border-stone-200 dark:border-slate-600">
-              <h2 className="text-3xl font-bold text-stone-800 dark:text-white mb-6 flex items-center">
-                <Cross className="mr-3 h-8 w-8 text-amber-500" />
-                The Difference
-              </h2>
-              <div className="space-y-4 text-stone-700 dark:text-stone-300">
-                <p className="text-lg leading-relaxed">
-                  But with this app, you wouldn't be scrambling, doubting, or staying silent.
-                </p>
-                <p className="text-lg leading-relaxed font-semibold">
-                  You'd be standing firm — calmly defending the truth with confidence.
-                </p>
+
+            {/* Difference Card */}
+            <div className="group relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 dark:from-emerald-500/20 dark:to-blue-500/20 rounded-2xl"></div>
+              <div className="relative bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-8 rounded-2xl border-2 border-emerald-200 dark:border-emerald-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center mb-6">
+                  <div className="bg-gradient-to-br from-emerald-500 to-blue-600 p-3 rounded-xl shadow-lg">
+                    <Cross className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-stone-800 dark:text-white ml-4">
+                    The Difference
+                  </h3>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-emerald-500 mt-1 flex-shrink-0" />
+                    <p className="text-lg leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+                      But with this app, you wouldn't be scrambling, doubting, or staying silent.
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-blue-500 mt-1 flex-shrink-0" />
+                    <p className="text-lg leading-relaxed text-stone-700 dark:text-stone-300 font-bold">
+                      You'd be standing firm — calmly defending the truth with confidence.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 dark:from-emerald-900/20 dark:to-blue-900/20 rounded-lg border-l-4 border-emerald-500">
+                  <p className="text-emerald-700 dark:text-emerald-300 font-bold italic">
+                    "Transform from uncertain to unshakeable."
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+          
+          {/* Connecting Arrow */}
+          <div className="flex justify-center mt-8">
+            <div className="bg-amber-500 p-3 rounded-full shadow-lg animate-pulse">
+              <Target className="h-6 w-6 text-white" />
             </div>
           </div>
         </div>
