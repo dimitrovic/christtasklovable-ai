@@ -37,10 +37,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-slate-800 via-blue-600 to-purple-600 dark:from-slate-100 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-8 leading-tight">
-              Master Christian
-              <br />
               <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                Apologetics
+                Debate. Defend. Disciple.
               </span>
             </h1>
             
