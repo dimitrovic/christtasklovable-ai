@@ -1,6 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target } from "lucide-react";
+import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu } from "lucide-react";
+import { useState } from "react";
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -8,6 +10,8 @@ interface LandingPageProps {
 }
 
 export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header */}
@@ -24,7 +28,30 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 </h1>
               </div>
             </div>
-            <div className="flex space-x-4">
+            
+            {/* Navigation - Center (Desktop) */}
+            <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
+              <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                Home
+              </a>
+              <a href="#how-it-works" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                How It Works
+              </a>
+              <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                Pricing
+              </a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Menu className="h-5 w-5 text-slate-600" />
+            </button>
+
+            {/* Desktop Buttons */}
+            <div className="hidden md:flex space-x-4">
               <Button variant="outline" onClick={onHowItWorks}>
                 How It Works
               </Button>
@@ -33,6 +60,31 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               </Button>
             </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-slate-200">
+              <nav className="flex flex-col space-y-3 pt-4">
+                <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                  Home
+                </a>
+                <a href="#how-it-works" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                  How It Works
+                </a>
+                <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                  Pricing
+                </a>
+                <div className="flex flex-col space-y-2 pt-2">
+                  <Button variant="outline" onClick={onHowItWorks} className="w-full">
+                    How It Works
+                  </Button>
+                  <Button onClick={onGetStarted} className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 w-full">
+                    Get Started
+                  </Button>
+                </div>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
