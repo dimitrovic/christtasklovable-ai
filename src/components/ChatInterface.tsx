@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -63,14 +62,49 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
   }, [activeMode]);
 
   const getAIResponse = (input: string, mode: string) => {
+    const lowerInput = input.toLowerCase();
+
+    if (mode === "debate") {
+      // More comprehensive debate mode responses based on common apologetics topics
+      if (lowerInput.includes("trinity") || lowerInput.includes("three gods") || lowerInput.includes("polytheism")) {
+        return "This is a classic challenge! Muslims often ask: 'How can you worship three Gods and claim monotheism?' Here's the biblical response: The Trinity doesn't teach three Gods, but one God existing in three persons - Father, Son, and Holy Spirit. Deuteronomy 6:4 declares 'Hear, O Israel: The Lord our God, the Lord is one.' The Hebrew word 'echad' means compound unity, like 'one flesh' in marriage (Genesis 2:24). Jesus claimed equality with the Father (John 10:30) yet prayed to Him, showing the relational aspect of the Trinity. How would you explain this mystery of unity and diversity within the Godhead?";
+      }
+      
+      if (lowerInput.includes("jesus") && (lowerInput.includes("god") || lowerInput.includes("divine") || lowerInput.includes("son"))) {
+        return "Here's a challenging question often posed: 'How can Jesus be God if He said the Father is greater than I?' (John 14:28). The key is understanding Jesus' two natures. In His human nature, Jesus was subordinate to the Father in role and mission. But in His divine nature, He's equal with the Father (Philippians 2:6). Jesus accepted worship (Matthew 28:9), forgave sins (Mark 2:5-7), and claimed to be the 'I AM' (John 8:58) - all attributes of God. Even Thomas declared 'My Lord and my God!' (John 20:28). How would you respond to someone who says Jesus never claimed to be God?";
+      }
+      
+      if (lowerInput.includes("bible") && (lowerInput.includes("corrupt") || lowerInput.includes("changed") || lowerInput.includes("reliable"))) {
+        return "A common Muslim objection: 'The Bible has been corrupted (tahrif), so how can you trust it?' Here's our response: We have over 5,800 Greek manuscripts of the New Testament, with fragments dating to within decades of the original writings. The Dead Sea Scrolls confirmed the Old Testament's reliability. Jesus Himself quoted the Old Testament as authoritative (Matthew 5:17-18). Even the Quran initially affirmed the Bible (Surah 3:3-4). The manuscript evidence for the Bible far exceeds any other ancient text. How would you demonstrate the Bible's textual integrity to a skeptic?";
+      }
+      
+      if (lowerInput.includes("evil") || lowerInput.includes("suffering") || lowerInput.includes("pain")) {
+        return "The classic atheist challenge: 'If God is all-good and all-powerful, why does evil exist?' This is profound! Here's the Christian response: God created beings with free will because love requires genuine choice. Evil is the absence of good, like darkness is the absence of light. Without the possibility of choosing wrongly, our choice to love God wouldn't be real. Moreover, God didn't remain distant from suffering - He entered it through Christ's crucifixion. Romans 8:28 promises He works all things for good. How would you comfort someone struggling with this question while maintaining biblical truth?";
+      }
+      
+      if (lowerInput.includes("resurrection") || lowerInput.includes("rise") || lowerInput.includes("tomb")) {
+        return "A critical challenge: 'The resurrection is just a myth - dead people don't come back to life!' Here's our defense: The resurrection has strong historical evidence. Multiple independent sources record it. The tomb was empty - even enemies didn't dispute this. The disciples transformed from cowards to martyrs. Women were the first witnesses (in a culture where women's testimony wasn't valued). If it were a lie, why would anyone die for it? 1 Corinthians 15:3-8 lists over 500 witnesses. The resurrection is the cornerstone of Christian faith. How would you present this evidence to a skeptic?";
+      }
+      
+      // Default debate response that directly addresses their question
+      return `That's an excellent and challenging question! Let me address this directly from a biblical apologetics perspective: ${input}
+
+Here's how we can respond with truth and love:
+
+The key biblical principles to remember are:
+1. Scripture is our ultimate authority (2 Timothy 3:16)
+2. We're called to give a reason for our hope (1 Peter 3:15)
+3. We defend the faith with gentleness and respect
+
+This type of question requires us to dig deep into God's Word and show how the Bible addresses these concerns. The challenge helps us grow stronger in our faith and better equipped to share truth with others.
+
+What specific aspect of this question would you like to explore further with Scripture?`;
+    }
+
     const responses = {
       chat: {
         triggers: ["jesus", "divine", "god", "deity"],
         response: "I understand you're seeking clarity about Jesus' divinity. This is beautiful - you're asking the right questions! Scripture is wonderfully clear about this. In John 1:1, we read 'In the beginning was the Word, and the Word was with God, and the Word was God.' Jesus Himself declared 'Before Abraham was, I am' (John 8:58), using God's sacred name. He accepted worship (Matthew 28:9) and forgave sins (Mark 2:5-7) - things only God can do. Remember, faith seeks understanding, and God honors our sincere questions. How does this resonate with your heart?"
-      },
-      debate: {
-        triggers: ["question", "challenge", "problem"],
-        response: "Here's a challenging question often raised: 'If Jesus is God, why did He pray to the Father? Doesn't this prove He's subordinate?' This is actually a profound question about the Trinity. The biblical answer: Jesus has two natures - fully God and fully man. In His human nature, He prayed to the Father, showing us perfect communion and dependence. Yet in His divine nature, He is equal with the Father (Philippians 2:6). The Trinity shows us relationship within the Godhead - not hierarchy, but perfect unity. How would you explain this to someone struggling with this question?"
       },
       challenge: {
         triggers: ["try", "stump", "difficult"],
@@ -83,7 +117,6 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     };
 
     const modeResponses = responses[mode as keyof typeof responses];
-    const lowerInput = input.toLowerCase();
     
     if (modeResponses?.triggers.some(trigger => lowerInput.includes(trigger))) {
       return modeResponses.response;
@@ -92,7 +125,9 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     // Default responses by mode
     const defaults = {
       chat: "Thank you for sharing your heart with me. This is such an important question, and I'm honored you're seeking biblical truth. Let me offer you some Scripture-based encouragement and wisdom...",
-      debate: "That's a challenging perspective often raised. Here's how we can respond with both truth and love, backed by solid biblical evidence...",
+      debate: `You've raised an important challenge that many believers face. Let me address this directly: ${input}
+
+From a biblical apologetics standpoint, this question touches on fundamental truths about God's nature and our faith. Here's how we can respond with both truth and love, grounded in Scripture...`,
       challenge: "Interesting challenge! Let me see if I can tackle this one... 🎯",
       study: "Let's dig deeper into God's Word on this topic. Here's what Scripture teaches us..."
     };
