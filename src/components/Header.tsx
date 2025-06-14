@@ -23,39 +23,41 @@ export const Header = () => {
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className={`bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-xl shadow-md transition-all duration-300 ${
-              isScrolled ? 'p-1.5' : 'p-3'
+          {/* Logo - Far Left */}
+          <div className="flex items-center space-x-2">
+            <div className={`bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg shadow-md transition-all duration-300 ${
+              isScrolled ? 'p-1' : 'p-2'
             }`}>
               <BookOpen className={`text-white transition-all duration-300 ${
-                isScrolled ? 'h-4 w-4' : 'h-7 w-7'
+                isScrolled ? 'h-3 w-3' : 'h-4 w-4'
               }`} />
             </div>
             <div>
               <h1 className={`font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent transition-all duration-300 ${
-                isScrolled ? 'text-lg' : 'text-2xl'
+                isScrolled ? 'text-sm' : 'text-lg'
               }`}>
-                Christian Apologetics
+                FaithDefender
               </h1>
-              <p className={`text-slate-600 transition-all duration-300 ${
-                isScrolled ? 'text-xs opacity-0' : 'text-sm opacity-100'
-              }`}>
-                Defending Faith with Biblical Truth
-              </p>
             </div>
           </div>
           
+          {/* Navigation - Center */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
-              Features
+            <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+              Home
+            </a>
+            <a href="#how-it-works" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+              How It Works
             </a>
             <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
               Pricing
             </a>
-            <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md">
-              Get Started
-            </button>
           </nav>
+
+          {/* Get Started Button - Far Right */}
+          <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md">
+            Get Started
+          </button>
         </div>
       </div>
     </header>
