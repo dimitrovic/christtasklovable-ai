@@ -13,6 +13,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     // Check if user has a saved preference, otherwise default to dark
@@ -26,6 +27,16 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
@@ -42,106 +53,138 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-slate-900 transition-colors">
       {/* Header */}
-      <header className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md shadow-sm border-b border-stone-200/50 dark:border-slate-700/50 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="bg-amber-500 p-2 rounded-lg">
-                <BookOpen className="h-5 w-5 text-white" />
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'px-6 pt-4' 
+          : 'px-0 pt-0'
+      }`}>
+        <div className={`transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-xl border border-stone-200/50 dark:border-amber-500/20 py-2 rounded-full mx-auto max-w-2xl' 
+            : 'bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm shadow-sm border-b border-stone-200/50 dark:border-slate-700/50 py-2 w-full'
+        }`}>
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <div className={`bg-amber-500 rounded-lg transition-all duration-300 ${
+                  isScrolled ? 'p-1.5' : 'p-2'
+                }`}>
+                  <BookOpen className={`text-white transition-all duration-300 ${
+                    isScrolled ? 'h-4 w-4' : 'h-5 w-5'
+                  }`} />
+                </div>
+                <div>
+                  <h1 className={`font-bold text-stone-800 dark:text-white transition-all duration-300 ${
+                    isScrolled ? 'text-base' : 'text-lg'
+                  }`}>
+                    ChristTask
+                  </h1>
+                </div>
               </div>
-              <div>
-                <h1 className="text-lg font-bold text-stone-800 dark:text-white">
-                  ChristTask
-                </h1>
-              </div>
-            </div>
-            
-            {/* Desktop Buttons */}
-            <div className="hidden md:flex items-center space-x-3">
-              {/* Navigation Dropdown */}
-              <div className="relative">
-                <button
-                  onClick={() => setIsNavDropdownOpen(!isNavDropdownOpen)}
-                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg p-2 shadow-sm hover:bg-stone-100 dark:hover:bg-slate-700 transition-colors"
+              
+              {/* Desktop Buttons */}
+              <div className="hidden md:flex items-center space-x-3">
+                {/* Navigation Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsNavDropdownOpen(!isNavDropdownOpen)}
+                    className={`bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg shadow-sm hover:bg-stone-100 dark:hover:bg-slate-700 transition-all duration-300 ${
+                      isScrolled ? 'p-1.5' : 'p-2'
+                    }`}
+                  >
+                    <div className="flex flex-col space-y-1">
+                      <div className={`bg-stone-600 dark:bg-stone-300 transition-all duration-300 ${
+                        isScrolled ? 'w-3 h-0.5' : 'w-4 h-0.5'
+                      }`}></div>
+                      <div className={`bg-stone-600 dark:bg-stone-300 transition-all duration-300 ${
+                        isScrolled ? 'w-3 h-0.5' : 'w-4 h-0.5'
+                      }`}></div>
+                    </div>
+                  </button>
+                  
+                  {isNavDropdownOpen && (
+                    <div className="absolute top-full right-0 mt-2 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 rounded-lg shadow-lg p-2 z-50">
+                      <div className="flex flex-col space-y-1 min-w-[150px]">
+                        <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
+                          Home
+                        </a>
+                        <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
+                          How It Works
+                        </a>
+                        <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
+                          Pricing
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <Button
+                  onClick={toggleDarkMode}
+                  variant="outline"
+                  size="sm"
+                  className={`rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800 transition-all duration-300 ${
+                    isScrolled ? 'w-5 h-5 p-0' : 'w-6 h-6 p-0'
+                  }`}
                 >
-                  <div className="flex flex-col space-y-1">
-                    <div className="w-4 h-0.5 bg-stone-600 dark:bg-stone-300"></div>
-                    <div className="w-4 h-0.5 bg-stone-600 dark:bg-stone-300"></div>
-                  </div>
-                </button>
-                
-                {isNavDropdownOpen && (
-                  <div className="absolute top-full right-0 mt-2 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 rounded-lg shadow-lg p-2 z-50">
-                    <div className="flex flex-col space-y-1 min-w-[150px]">
-                      <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
-                        Home
-                      </a>
-                      <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
-                        How It Works
-                      </a>
-                      <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors">
-                        Pricing
-                      </a>
+                  {isDarkMode ? (
+                    <Sun className={`text-amber-500 transition-all duration-300 ${
+                      isScrolled ? 'h-2 w-2' : 'h-2.5 w-2.5'
+                    }`} />
+                  ) : (
+                    <Moon className={`text-slate-600 transition-all duration-300 ${
+                      isScrolled ? 'h-2 w-2' : 'h-2.5 w-2.5'
+                    }`} />
+                  )}
+                </Button>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button 
+                className={`md:hidden transition-all duration-300 ${
+                  isScrolled ? 'p-1.5' : 'p-2'
+                }`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <Menu className={`text-stone-600 dark:text-stone-300 transition-all duration-300 ${
+                  isScrolled ? 'h-4 w-4' : 'h-5 w-5'
+                }`} />
+              </button>
+            </div>
+
+            {/* Mobile Navigation Menu */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden mt-4 pb-4 border-t border-stone-200/50 dark:border-slate-700/50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-b-lg">
+                <nav className="flex flex-col space-y-3 pt-4">
+                  <a href="#home" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
+                    Home
+                  </a>
+                  <a href="#how-it-works" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
+                    How It Works
+                  </a>
+                  <a href="#pricing" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
+                    Pricing
+                  </a>
+                  <div className="flex flex-col space-y-2 pt-2">
+                    <div className="flex space-x-2">
+                      <Button
+                        onClick={toggleDarkMode}
+                        variant="outline"
+                        size="sm"
+                        className="w-6 h-6 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
+                      >
+                        {isDarkMode ? (
+                          <Sun className="h-2.5 w-2.5 text-amber-500" />
+                        ) : (
+                          <Moon className="h-2.5 w-2.5 text-slate-600" />
+                        )}
+                      </Button>
                     </div>
                   </div>
-                )}
+                </nav>
               </div>
-
-              <Button
-                onClick={toggleDarkMode}
-                variant="outline"
-                size="sm"
-                className="w-6 h-6 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
-              >
-                {isDarkMode ? (
-                  <Sun className="h-2.5 w-2.5 text-amber-500" />
-                ) : (
-                  <Moon className="h-2.5 w-2.5 text-slate-600" />
-                )}
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <Menu className="h-5 w-5 text-stone-600 dark:text-stone-300" />
-            </button>
+            )}
           </div>
-
-          {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-stone-200/50 dark:border-slate-700/50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-b-lg">
-              <nav className="flex flex-col space-y-3 pt-4">
-                <a href="#home" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                  Home
-                </a>
-                <a href="#how-it-works" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                  How It Works
-                </a>
-                <a href="#pricing" className="text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors text-sm font-medium">
-                  Pricing
-                </a>
-                <div className="flex flex-col space-y-2 pt-2">
-                  <div className="flex space-x-2">
-                    <Button
-                      onClick={toggleDarkMode}
-                      variant="outline"
-                      size="sm"
-                      className="w-6 h-6 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
-                    >
-                      {isDarkMode ? (
-                        <Sun className="h-2.5 w-2.5 text-amber-500" />
-                      ) : (
-                        <Moon className="h-2.5 w-2.5 text-slate-600" />
-                      )}
-                    </Button>
-                  </div>
-                </div>
-              </nav>
-            </div>
-          )}
         </div>
       </header>
 
