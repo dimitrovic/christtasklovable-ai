@@ -130,25 +130,29 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
             <span className="text-stone-800 dark:text-white">
               AI That Defends Christianity
             </span>
             <br />
-            <span className="text-xl md:text-3xl text-stone-600 dark:text-stone-300 font-light">
+            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light">
               — Instantly.
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-amber-600 mb-4 max-w-4xl mx-auto leading-relaxed font-semibold">
-            "Always be ready to give a defense for the hope within you."
-          </p>
-
           <p className="text-base md:text-lg text-stone-700 dark:text-stone-300 mb-8 max-w-4xl mx-auto leading-relaxed">
             Ask any question. Get a Scripture-backed, logical response to Muslim, atheist, or skeptic objections.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              size="lg" 
+              onClick={onGetStarted}
+              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold rounded-full"
+            >
+              <BookOpen className="mr-2 h-5 w-5" />
+              Get Started
+            </Button>
             <Button 
               size="lg" 
               variant="outline" 
