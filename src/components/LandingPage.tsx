@@ -484,10 +484,13 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             <BookOpen className="h-16 w-16 text-amber-500 mx-auto mb-4" />
           </div>
           <h2 className="text-4xl font-bold mb-6 text-stone-800 dark:text-white">
-            Ready to Grow in Faith?
+            You now have access to something new:
           </h2>
-          <p className="text-xl text-stone-700 dark:text-stone-300 mb-8 max-w-2xl mx-auto">
-            Start your journey today and gain the knowledge to confidently defend the Gospel.
+          <p className="text-xl text-stone-700 dark:text-stone-300 mb-4 max-w-3xl mx-auto leading-relaxed">
+            An AI-trained apologetics tool that equips you to speak truth — instantly, with Scripture and logic — in any debate.
+          </p>
+          <p className="text-2xl font-bold text-amber-500 mb-8">
+            The silence ends here.
           </p>
           
           <div className="bg-white dark:bg-slate-700 rounded-2xl p-8 max-w-md mx-auto mb-8 border border-stone-200 dark:border-slate-600 shadow-sm">
