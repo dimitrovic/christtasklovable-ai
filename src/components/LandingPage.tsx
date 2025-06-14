@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown } from "lucide-react";
+import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown, Sword, AlertTriangle, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface LandingPageProps {
@@ -391,18 +390,90 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-16 bg-white dark:bg-slate-800">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-8">
-            <Cross className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+      {/* War of Ideas Section */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Dramatic Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-red-900/20 to-slate-900 dark:from-slate-900 dark:via-red-900/30 dark:to-black"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-red-500/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-orange-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-red-500/5 to-orange-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Main Title */}
+            <div className="mb-8">
+              <div className="flex justify-center mb-6">
+                <div className="bg-gradient-to-r from-red-500 to-orange-600 p-4 rounded-full shadow-2xl animate-pulse">
+                  <Sword className="h-10 w-10 text-white" />
+                </div>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                It's Time to Stand <span className="text-transparent bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text">Bold</span> in the War of Ideas
+              </h2>
+            </div>
+
+            {/* Opening Statement */}
+            <div className="mb-12 p-6 bg-white/5 dark:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl">
+              <p className="text-xl md:text-2xl text-stone-200 font-medium leading-relaxed">
+                We wish truth would speak for itself… but that's <span className="text-red-400 font-bold">not how the world works</span> anymore.
+              </p>
+            </div>
+
+            {/* Challenge Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="group bg-gradient-to-br from-red-500/20 to-red-600/20 backdrop-blur-sm p-6 rounded-xl border border-red-500/30 hover:border-red-400 transition-all duration-300 hover:scale-105">
+                <TrendingUp className="h-8 w-8 text-red-400 mb-4 mx-auto" />
+                <p className="text-white font-semibold text-lg">From classrooms to TikTok comments</p>
+                <p className="text-stone-300 text-sm mt-2">Faith is being challenged faster and louder than ever</p>
+              </div>
+              
+              <div className="group bg-gradient-to-br from-orange-500/20 to-orange-600/20 backdrop-blur-sm p-6 rounded-xl border border-orange-500/30 hover:border-orange-400 transition-all duration-300 hover:scale-105">
+                <Users className="h-8 w-8 text-orange-400 mb-4 mx-auto" />
+                <p className="text-white font-semibold text-lg">Atheists. Muslims. Skeptics.</p>
+                <p className="text-stone-300 text-sm mt-2">Everyone's making their case — and most Christians are staying silent</p>
+              </div>
+              
+              <div className="group bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm p-6 rounded-xl border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300 hover:scale-105">
+                <AlertTriangle className="h-8 w-8 text-yellow-400 mb-4 mx-auto" />
+                <p className="text-white font-semibold text-lg">Culture wants to turn Christianity</p>
+                <p className="text-stone-300 text-sm mt-2">Into something "safe"… watered-down, silent, and powerless</p>
+              </div>
+            </div>
+
+            {/* The Stakes */}
+            <div className="mb-12">
+              <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 backdrop-blur-sm p-8 rounded-2xl border-2 border-red-500/50 shadow-2xl">
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  And if that happens?
+                </h3>
+                <div className="space-y-4">
+                  <p className="text-xl md:text-2xl text-stone-200 font-medium leading-relaxed">
+                    The world wins the debate — <span className="text-red-400 font-bold">not because they're right,</span>
+                  </p>
+                  <p className="text-xl md:text-2xl text-stone-200 font-bold leading-relaxed">
+                    but because believers didn't have the <span className="text-transparent bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text">words to fight back.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-center">
+              <p className="text-2xl md:text-3xl text-white font-bold mb-8">
+                But it doesn't have to be this way.
+              </p>
+              <Button 
+                size="lg" 
+                onClick={onGetStarted}
+                className="bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white text-xl px-12 py-6 font-bold rounded-full shadow-2xl hover:shadow-red-500/25 transition-all duration-300 hover:scale-105"
+              >
+                <Sword className="mr-3 h-6 w-6" />
+                Arm Yourself with Truth
+              </Button>
+            </div>
           </div>
-          <h2 className="text-3xl font-bold mb-8 text-stone-800 dark:text-white">Growing in Faith</h2>
-          <blockquote className="text-xl text-stone-700 dark:text-stone-300 mb-8 max-w-3xl mx-auto italic leading-relaxed">
-            "I was once afraid to engage skeptics about my faith. Now I confidently share God's truth. 
-            This tool has transformed my understanding and witness."
-          </blockquote>
-          <cite className="text-amber-600 font-semibold">- Sarah M., Youth Pastor</cite>
         </div>
       </section>
 
