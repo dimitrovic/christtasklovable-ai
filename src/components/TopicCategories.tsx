@@ -1,7 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Church, Bible } from "lucide-react";
+import { BookOpen, Church, Book } from "lucide-react";
 
 interface TopicCategoriesProps {
   onTopicSelect: (topic: string) => void;
@@ -22,7 +22,7 @@ export const TopicCategories = ({ onTopicSelect }: TopicCategoriesProps) => {
     {
       title: "Biblical Reliability",
       description: "Manuscript evidence and accuracy",
-      icon: Bible,
+      icon: Book,
       questions: [
         "Biblical contradictions",
         "Historical accuracy",
