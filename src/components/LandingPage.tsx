@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon } from "lucide-react";
@@ -77,12 +76,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 onClick={toggleDarkMode}
                 variant="outline"
                 size="sm"
-                className="w-10 h-10 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
+                className="w-8 h-8 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
               >
                 {isDarkMode ? (
-                  <Sun className="h-4 w-4 text-amber-500" />
+                  <Sun className="h-3 w-3 text-amber-500" />
                 ) : (
-                  <Moon className="h-4 w-4 text-slate-600" />
+                  <Moon className="h-3 w-3 text-slate-600" />
                 )}
               </Button>
               <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 text-sm rounded-full">
@@ -110,12 +109,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                       onClick={toggleDarkMode}
                       variant="outline"
                       size="sm"
-                      className="w-10 h-10 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
+                      className="w-8 h-8 p-0 rounded-full border-stone-300 dark:border-slate-600 hover:bg-stone-100 dark:hover:bg-slate-800"
                     >
                       {isDarkMode ? (
-                        <Sun className="h-4 w-4 text-amber-500" />
+                        <Sun className="h-3 w-3 text-amber-500" />
                       ) : (
-                        <Moon className="h-4 w-4 text-slate-600" />
+                        <Moon className="h-3 w-3 text-slate-600" />
                       )}
                     </Button>
                     <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold flex-1 rounded-full">
