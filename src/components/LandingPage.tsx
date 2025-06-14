@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -193,7 +194,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
             <span className="text-stone-800 dark:text-white">
-              Imagine If You Had the <span className="text-amber-500">Perfect Answer</span> in Every Debate…
+              <span className="text-amber-500">Debate. Defend. Disciple.</span>
             </span>
             <br />
             <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-8 block">
