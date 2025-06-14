@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 interface HeaderProps {
-  onAuthAction?: () => void;
+  onAuthAction?: (action: 'signin' | 'signup') => void;
 }
 
 export const Header = ({ onAuthAction }: HeaderProps) => {
@@ -95,7 +95,7 @@ export const Header = ({ onAuthAction }: HeaderProps) => {
               ) : (
                 <div className="flex items-center space-x-2">
                   <Button
-                    onClick={onAuthAction}
+                    onClick={() => onAuthAction?.('signin')}
                     variant="ghost"
                     size={isScrolled ? "sm" : "default"}
                     className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
@@ -103,7 +103,7 @@ export const Header = ({ onAuthAction }: HeaderProps) => {
                     Sign In
                   </Button>
                   <Button
-                    onClick={onAuthAction}
+                    onClick={() => onAuthAction?.('signup')}
                     size={isScrolled ? "sm" : "default"}
                     className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold transition-all duration-300"
                   >

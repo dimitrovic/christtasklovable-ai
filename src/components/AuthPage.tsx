@@ -9,10 +9,11 @@ import { useToast } from '@/hooks/use-toast';
 
 interface AuthPageProps {
   onBack: () => void;
+  initialMode?: 'signin' | 'signup';
 }
 
-export const AuthPage = ({ onBack }: AuthPageProps) => {
-  const [isLogin, setIsLogin] = useState(true);
+export const AuthPage = ({ onBack, initialMode = 'signin' }: AuthPageProps) => {
+  const [isLogin, setIsLogin] = useState(initialMode === 'signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');

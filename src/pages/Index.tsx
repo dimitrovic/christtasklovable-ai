@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<'landing' | 'payment' | 'auth'>('landing');
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const { user, loading } = useAuth();
 
   // Redirect authenticated users to landing page
@@ -20,11 +21,13 @@ const Index = () => {
     if (user) {
       setCurrentPage('payment');
     } else {
+      setAuthMode('signup');
       setCurrentPage('auth');
     }
   };
 
-  const handleAuthAction = () => {
+  const handleAuthAction = (action: 'signin' | 'signup') => {
+    setAuthMode(action);
     setCurrentPage('auth');
   };
 
@@ -49,7 +52,7 @@ const Index = () => {
   }
 
   if (currentPage === 'auth') {
-    return <AuthPage onBack={handleBackToLanding} />;
+    return <AuthPage onBack={handleBackToLanding} initialMode={authMode} />;
   }
 
   if (currentPage === 'payment') {
