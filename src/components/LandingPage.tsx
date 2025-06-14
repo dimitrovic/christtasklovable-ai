@@ -208,7 +208,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             <Button 
               size="lg" 
               onClick={onGetStarted}
-              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold rounded-full"
+              className="bg-amber-500 hover:bg-blue-500 text-white text-lg px-8 py-4 font-bold rounded-full"
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Get Started
@@ -409,7 +409,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           <Button 
             size="lg" 
             onClick={onGetStarted}
-            className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold rounded-full"
+            className="bg-amber-500 hover:bg-blue-500 text-white text-xl px-12 py-6 font-bold rounded-full"
           >
             <BookOpen className="mr-2 h-6 w-6" />
             Get Started
