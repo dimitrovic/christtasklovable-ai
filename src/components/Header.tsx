@@ -22,9 +22,9 @@ export const Header = () => {
         : 'bg-white/90 backdrop-blur-sm py-4'
     }`}>
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           {/* Logo - Far Left */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-shrink-0">
             <div className={`bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg shadow-md transition-all duration-300 ${
               isScrolled ? 'p-1' : 'p-2'
             }`}>
@@ -42,7 +42,7 @@ export const Header = () => {
           </div>
           
           {/* Navigation - Center */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
             <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
               Home
             </a>
@@ -55,9 +55,11 @@ export const Header = () => {
           </nav>
 
           {/* Get Started Button - Far Right */}
-          <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md">
-            Get Started
-          </button>
+          <div className="flex-shrink-0">
+            <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md">
+              Get Started
+            </button>
+          </div>
         </div>
       </div>
     </header>
