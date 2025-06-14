@@ -13,18 +13,20 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [showTopics, setShowTopics] = useState(true);
+  const [forceShowLanding, setForceShowLanding] = useState(false);
   const { user, loading, signOut } = useAuth();
 
-  // Redirect authenticated users to app
+  // Redirect authenticated users to app (but only if not forced to show landing)
   useEffect(() => {
     if (user && currentPage === 'auth') {
       setCurrentPage('app');
-    } else if (user && currentPage === 'landing') {
+    } else if (user && currentPage === 'landing' && !forceShowLanding) {
       setCurrentPage('app');
     }
-  }, [user, currentPage]);
+  }, [user, currentPage, forceShowLanding]);
 
   const handleGetStarted = () => {
+    setForceShowLanding(false);
     if (user) {
       setCurrentPage('app');
     } else {
@@ -48,11 +50,13 @@ const Index = () => {
 
   const handleBackToLanding = () => {
     setCurrentPage('landing');
+    setForceShowLanding(true);
     window.scrollTo(0, 0);
   };
 
   const handleLogoClick = () => {
     setCurrentPage('landing');
+    setForceShowLanding(true);
     setShowTopics(true);
     setSelectedTopic(null);
     window.scrollTo(0, 0);
@@ -89,7 +93,7 @@ const Index = () => {
     return <PaymentPage onBack={handleBackToLanding} />;
   }
 
-  if (currentPage === 'app' && user) {
+  if (currentPage === 'app' && user && !forceShowLanding) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         {/* App Header */}
