@@ -61,45 +61,156 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     }]);
   }, [activeMode]);
 
-  const getAIResponse = (input: string, mode: string) => {
+  const getDirectDebateResponse = (input: string) => {
     const lowerInput = input.toLowerCase();
 
-    if (mode === "debate") {
-      // More comprehensive debate mode responses based on common apologetics topics
-      if (lowerInput.includes("trinity") || lowerInput.includes("three gods") || lowerInput.includes("polytheism")) {
-        return "This is a classic challenge! Muslims often ask: 'How can you worship three Gods and claim monotheism?' Here's the biblical response: The Trinity doesn't teach three Gods, but one God existing in three persons - Father, Son, and Holy Spirit. Deuteronomy 6:4 declares 'Hear, O Israel: The Lord our God, the Lord is one.' The Hebrew word 'echad' means compound unity, like 'one flesh' in marriage (Genesis 2:24). Jesus claimed equality with the Father (John 10:30) yet prayed to Him, showing the relational aspect of the Trinity. How would you explain this mystery of unity and diversity within the Godhead?";
-      }
-      
-      if (lowerInput.includes("jesus") && (lowerInput.includes("god") || lowerInput.includes("divine") || lowerInput.includes("son"))) {
-        return "Here's a challenging question often posed: 'How can Jesus be God if He said the Father is greater than I?' (John 14:28). The key is understanding Jesus' two natures. In His human nature, Jesus was subordinate to the Father in role and mission. But in His divine nature, He's equal with the Father (Philippians 2:6). Jesus accepted worship (Matthew 28:9), forgave sins (Mark 2:5-7), and claimed to be the 'I AM' (John 8:58) - all attributes of God. Even Thomas declared 'My Lord and my God!' (John 20:28). How would you respond to someone who says Jesus never claimed to be God?";
-      }
-      
-      if (lowerInput.includes("bible") && (lowerInput.includes("corrupt") || lowerInput.includes("changed") || lowerInput.includes("reliable"))) {
-        return "A common Muslim objection: 'The Bible has been corrupted (tahrif), so how can you trust it?' Here's our response: We have over 5,800 Greek manuscripts of the New Testament, with fragments dating to within decades of the original writings. The Dead Sea Scrolls confirmed the Old Testament's reliability. Jesus Himself quoted the Old Testament as authoritative (Matthew 5:17-18). Even the Quran initially affirmed the Bible (Surah 3:3-4). The manuscript evidence for the Bible far exceeds any other ancient text. How would you demonstrate the Bible's textual integrity to a skeptic?";
-      }
-      
-      if (lowerInput.includes("evil") || lowerInput.includes("suffering") || lowerInput.includes("pain")) {
-        return "The classic atheist challenge: 'If God is all-good and all-powerful, why does evil exist?' This is profound! Here's the Christian response: God created beings with free will because love requires genuine choice. Evil is the absence of good, like darkness is the absence of light. Without the possibility of choosing wrongly, our choice to love God wouldn't be real. Moreover, God didn't remain distant from suffering - He entered it through Christ's crucifixion. Romans 8:28 promises He works all things for good. How would you comfort someone struggling with this question while maintaining biblical truth?";
-      }
-      
-      if (lowerInput.includes("resurrection") || lowerInput.includes("rise") || lowerInput.includes("tomb")) {
-        return "A critical challenge: 'The resurrection is just a myth - dead people don't come back to life!' Here's our defense: The resurrection has strong historical evidence. Multiple independent sources record it. The tomb was empty - even enemies didn't dispute this. The disciples transformed from cowards to martyrs. Women were the first witnesses (in a culture where women's testimony wasn't valued). If it were a lie, why would anyone die for it? 1 Corinthians 15:3-8 lists over 500 witnesses. The resurrection is the cornerstone of Christian faith. How would you present this evidence to a skeptic?";
-      }
-      
-      // Default debate response that directly addresses their question
-      return `That's an excellent and challenging question! Let me address this directly from a biblical apologetics perspective: ${input}
+    // Trinity questions
+    if (lowerInput.includes("trinity") || lowerInput.includes("three gods") || lowerInput.includes("one god three persons")) {
+      return `**Direct Answer:** The Trinity is NOT three gods - it's one God existing eternally in three distinct persons.
 
-Here's how we can respond with truth and love:
+**Biblical Response:**
+- Deuteronomy 6:4: "Hear, O Israel: The Lord our God, the Lord is one" - This establishes monotheism
+- Matthew 28:19: "baptizing them in the name of the Father and of the Son and of the Holy Spirit" - Three persons, ONE name (singular)
+- John 1:1: "the Word was God" - Jesus is fully divine
+- John 14:26: The Holy Spirit is called God and performs divine acts
 
-The key biblical principles to remember are:
-1. Scripture is our ultimate authority (2 Timothy 3:16)
-2. We're called to give a reason for our hope (1 Peter 3:15)
-3. We defend the faith with gentleness and respect
+**The Key:** The Hebrew word "echad" (one) means compound unity, like "one flesh" in marriage (Genesis 2:24) - distinct persons unified as one essence.
 
-This type of question requires us to dig deep into God's Word and show how the Bible addresses these concerns. The challenge helps us grow stronger in our faith and better equipped to share truth with others.
-
-What specific aspect of this question would you like to explore further with Scripture?`;
+This isn't contradiction - it's the beautiful mystery of God's nature that our finite minds can grasp but never fully comprehend.`;
     }
+
+    // Jesus as God questions
+    if (lowerInput.includes("jesus") && (lowerInput.includes("never said") || lowerInput.includes("i am god"))) {
+      return `**Direct Answer:** Jesus absolutely claimed to be God, just not in those exact words.
+
+**Biblical Proof:**
+- John 8:58: "Before Abraham was, I AM" - Jesus used God's sacred name (Exodus 3:14)
+- John 10:30: "I and the Father are one" - The Jews understood this as claiming deity (v.33)
+- John 20:28: Thomas called Jesus "My Lord and my God!" - Jesus accepted this worship
+- John 5:18: "making himself equal with God" - Even enemies recognized His claim
+
+**Actions Prove Divinity:**
+- He forgave sins (only God can do this - Mark 2:7)
+- He accepted worship (Matthew 28:9) - forbidden for anyone but God
+- He claimed authority over Sabbath (Mark 2:28) - "Lord of the Sabbath"
+
+Jesus didn't need to say "I am God" - His words and actions made it crystal clear to everyone who heard Him.`;
+    }
+
+    // Bible corruption claims
+    if (lowerInput.includes("bible") && (lowerInput.includes("corrupt") || lowerInput.includes("changed") || lowerInput.includes("tampered"))) {
+      return `**Direct Answer:** The Bible has NOT been corrupted. We have overwhelming manuscript evidence proving its reliability.
+
+**The Facts:**
+- 5,800+ Greek New Testament manuscripts (more than any ancient text)
+- Dead Sea Scrolls (1947) proved Old Testament accuracy over 1000+ years
+- Earliest fragments date within 25-50 years of original writings
+- 99.5% textual accuracy across all manuscripts
+
+**Even the Quran Initially Affirmed the Bible:**
+- Surah 3:3-4: "confirming what came before it" (referring to Torah and Gospel)
+- Surah 5:46-47: Christians should judge by the Gospel
+
+**Jesus' Own Words:**
+- Matthew 5:17-18: "not the smallest letter will disappear from the Law"
+- Luke 16:17: "easier for heaven and earth to disappear than for the least stroke of a pen to drop out of the Law"
+
+If God couldn't preserve His Word, how could we trust Him with our salvation? The manuscript evidence is overwhelming - the Bible we have today is what was originally written.`;
+    }
+
+    // Problem of evil
+    if (lowerInput.includes("evil") || lowerInput.includes("suffering") || lowerInput.includes("pain") || lowerInput.includes("bad things happen")) {
+      return `**Direct Answer:** Evil exists because love requires free choice, and God didn't stay distant from suffering - He entered it.
+
+**The Biblical Response:**
+1. **Free Will is Necessary:** Love cannot be forced. For humans to genuinely love God, we must be free to choose otherwise.
+
+2. **Evil is Absence of Good:** Like darkness is absence of light, evil is corruption of God's good creation (Genesis 1:31).
+
+3. **God Entered Our Suffering:** 
+   - Isaiah 53:3: "a man of suffering, and familiar with pain"
+   - Hebrews 4:15: Jesus "has been tempted in every way, just as we are"
+
+4. **Purpose in Pain:**
+   - Romans 8:28: "God works for the good of those who love him"
+   - James 1:2-4: Trials develop perseverance and maturity
+
+5. **Ultimate Justice Coming:**
+   - Revelation 21:4: "no more death or mourning or crying or pain"
+
+The cross proves God doesn't cause evil from a distance - He bore it Himself to defeat it. Every tear will be wiped away.`;
+    }
+
+    // Resurrection challenges
+    if (lowerInput.includes("resurrection") || lowerInput.includes("rose from") || lowerInput.includes("dead people don't")) {
+      return `**Direct Answer:** The resurrection has stronger historical evidence than most accepted ancient events.
+
+**Historical Facts Even Skeptics Accept:**
+1. **Jesus died by crucifixion** - even Bart Ehrman (skeptic) affirms this
+2. **The tomb was empty** - even enemies didn't dispute this (Matthew 28:13)
+3. **Multiple eyewitness accounts** - 1 Corinthians 15:3-8 lists over 500 witnesses
+4. **Disciples' transformation** - cowards became martyrs willing to die
+
+**Why This Wasn't Made Up:**
+- Women were first witnesses (their testimony wasn't valued in that culture)
+- Disciples fled and denied Jesus, then suddenly proclaimed His resurrection
+- They gained nothing earthly - only persecution and death
+- The tomb could have been checked - it was in Jerusalem where it happened
+
+**Biblical Foundation:**
+- 1 Corinthians 15:14: "If Christ has not been raised, our preaching is useless"
+- Romans 1:4: Jesus "was appointed the Son of God in power by his resurrection"
+
+The resurrection isn't just belief - it's the best explanation for the historical evidence. That's why Christianity exploded in the very city where Jesus was crucified.`;
+    }
+
+    // Muhammad/Prophet comparisons
+    if (lowerInput.includes("muhammad") || lowerInput.includes("prophet") || lowerInput.includes("final messenger")) {
+      return `**Direct Answer:** Jesus is not just a prophet - He is the eternal Son of God, and Scripture warns against any "other gospel."
+
+**Why Jesus is More Than a Prophet:**
+- **Sinless Life:** 2 Corinthians 5:21, Hebrews 4:15 - prophets all sinned
+- **Divine Claims:** John 8:58 "Before Abraham was, I AM" - no prophet claimed this
+- **Power Over Death:** Prophets pointed to God; Jesus IS God (John 1:1)
+- **Forgives Sin:** Mark 2:5-7 - only God can forgive sin
+
+**Biblical Warning:**
+- Galatians 1:8-9: "If anyone preaches another gospel... let them be under God's curse"
+- 1 John 4:1: "test the spirits to see whether they are from God"
+
+**The Test:** Does the message point to Jesus as the way, truth, and life (John 14:6)? 
+
+**Historical Fact:** Jesus came 600 years before Muhammad. The Gospel was already complete (Jude 1:3 - "the faith that was once for all entrusted to God's holy people").
+
+Jesus didn't just bring a message - He IS the message. He's not one of many ways; He's THE way to the Father.`;
+    }
+
+    // Default for debate mode - analyze and respond directly
+    return `**Let me address your question directly:**
+
+You're asking about "${input}" - this is exactly the kind of challenging question that tests our faith and requires a biblical response.
+
+**Here's the Christian answer:**
+The Bible addresses this concern through several key principles:
+- God's sovereignty and perfect justice (Psalm 89:14)
+- Human responsibility and free will (Joshua 24:15)
+- Christ as the ultimate revelation of God's character (Hebrews 1:3)
+
+**Relevant Scripture:**
+"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight." - Proverbs 3:5-6
+
+**The Apologetic Response:**
+This question actually strengthens rather than weakens the Christian worldview because it shows that moral standards exist - and they point to a moral lawgiver (God).
+
+What specific aspect of this would you like me to address further with Scripture?`;
+  };
+
+  const getAIResponse = (input: string, mode: string) => {
+    if (mode === "debate") {
+      return getDirectDebateResponse(input);
+    }
+
+    const lowerInput = input.toLowerCase();
 
     const responses = {
       chat: {
@@ -125,9 +236,7 @@ What specific aspect of this question would you like to explore further with Scr
     // Default responses by mode
     const defaults = {
       chat: "Thank you for sharing your heart with me. This is such an important question, and I'm honored you're seeking biblical truth. Let me offer you some Scripture-based encouragement and wisdom...",
-      debate: `You've raised an important challenge that many believers face. Let me address this directly: ${input}
-
-From a biblical apologetics standpoint, this question touches on fundamental truths about God's nature and our faith. Here's how we can respond with both truth and love, grounded in Scripture...`,
+      debate: getDirectDebateResponse(input),
       challenge: "Interesting challenge! Let me see if I can tackle this one... 🎯",
       study: "Let's dig deeper into God's Word on this topic. Here's what Scripture teaches us..."
     };
