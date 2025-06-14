@@ -18,26 +18,32 @@ export const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' 
-        : 'bg-white/90 backdrop-blur-sm py-4'
+        ? 'bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-amber-500/20 py-2' 
+        : 'bg-slate-900/90 backdrop-blur-sm border-b border-amber-500/10 py-4'
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-center w-full">
           {/* Logo - Centered */}
-          <div className="flex items-center space-x-2 flex-shrink-0">
-            <div className={`bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg shadow-md transition-all duration-300 ${
-              isScrolled ? 'p-1' : 'p-2'
+          <div className="flex items-center space-x-3 flex-shrink-0">
+            <div className={`bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-xl shadow-xl relative overflow-hidden transition-all duration-300 ${
+              isScrolled ? 'p-2' : 'p-3'
             }`}>
-              <BookOpen className={`text-white transition-all duration-300 ${
-                isScrolled ? 'h-3 w-3' : 'h-4 w-4'
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-300/20 to-transparent"></div>
+              <BookOpen className={`text-slate-900 relative z-10 transition-all duration-300 ${
+                isScrolled ? 'h-4 w-4' : 'h-6 w-6'
               }`} />
             </div>
             <div>
-              <h1 className={`font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent transition-all duration-300 ${
-                isScrolled ? 'text-sm' : 'text-lg'
+              <h1 className={`font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent transition-all duration-300 ${
+                isScrolled ? 'text-lg' : 'text-2xl'
               }`}>
                 ChristTask
               </h1>
+              <p className={`text-amber-300/80 tracking-wider transition-all duration-300 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                TRUTH MEETS TECHNOLOGY
+              </p>
             </div>
           </div>
         </div>
