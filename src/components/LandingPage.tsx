@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -10,9 +9,10 @@ interface LandingPageProps {
   onGetStarted: () => void;
   onHowItWorks: () => void;
   onAuthAction: (action: 'signin' | 'signup') => void;
+  onLogoClick?: () => void;
 }
 
-export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: LandingPageProps) => {
+export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoClick }: LandingPageProps) => {
   const handleTopicSelect = (topic: string) => {
     console.log('Topic selected:', topic);
   };
@@ -26,7 +26,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      <Header onAuthAction={onAuthAction} onHowItWorks={onHowItWorks} onFeatures={handleFeatures} />
+      <Header onAuthAction={onAuthAction} onHowItWorks={onHowItWorks} onFeatures={handleFeatures} onLogoClick={onLogoClick} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-6 overflow-hidden">
