@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -197,7 +196,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               <span className="text-amber-500">Debate. Defend. Disciple.</span>
             </span>
             <br />
-            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-8 block">
+            <span className="text-lg md:text-2xl text-stone-600 dark:text-stone-300 font-light mt-12 block">
               — Instantly.
             </span>
           </h1>
