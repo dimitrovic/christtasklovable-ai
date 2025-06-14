@@ -89,9 +89,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                   <Moon className="h-2.5 w-2.5 text-slate-600" />
                 )}
               </Button>
-              <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 text-sm rounded-full">
-                Get Started
-              </Button>
             </div>
           </div>
 
@@ -121,9 +118,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                       ) : (
                         <Moon className="h-2.5 w-2.5 text-slate-600" />
                       )}
-                    </Button>
-                    <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold flex-1 rounded-full">
-                      Get Started
                     </Button>
                   </div>
                 </div>
@@ -155,14 +149,6 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button 
-              size="lg" 
-              onClick={onGetStarted}
-              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold rounded-full"
-            >
-              <BookOpen className="mr-2 h-5 w-5" />
-              Start Learning
-            </Button>
             <Button 
               size="lg" 
               variant="outline" 
@@ -370,7 +356,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             onClick={onGetStarted}
             className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold rounded-full"
           >
-            <Cross className="mr-2 h-6 w-6" />
+            <BookOpen className="mr-2 h-6 w-6" />
             Get Started
           </Button>
           
