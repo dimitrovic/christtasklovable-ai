@@ -82,32 +82,24 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     setIsLoading(true);
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      const response = await fetch('/functions/v1/chat-gpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.access_token}`,
-        },
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke('chat-gpt', {
+        body: {
           message: inputMessage,
           topic: selectedTopic
-        }),
+        },
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        if (response.status === 429) {
+      if (error) {
+        console.error('Supabase function error:', error);
+        if (error.message && error.message.includes('Daily message limit reached')) {
           toast({
             title: "Daily Limit Reached",
-            description: data.message || "You've reached your daily message limit.",
+            description: "You've reached your daily message limit.",
             variant: "destructive",
           });
           return;
         }
-        throw new Error(data.error || 'Failed to get response');
+        throw error;
       }
 
       const botMessage: Message = {
