@@ -33,9 +33,10 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // Remove the useEffect that automatically scrolls on every message change
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
   useEffect(() => {
     // Add welcome message when topic is selected or when starting direct chat
