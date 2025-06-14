@@ -1,3 +1,4 @@
+
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -51,7 +52,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
             <div className="flex items-center justify-center">
               <Button
                 onClick={onGetStarted}
-                className="w-24 h-24 rounded-full bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+                className="px-8 py-4 rounded-2xl bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
               >
                 Get Started
               </Button>
@@ -179,7 +180,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
           </p>
           <Button
             onClick={onGetStarted}
-            className="w-24 h-24 rounded-full bg-white text-blue-600 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+            className="px-8 py-4 rounded-2xl bg-white text-blue-600 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
           >
             Get Started
           </Button>
