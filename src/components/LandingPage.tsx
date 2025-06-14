@@ -1,3 +1,4 @@
+
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -50,7 +51,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white font-medium mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white font-light mb-12 max-w-4xl mx-auto leading-relaxed">
               An apologetics AI that equips you with the words — backed by Scripture, sharpened by logic, ready for every challenge.
               <br className="hidden md:block" />
               <span className="text-lg md:text-xl">This is where silence becomes strength.</span>
