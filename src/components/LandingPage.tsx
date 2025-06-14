@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu } from "lucide-react";
@@ -85,14 +86,17 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent leading-tight">
-            Win Every Faith Debate
+            Defend Your Faith
             <br />
-            <span className="text-4xl md:text-5xl">With Biblical Confidence</span>
+            <span className="text-4xl md:text-5xl">with Confidence. Every Time.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Never be caught off-guard again. Get instant, Scripture-backed responses to the toughest questions about Christianity. 
-            Whether it's evolution, suffering, or Biblical contradictions - <span className="font-semibold text-indigo-700">you'll always have the perfect answer.</span>
+          <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-4xl mx-auto leading-relaxed font-semibold">
+            Never feel unprepared again.
+          </p>
+
+          <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+            Get instant, Scripture-based answers to the hardest questions about Christianity — from evolution and suffering to alleged contradictions in the Bible. Whether you're facing a skeptic, a Muslim, or an atheist, you'll be equipped with <span className="font-semibold text-indigo-700">clear, logical, and Biblical truth</span> — right when you need it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -102,7 +106,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-lg px-8 py-4"
             >
               <Zap className="mr-2 h-5 w-5" />
-              Start Winning Debates Now
+              Equip Yourself Now
             </Button>
             <Button 
               size="lg" 
