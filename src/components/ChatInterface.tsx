@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -33,17 +32,12 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Remove the useEffect that automatically scrolls on every message change
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages]);
-
   useEffect(() => {
     // Add welcome message when topic is selected or when starting direct chat
     if (selectedTopic) {
       const welcomeMessage: Message = {
         id: 'welcome',
-        content: `Hello! I'm ready to help you with questions about ${selectedTopic}. What would you like to know?`,
+        content: `Hello! I'm ready to help you with questions about ${selectedTopic}. Ask any question an atheist, Muslim, or skeptic might throw at you — and get a Scripture-backed, logical response in seconds.`,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -51,7 +45,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     } else {
       const welcomeMessage: Message = {
         id: 'welcome',
-        content: `Hello! I'm your AI assistant powered by ChatGPT. I can help you with a wide variety of topics. What would you like to discuss?`,
+        content: `Ask any question an atheist, Muslim, or skeptic might throw at you — and get a Scripture-backed, logical response in seconds.`,
         sender: 'bot',
         timestamp: new Date()
       };
