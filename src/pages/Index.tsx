@@ -1,4 +1,3 @@
-
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
@@ -52,6 +51,13 @@ const Index = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleLogoClick = () => {
+    setCurrentPage('landing');
+    setShowTopics(true);
+    setSelectedTopic(null);
+    window.scrollTo(0, 0);
+  };
+
   const handleTopicSelect = (topic: string) => {
     setSelectedTopic(topic);
     setShowTopics(false);
@@ -90,7 +96,10 @@ const Index = () => {
         <div className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              <div className="flex items-center space-x-3">
+              <div 
+                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                onClick={handleLogoClick}
+              >
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">CT</span>
                 </div>
@@ -158,6 +167,7 @@ const Index = () => {
       onGetStarted={handleGetStarted} 
       onHowItWorks={handleHowItWorks} 
       onAuthAction={handleAuthAction}
+      onLogoClick={handleLogoClick}
     />
   );
 };

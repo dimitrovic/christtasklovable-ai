@@ -8,9 +8,10 @@ interface HeaderProps {
   onAuthAction?: (action: 'signin' | 'signup') => void;
   onHowItWorks?: () => void;
   onFeatures?: () => void;
+  onLogoClick?: () => void;
 }
 
-export const Header = ({ onAuthAction, onHowItWorks, onFeatures }: HeaderProps) => {
+export const Header = ({ onAuthAction, onHowItWorks, onFeatures, onLogoClick }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, signOut } = useAuth();
   const { toast } = useToast();
@@ -55,7 +56,10 @@ export const Header = ({ onAuthAction, onHowItWorks, onFeatures }: HeaderProps) 
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between w-full">
             {/* Logo - Left side */}
-            <div className="flex items-center space-x-3 flex-shrink-0">
+            <div 
+              className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+              onClick={onLogoClick}
+            >
               <div className={`bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-lg relative overflow-hidden transition-all duration-500 ${
                 isScrolled ? 'p-2 rounded-full' : 'p-2.5 rounded-xl'
               }`}>
