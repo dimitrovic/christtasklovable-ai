@@ -188,7 +188,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20">
+      <section id="home" className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
             <span className="text-stone-800 dark:text-white">
@@ -226,7 +226,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-16 bg-white dark:bg-slate-800">
+      <section id="how-it-works" className="py-16 bg-white dark:bg-slate-800">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="bg-stone-50 dark:bg-slate-700 p-8 rounded-2xl border border-stone-200 dark:border-slate-600">
@@ -363,7 +363,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20">
+      <section id="pricing" className="py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-8">
             <BookOpen className="h-16 w-16 text-amber-500 mx-auto mb-4" />
