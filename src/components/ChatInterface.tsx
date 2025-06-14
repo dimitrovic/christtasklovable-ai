@@ -61,6 +61,18 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     }]);
   }, [activeMode]);
 
+  const analyzeAndRespond = (question: string) => {
+    // Simple analysis based on key concepts
+    const lowerQ = question.toLowerCase();
+    
+    if (lowerQ.includes("contradict")) return "Apparent contradictions resolve when we understand context, translation, and genre.";
+    if (lowerQ.includes("science")) return "True science and Scripture complement each other - both reveal God's truth.";
+    if (lowerQ.includes("other religion")) return "Jesus declared 'I am the way, the truth, and the life' (John 14:6) - exclusive but loving.";
+    if (lowerQ.includes("love") && lowerQ.includes("hell")) return "God's love and justice are both perfect - the cross demonstrates both.";
+    
+    return "This question reveals deep thinking about faith - let's explore what Scripture teaches.";
+  };
+
   const getDirectDebateResponse = (input: string) => {
     const lowerInput = input.toLowerCase();
 
@@ -188,7 +200,7 @@ This question goes to the heart of Christian doctrine. Here's what Scripture tea
 
 **Key Verse:** "But in your hearts revere Christ as Lord. Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect." - 1 Peter 3:15
 
-**The Answer:** ${this.analyzeAndRespond(input)}
+**The Answer:** ${analyzeAndRespond(input)}
 
 What specific aspect would you like me to elaborate on with more Scripture?`;
     }
@@ -196,18 +208,6 @@ What specific aspect would you like me to elaborate on with more Scripture?`;
     return `I understand you're asking: "${input}"
 
 Let me give you a direct biblical response to this challenge. The Christian answer is rooted in Scripture and can be defended logically. What specific part of this question challenges you most? I'll address it head-on with biblical truth.`;
-  };
-
-  const analyzeAndRespond = (question: string) => {
-    // Simple analysis based on key concepts
-    const lowerQ = question.toLowerCase();
-    
-    if (lowerQ.includes("contradict")) return "Apparent contradictions resolve when we understand context, translation, and genre.";
-    if (lowerQ.includes("science")) return "True science and Scripture complement each other - both reveal God's truth.";
-    if (lowerQ.includes("other religion")) return "Jesus declared 'I am the way, the truth, and the life' (John 14:6) - exclusive but loving.";
-    if (lowerQ.includes("love") && lowerQ.includes("hell")) return "God's love and justice are both perfect - the cross demonstrates both.";
-    
-    return "This question reveals deep thinking about faith - let's explore what Scripture teaches.";
   };
 
   const getAIResponse = (input: string, mode: string) => {
