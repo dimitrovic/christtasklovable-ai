@@ -19,7 +19,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen bg-slate-900">
       <Header onAuthAction={onAuthAction} />
       
       {/* Hero Section */}
@@ -107,7 +107,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 px-6 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
+      <section id="how-it-works" className="py-24 px-6 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
@@ -160,7 +160,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
       </section>
 
       {/* Topics Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+      <section className="py-20 px-6 bg-slate-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
