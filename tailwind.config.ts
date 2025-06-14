@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -95,7 +94,7 @@ export default {
 						opacity: '1'
 					},
 					'100%': {
-						width: '100%',
+						width: '80%',
 						opacity: '1'
 					}
 				},
