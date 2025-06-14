@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -19,9 +18,17 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
     // This could be expanded to navigate to a specific topic page
   };
 
+  const handleFeatures = () => {
+    // Scroll to features section
+    const element = document.getElementById('features');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
-      <Header onAuthAction={onAuthAction} />
+      <Header onAuthAction={onAuthAction} onHowItWorks={onHowItWorks} onFeatures={handleFeatures} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
@@ -147,8 +154,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
         </div>
       </section>
 
-      {/* Topics Section */}
-      <section className="py-20 px-6 bg-slate-800">
+      {/* Features Section - rename Topics section to Features */}
+      <section id="features" className="py-20 px-6 bg-slate-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">

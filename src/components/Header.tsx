@@ -1,4 +1,3 @@
-
 import { BookOpen, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
@@ -7,9 +6,11 @@ import { useToast } from "@/hooks/use-toast";
 
 interface HeaderProps {
   onAuthAction?: (action: 'signin' | 'signup') => void;
+  onHowItWorks?: () => void;
+  onFeatures?: () => void;
 }
 
-export const Header = ({ onAuthAction }: HeaderProps) => {
+export const Header = ({ onAuthAction, onHowItWorks, onFeatures }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, signOut } = useAuth();
   const { toast } = useToast();
@@ -72,45 +73,68 @@ export const Header = ({ onAuthAction }: HeaderProps) => {
               </div>
             </div>
 
-            {/* Auth Section - Right side */}
-            <div className="flex items-center space-x-3">
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="hidden sm:flex items-center space-x-2 text-white/80">
-                    <User className="h-4 w-4" />
-                    <span className={`${isScrolled ? 'text-sm' : 'text-base'} transition-all duration-500`}>
-                      {user.email}
-                    </span>
+            {/* Navigation and Auth Section - Right side */}
+            <div className="flex items-center space-x-4">
+              {/* Navigation Buttons */}
+              <div className="hidden md:flex items-center space-x-2">
+                <Button
+                  onClick={onHowItWorks}
+                  variant="ghost"
+                  size={isScrolled ? "sm" : "default"}
+                  className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+                >
+                  How It Works
+                </Button>
+                <Button
+                  onClick={onFeatures}
+                  variant="ghost"
+                  size={isScrolled ? "sm" : "default"}
+                  className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+                >
+                  Features
+                </Button>
+              </div>
+
+              {/* Auth Section */}
+              <div className="flex items-center space-x-3">
+                {user ? (
+                  <div className="flex items-center space-x-3">
+                    <div className="hidden sm:flex items-center space-x-2 text-white/80">
+                      <User className="h-4 w-4" />
+                      <span className={`${isScrolled ? 'text-sm' : 'text-base'} transition-all duration-500`}>
+                        {user.email}
+                      </span>
+                    </div>
+                    <Button
+                      onClick={handleSignOut}
+                      variant="outline"
+                      size={isScrolled ? "sm" : "default"}
+                      className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white transition-all duration-300"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      <span className="hidden sm:inline">Sign Out</span>
+                    </Button>
                   </div>
-                  <Button
-                    onClick={handleSignOut}
-                    variant="outline"
-                    size={isScrolled ? "sm" : "default"}
-                    className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white transition-all duration-300"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    <span className="hidden sm:inline">Sign Out</span>
-                  </Button>
-                </div>
-              ) : (
-                <div className="flex items-center space-x-2">
-                  <Button
-                    onClick={() => onAuthAction?.('signin')}
-                    variant="ghost"
-                    size={isScrolled ? "sm" : "default"}
-                    className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
-                  >
-                    Sign In
-                  </Button>
-                  <Button
-                    onClick={() => onAuthAction?.('signup')}
-                    size={isScrolled ? "sm" : "default"}
-                    className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold transition-all duration-300"
-                  >
-                    Sign Up
-                  </Button>
-                </div>
-              )}
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      onClick={() => onAuthAction?.('signin')}
+                      variant="ghost"
+                      size={isScrolled ? "sm" : "default"}
+                      className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+                    >
+                      Sign In
+                    </Button>
+                    <Button
+                      onClick={() => onAuthAction?.('signup')}
+                      size={isScrolled ? "sm" : "default"}
+                      className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold transition-all duration-300"
+                    >
+                      Sign Up
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
