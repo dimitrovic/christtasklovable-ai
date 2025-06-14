@@ -1,9 +1,10 @@
+
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
 import { VerseReference } from "./VerseReference";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Shield, Target, Trophy, Users, ChevronRight, Star, CheckCircle } from "lucide-react";
+import { BookOpen, Shield, Target, Trophy, Users, ChevronRight, Star, CheckCircle, AlertTriangle, ArrowRight } from "lucide-react";
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -101,6 +102,62 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
         </div>
       </section>
 
+      {/* Here's The Truth Section */}
+      <section className="py-24 px-6 bg-slate-800/80 backdrop-blur-sm border-t border-slate-700/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Here's The Truth
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              We won't sugarcoat reality, but we'll show you the transformative difference
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {/* The Reality */}
+            <div className="bg-slate-900/60 backdrop-blur-sm rounded-3xl p-8 border border-red-500/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl mr-4">
+                  <AlertTriangle className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">The Reality</h3>
+              </div>
+              
+              <div className="space-y-4 text-slate-300 leading-relaxed">
+                <p>We're not here to promise you some fantasy of never being challenged again.</p>
+                <p>You'll still face objections. The world won't stop debating.</p>
+                <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 mt-6">
+                  <p className="text-red-200 italic font-medium">
+                    "The struggles are real, and they're not going anywhere."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* The Difference */}
+            <div className="bg-slate-900/60 backdrop-blur-sm rounded-3xl p-8 border border-green-500/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl mr-4">
+                  <ArrowRight className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">The Difference</h3>
+              </div>
+              
+              <div className="space-y-4 text-slate-300 leading-relaxed">
+                <p>But with this app, you wouldn't be scrambling, doubting, or staying silent.</p>
+                <p>You'd be standing firm — calmly defending the truth with confidence.</p>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-4 mt-6">
+                  <p className="text-green-200 italic font-medium">
+                    "Transform from uncertain to unshakeable"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section id="how-it-works" className="py-24 px-6 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
@@ -108,7 +165,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               How ChristTask Works
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-200 max-w-3xl mx-auto">
               Our AI-powered platform provides personalized training to strengthen your apologetics skills
             </p>
           </div>
