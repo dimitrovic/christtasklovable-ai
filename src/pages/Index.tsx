@@ -9,24 +9,18 @@ const Index = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Chat Interface */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6">
-                <h2 className="text-2xl font-bold text-white mb-2">Ask Your Apologetics Question</h2>
-                <p className="text-blue-100">Get biblical answers to defend your faith with confidence</p>
-              </div>
-              <ChatInterface selectedTopic={selectedTopic} />
-            </div>
+            <ChatInterface selectedTopic={selectedTopic} />
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <TopicCategories onTopicSelect={setSelectedTopic} />
             <VerseReference />
           </div>
@@ -34,9 +28,9 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 py-8 bg-slate-800 text-white">
+      <footer className="mt-20 py-12 bg-gradient-to-r from-slate-800 to-slate-900 text-white">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-300">
+          <p className="text-slate-300 text-lg italic leading-relaxed max-w-3xl mx-auto">
             "Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have." - 1 Peter 3:15
           </p>
         </div>

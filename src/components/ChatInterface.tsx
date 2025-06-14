@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, BookText } from "lucide-react";
+import { MessageSquare, BookText, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -111,25 +111,31 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
   };
 
   return (
-    <div className="h-[600px] flex flex-col">
+    <div className="h-[700px] flex flex-col bg-white rounded-2xl shadow-xl overflow-hidden">
+      {/* Chat Header */}
+      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-700 p-6 text-white">
+        <h2 className="text-2xl font-bold mb-2">Ask Your Apologetics Question</h2>
+        <p className="text-indigo-100">Get biblical answers to defend your faith with confidence</p>
+      </div>
+
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-gradient-to-b from-slate-50 to-white">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
           >
-            <div className={`flex items-start space-x-3 max-w-[80%] ${message.isUser ? "flex-row-reverse space-x-reverse" : ""}`}>
-              <div className={`p-2 rounded-full ${message.isUser ? "bg-blue-600" : "bg-slate-600"}`}>
+            <div className={`flex items-start space-x-3 max-w-[85%] ${message.isUser ? "flex-row-reverse space-x-reverse" : ""}`}>
+              <div className={`p-3 rounded-full shadow-lg ${message.isUser ? "bg-gradient-to-r from-indigo-500 to-purple-600" : "bg-gradient-to-r from-slate-600 to-slate-700"}`}>
                 {message.isUser ? (
-                  <MessageSquare className="h-4 w-4 text-white" />
+                  <MessageSquare className="h-5 w-5 text-white" />
                 ) : (
-                  <BookText className="h-4 w-4 text-white" />
+                  <BookText className="h-5 w-5 text-white" />
                 )}
               </div>
-              <Card className={`p-4 ${message.isUser ? "bg-blue-50 border-blue-200" : "bg-slate-50 border-slate-200"}`}>
+              <Card className={`p-5 shadow-lg border-0 ${message.isUser ? "bg-gradient-to-r from-indigo-50 to-purple-50" : "bg-white"}`}>
                 <p className="text-slate-800 leading-relaxed whitespace-pre-wrap">{message.text}</p>
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-slate-500 mt-3 font-medium">
                   {message.timestamp.toLocaleTimeString()}
                 </p>
               </Card>
@@ -139,14 +145,14 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
         {isLoading && (
           <div className="flex justify-start">
             <div className="flex items-center space-x-3">
-              <div className="p-2 rounded-full bg-slate-600">
-                <BookText className="h-4 w-4 text-white" />
+              <div className="p-3 rounded-full bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg">
+                <BookText className="h-5 w-5 text-white" />
               </div>
-              <Card className="p-4 bg-slate-50 border-slate-200">
+              <Card className="p-5 bg-white shadow-lg border-0">
                 <div className="flex space-x-2">
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
                 </div>
               </Card>
             </div>
@@ -156,25 +162,25 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
       </div>
 
       {/* Input Area */}
-      <div className="border-t border-slate-200 p-6">
-        <div className="flex space-x-3">
+      <div className="border-t border-slate-200 p-6 bg-white">
+        <div className="flex space-x-4">
           <Textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask your apologetics question here..."
-            className="flex-1 min-h-[80px] resize-none"
+            className="flex-1 min-h-[80px] resize-none border-2 border-slate-200 focus:border-indigo-400 rounded-xl"
             disabled={isLoading}
           />
           <Button
             onClick={handleSendMessage}
             disabled={!inputText.trim() || isLoading}
-            className="bg-blue-600 hover:bg-blue-700 px-8"
+            className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
-            Send
+            <Send className="h-5 w-5" />
           </Button>
         </div>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-slate-500 mt-3 text-center">
           Press Enter to send, Shift+Enter for new line
         </p>
       </div>
