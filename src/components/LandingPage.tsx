@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb } from "lucide-react";
@@ -14,7 +15,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-stone-200/50 sticky top-0 z-50">
+      <header className="bg-white/60 backdrop-blur-md shadow-sm border-b border-stone-200/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -51,7 +52,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
 
             {/* Desktop Buttons */}
             <div className="hidden md:flex space-x-4">
-              <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 text-sm">
+              <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 text-sm rounded-full">
                 Get Started
               </Button>
             </div>
@@ -71,7 +72,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                   Pricing
                 </a>
                 <div className="flex flex-col space-y-2 pt-2">
-                  <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold w-full">
+                  <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold w-full rounded-full">
                     Get Started
                   </Button>
                 </div>
@@ -112,7 +113,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             <Button 
               size="lg" 
               onClick={onGetStarted}
-              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold"
+              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold rounded-full"
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Start Learning
@@ -121,7 +122,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               size="lg" 
               variant="outline" 
               onClick={onHowItWorks}
-              className="text-lg px-8 py-4 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white"
+              className="text-lg px-8 py-4 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white rounded-full"
             >
               <Lightbulb className="mr-2 h-5 w-5" />
               How It Works
@@ -322,7 +323,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           <Button 
             size="lg" 
             onClick={onGetStarted}
-            className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold"
+            className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold rounded-full"
           >
             <Cross className="mr-2 h-6 w-6" />
             Get Started
