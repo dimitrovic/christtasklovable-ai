@@ -147,7 +147,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-lg">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold">
-            {selectedTopic ? `${selectedTopic} Assistant` : 'AI Assistant'}
+            {selectedTopic ? `${selectedTopic} Debate Buddy` : 'Debate Buddy'}
           </h3>
           <div className="flex items-center space-x-2 text-sm">
             <AlertCircle className="w-4 h-4" />
