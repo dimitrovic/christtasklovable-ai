@@ -18,12 +18,7 @@ const Index = () => {
   }, [user, currentPage]);
 
   const handleGetStarted = () => {
-    if (user) {
-      setCurrentPage('payment');
-    } else {
-      setAuthMode('signup');
-      setCurrentPage('auth');
-    }
+    setCurrentPage('payment');
   };
 
   const handleAuthAction = (action: 'signin' | 'signup') => {
