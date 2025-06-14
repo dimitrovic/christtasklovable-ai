@@ -234,7 +234,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               <Button 
                 size="lg" 
                 onClick={onGetStarted}
-                className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 text-slate-50 dark:text-slate-900 text-lg px-12 py-6 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-0"
+                className="bg-slate-900 hover:bg-amber-500 dark:bg-slate-100 dark:hover:bg-amber-500 text-slate-50 hover:text-slate-900 dark:text-slate-900 dark:hover:text-slate-900 text-lg px-12 py-6 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-0"
               >
                 <BookOpen className="mr-3 h-5 w-5" />
                 Get Started
@@ -677,7 +677,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           <Button 
             size="lg" 
             onClick={onGetStarted}
-            className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 text-slate-50 dark:text-slate-900 text-xl px-16 py-6 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-0"
+            className="bg-slate-900 hover:bg-amber-500 dark:bg-slate-100 dark:hover:bg-amber-500 text-slate-50 hover:text-slate-900 dark:text-slate-900 dark:hover:text-slate-900 text-xl px-16 py-6 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-0"
           >
             <BookOpen className="mr-3 h-6 w-6" />
             Get Started
