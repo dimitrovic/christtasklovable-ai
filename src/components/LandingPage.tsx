@@ -201,7 +201,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           </h1>
           
           <p className="text-base md:text-lg text-stone-700 dark:text-stone-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Ask any question. Get a Scripture-backed, logical response to Muslim, atheist, or skeptic objections.
+            What if, the last time someone questioned your faith, you had replied with clarity, logic, and Scripture — without fear or hesitation?
           </p>
 
           <div className="flex justify-center mb-12">
