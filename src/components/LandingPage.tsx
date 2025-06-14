@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown, Sword, AlertTriangle, TrendingUp } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown, Sword, AlertTriangle, TrendingUp, HelpCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface LandingPageProps {
@@ -473,6 +474,163 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 Arm Yourself with Truth
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-stone-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-6">
+              <div className="bg-gradient-to-r from-amber-500 to-yellow-600 p-4 rounded-full shadow-2xl">
+                <HelpCircle className="h-8 w-8 text-white" />
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-stone-800 dark:text-white mb-4">
+              Common Questions <span className="text-amber-500">Answered</span>
+            </h2>
+            <p className="text-xl text-stone-600 dark:text-stone-300 max-w-2xl mx-auto">
+              Get clarity on everything you need to know
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Tabs defaultValue="general" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 mb-8 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 shadow-lg">
+                <TabsTrigger value="general" className="data-[state=active]:bg-amber-500 data-[state=active]:text-white font-medium">
+                  General
+                </TabsTrigger>
+                <TabsTrigger value="features" className="data-[state=active]:bg-amber-500 data-[state=active]:text-white font-medium">
+                  Features
+                </TabsTrigger>
+                <TabsTrigger value="billing" className="data-[state=active]:bg-amber-500 data-[state=active]:text-white font-medium">
+                  Billing
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="general" className="space-y-6">
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">What is ChristTask?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      ChristTask is an AI-powered apologetics tool designed to help Christians confidently defend their faith. 
+                      It provides instant, Scripture-based responses to challenging questions about Christianity, evolution, 
+                      biblical reliability, and more.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">Is this tool biblically sound?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      Absolutely. Every response is grounded in Scripture and orthodox Christian theology. Our AI is trained 
+                      on trusted apologetic resources and biblical scholarship to ensure theological accuracy and faithfulness 
+                      to God's Word.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">Who can benefit from this?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      ChristTask is perfect for students facing challenges in school, parents answering their children's 
+                      questions, pastors preparing sermons, and any believer who wants to be better equipped to defend 
+                      their faith with confidence and love.
+                    </p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="features" className="space-y-6">
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">What topics are covered?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      We cover major apologetic topics including Creation vs Evolution, Biblical reliability, 
+                      Jesus' divinity, the Trinity, moral arguments, the problem of suffering, historical evidence 
+                      for Christianity, and responses to other worldviews.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">How does the AI work?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      Our AI is specifically trained on apologetic literature, biblical commentaries, and theological 
+                      resources. It can engage in interactive dialogue, provide follow-up answers, and adapt responses 
+                      based on your specific needs and context.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">Can I ask follow-up questions?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      Yes! ChristTask supports interactive dialogue. You can ask clarifying questions, request more 
+                      details, or explore related topics. The AI maintains context throughout your conversation for 
+                      more meaningful discussions.
+                    </p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="billing" className="space-y-6">
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">What's included in the subscription?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      Your subscription includes unlimited questions, access to all topic categories, 24/7 availability, 
+                      interactive dialogue features, Scripture references, and regular updates with new apologetic 
+                      insights and responses.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">Can I cancel anytime?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      Yes, you can cancel your subscription at any time with no penalties or fees. Your access will 
+                      continue until the end of your current billing period, and you won't be charged for the following month.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white dark:bg-slate-800 border-stone-200 dark:border-slate-700 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="text-stone-800 dark:text-white">Is there a free trial?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
+                      We're currently offering our special launch price of £21.99/month (reduced from £34.99). 
+                      This gives you full access to all features so you can experience the complete value of 
+                      ChristTask from day one.
+                    </p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </section>
