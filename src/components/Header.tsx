@@ -39,11 +39,6 @@ export const Header = () => {
               }`}>
                 ChristTask
               </h1>
-              <p className={`text-amber-300/80 tracking-wider transition-all duration-300 ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                TRUTH MEETS TECHNOLOGY
-              </p>
             </div>
           </div>
         </div>
