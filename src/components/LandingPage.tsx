@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -106,10 +105,10 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
       <section id="how-it-works" className="py-24 px-6 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               How ChristTask Works
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Our AI-powered platform provides personalized training to strengthen your apologetics skills
             </p>
           </div>
@@ -119,8 +118,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-full w-20 h-20 mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300">
                 <Users className="h-8 w-8 text-white mx-auto mt-2" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">1. Choose Your Challenge</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4">1. Choose Your Challenge</h3>
+              <p className="text-slate-300 leading-relaxed">
                 Select from various apologetics topics and difficulty levels to match your current understanding and goals.
               </p>
             </div>
@@ -129,8 +128,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-full w-20 h-20 mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300">
                 <Target className="h-8 w-8 text-white mx-auto mt-2" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">2. Engage with AI</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4">2. Engage with AI</h3>
+              <p className="text-slate-300 leading-relaxed">
                 Practice defending your faith in realistic conversations with our intelligent AI that adapts to your responses.
               </p>
             </div>
@@ -139,8 +138,8 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-6 rounded-full w-20 h-20 mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300">
                 <CheckCircle className="h-8 w-8 text-white mx-auto mt-2" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">3. Learn & Grow</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4">3. Learn & Grow</h3>
+              <p className="text-slate-300 leading-relaxed">
                 Receive personalized feedback, biblical insights, and track your progress as you become more confident in your faith.
               </p>
             </div>
