@@ -71,9 +71,14 @@ serve(async (req) => {
       )
     }
 
-    // Call OpenAI API
-    const openaiApiKey = Deno.env.get('OPENAI_API_KEY')
+    // Try different possible names for the OpenAI API key
+    const openaiApiKey = Deno.env.get('OPENAI_API_KEY') || 
+                        Deno.env.get('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')
+    
+    console.log('Checking for OpenAI API key...', openaiApiKey ? 'Found' : 'Not found')
+    
     if (!openaiApiKey) {
+      console.error('OpenAI API key not found in environment variables')
       return new Response(
         JSON.stringify({ error: 'OpenAI API key not configured' }),
         {
@@ -87,6 +92,8 @@ serve(async (req) => {
       ? `You are a helpful AI assistant specializing in ${topic}. Provide accurate, helpful, and engaging responses about this topic.`
       : 'You are a helpful AI assistant. Provide accurate, helpful, and engaging responses to user questions across various topics.'
 
+    console.log('Making request to OpenAI API...')
+    
     const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -105,11 +112,15 @@ serve(async (req) => {
     })
 
     if (!openaiResponse.ok) {
+      const errorText = await openaiResponse.text()
+      console.error(`OpenAI API error: ${openaiResponse.status} - ${errorText}`)
       throw new Error(`OpenAI API error: ${openaiResponse.status}`)
     }
 
     const openaiData = await openaiResponse.json()
     const aiResponse = openaiData.choices[0].message.content
+
+    console.log('OpenAI response received successfully')
 
     // Update or insert usage count
     if (usageData) {
