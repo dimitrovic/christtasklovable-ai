@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,7 +13,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -31,7 +30,9 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 10);
+      const maxScroll = 200; // Distance to complete the transformation
+      const progress = Math.min(scrollTop / maxScroll, 1);
+      setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -49,56 +50,71 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
     }
   };
 
+  // Calculate dynamic styles based on scroll progress
+  const headerPadding = {
+    horizontal: 6 * scrollProgress,
+    vertical: 6 * scrollProgress
+  };
+  
+  const containerStyles = {
+    borderRadius: `${scrollProgress * 9999}px`, // Gradually becomes fully rounded
+    padding: `${12 - (4 * scrollProgress)}px ${24}px`, // Shrinks padding
+    maxWidth: scrollProgress > 0.5 ? '28rem' : '100%', // Becomes constrained after 50% scroll
+    opacity: 0.95 + (0.05 * scrollProgress) // Slightly more opaque
+  };
+
+  const logoSize = 20 - (4 * scrollProgress); // Logo shrinks from 20px to 16px
+  const titleSize = scrollProgress > 0.5 ? 'text-base' : `text-xl`; // Title size changes
+  const navItemSize = scrollProgress > 0.5 ? 'text-xs' : 'text-sm'; // Nav items shrink
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors">
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'px-6 pt-6' 
-          : 'px-0 pt-0'
-      }`}>
-        <div className={`transition-all duration-500 ease-in-out ${
-          isScrolled 
-            ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg shadow-2xl border border-slate-200/80 dark:border-slate-700/50 py-3 rounded-full mx-auto max-w-md' 
-            : 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm py-5 w-full rounded-none border-b border-slate-200/80 dark:border-slate-700/50'
-        }`}>
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          paddingLeft: `${headerPadding.horizontal}px`,
+          paddingRight: `${headerPadding.horizontal}px`,
+          paddingTop: `${headerPadding.vertical}px`
+        }}
+      >
+        <div 
+          className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border border-slate-200/80 dark:border-slate-700/50 shadow-lg transition-all duration-300 mx-auto"
+          style={containerStyles}
+        >
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className={`bg-slate-900 dark:bg-slate-100 shadow-sm transition-all duration-500 ${
-                  isScrolled ? 'p-2 rounded-full' : 'p-2.5 rounded-xl'
-                }`}>
-                  <BookOpen className={`text-slate-50 dark:text-slate-900 transition-all duration-500 ${
-                    isScrolled ? 'h-4 w-4' : 'h-5 w-5'
-                  }`} />
+                <div 
+                  className="bg-slate-900 dark:bg-slate-100 shadow-sm transition-all duration-300"
+                  style={{
+                    padding: `${10 - (2 * scrollProgress)}px`,
+                    borderRadius: `${12 + (scrollProgress * 8)}px`
+                  }}
+                >
+                  <BookOpen 
+                    style={{ 
+                      height: `${logoSize}px`,
+                      width: `${logoSize}px`
+                    }}
+                    className="text-slate-50 dark:text-slate-900 transition-all duration-300" 
+                  />
                 </div>
-                <h1 className={`font-bold text-slate-900 dark:text-slate-100 transition-all duration-500 ${
-                  isScrolled ? 'text-base' : 'text-xl'
-                }`}>
+                <h1 className={`font-bold text-slate-900 dark:text-slate-100 transition-all duration-300 ${titleSize}`}>
                   ChristTask
                 </h1>
               </div>
               
               {/* Desktop Navigation */}
-              <div className={`hidden md:flex items-center transition-all duration-500 ${
-                isScrolled ? 'space-x-4' : 'space-x-8'
-              }`}>
-                <nav className={`flex items-center transition-all duration-500 ${
-                  isScrolled ? 'space-x-4' : 'space-x-7'
-                }`}>
-                  <a href="#home" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${
-                    isScrolled ? 'text-xs' : 'text-sm'
-                  }`}>
+              <div className="hidden md:flex items-center space-x-4">
+                <nav className="flex items-center space-x-6">
+                  <a href="#home" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${navItemSize}`}>
                     Home
                   </a>
-                  <a href="#how-it-works" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${
-                    isScrolled ? 'text-xs' : 'text-sm'
-                  }`}>
+                  <a href="#how-it-works" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${navItemSize}`}>
                     Features
                   </a>
-                  <a href="#pricing" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${
-                    isScrolled ? 'text-xs' : 'text-sm'
-                  }`}>
+                  <a href="#pricing" className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium ${navItemSize}`}>
                     Pricing
                   </a>
                 </nav>
@@ -107,32 +123,47 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                   onClick={toggleDarkMode}
                   variant="ghost"
                   size="sm"
-                  className={`p-0 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-500 ${
-                    isScrolled ? 'w-7 h-7' : 'w-9 h-9'
-                  }`}
+                  style={{
+                    width: `${36 - (8 * scrollProgress)}px`,
+                    height: `${36 - (8 * scrollProgress)}px`
+                  }}
+                  className="p-0 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
                 >
                   {isDarkMode ? (
-                    <Sun className={`text-slate-600 dark:text-slate-400 transition-all duration-500 ${
-                      isScrolled ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Sun 
+                      style={{
+                        height: `${16 - (4 * scrollProgress)}px`,
+                        width: `${16 - (4 * scrollProgress)}px`
+                      }}
+                      className="text-slate-600 dark:text-slate-400 transition-all duration-300" 
+                    />
                   ) : (
-                    <Moon className={`text-slate-600 transition-all duration-500 ${
-                      isScrolled ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Moon 
+                      style={{
+                        height: `${16 - (4 * scrollProgress)}px`,
+                        width: `${16 - (4 * scrollProgress)}px`
+                      }}
+                      className="text-slate-600 transition-all duration-300" 
+                    />
                   )}
                 </Button>
               </div>
 
               {/* Mobile Menu Button */}
               <button 
-                className={`md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-500 ${
-                  isScrolled ? 'p-1' : 'p-2'
-                }`}
+                className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                style={{
+                  padding: `${8 - (4 * scrollProgress)}px`
+                }}
               >
-                <Menu className={`text-slate-700 dark:text-slate-300 transition-all duration-500 ${
-                  isScrolled ? 'h-4 w-4' : 'h-5 w-5'
-                }`} />
+                <Menu 
+                  style={{
+                    height: `${20 - (4 * scrollProgress)}px`,
+                    width: `${20 - (4 * scrollProgress)}px`
+                  }}
+                  className="text-slate-700 dark:text-slate-300 transition-all duration-300" 
+                />
               </button>
             </div>
 
@@ -583,7 +614,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
+        </div>  
       </section>
 
       {/* Divider */}
