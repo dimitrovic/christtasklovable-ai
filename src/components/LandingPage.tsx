@@ -48,25 +48,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
               knowledge, and biblical truth in every conversation.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <div className="flex items-center justify-center">
               <Button
                 onClick={onGetStarted}
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg px-8 py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group"
+                className="w-24 h-24 rounded-full bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
               >
-                <Shield className="mr-3 h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
-                Start Training Now
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-              
-              <Button
-                onClick={onHowItWorks}
-                variant="outline"
-                size="lg"
-                className="border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <BookOpen className="mr-3 h-6 w-6" />
-                How It Works
+                Get Started
               </Button>
             </div>
           </div>
@@ -192,12 +179,9 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction }: Landin
           </p>
           <Button
             onClick={onGetStarted}
-            size="lg"
-            className="bg-white text-blue-600 hover:bg-blue-50 font-bold text-xl px-12 py-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 group"
+            className="w-24 h-24 rounded-full bg-white text-blue-600 hover:bg-amber-400 hover:text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 group"
           >
-            <Shield className="mr-3 h-7 w-7 group-hover:rotate-12 transition-transform duration-300" />
-            Start Your Journey Today
-            <ChevronRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+            Get Started
           </Button>
         </div>
       </section>
