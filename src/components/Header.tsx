@@ -1,9 +1,10 @@
 
-import { BookOpen } from "lucide-react";
+import { BookOpen, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +42,7 @@ export const Header = () => {
             </div>
           </div>
           
-          {/* Navigation - Center */}
+          {/* Navigation - Center (Desktop) */}
           <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
             <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
               Home
@@ -54,13 +55,41 @@ export const Header = () => {
             </a>
           </nav>
 
-          {/* Get Started Button - Far Right */}
-          <div className="flex-shrink-0">
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu className="h-5 w-5 text-slate-600" />
+          </button>
+
+          {/* Get Started Button - Far Right (Desktop) */}
+          <div className="hidden md:block flex-shrink-0">
             <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md">
               Get Started
             </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t border-slate-200">
+            <nav className="flex flex-col space-y-3 pt-4">
+              <a href="#home" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                Home
+              </a>
+              <a href="#how-it-works" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                How It Works
+              </a>
+              <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                Pricing
+              </a>
+              <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium shadow-md w-full">
+                Get Started
+              </button>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
