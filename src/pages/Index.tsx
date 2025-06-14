@@ -2,7 +2,6 @@
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
-import { UserProfile } from "@/components/UserProfile";
 import { useAuth } from "@/hooks/useAuth";
 import { useState, useEffect } from "react";
 
@@ -23,6 +22,10 @@ const Index = () => {
     } else {
       setCurrentPage('auth');
     }
+  };
+
+  const handleAuthAction = () => {
+    setCurrentPage('auth');
   };
 
   const handleHowItWorks = () => {
@@ -54,17 +57,11 @@ const Index = () => {
   }
 
   return (
-    <div>
-      {user && (
-        <div className="fixed top-4 right-4 z-50">
-          <UserProfile />
-        </div>
-      )}
-      <LandingPage 
-        onGetStarted={handleGetStarted} 
-        onHowItWorks={handleHowItWorks} 
-      />
-    </div>
+    <LandingPage 
+      onGetStarted={handleGetStarted} 
+      onHowItWorks={handleHowItWorks} 
+      onAuthAction={handleAuthAction}
+    />
   );
 };
 
