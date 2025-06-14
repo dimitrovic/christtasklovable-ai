@@ -13,17 +13,17 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="bg-slate-900 shadow-lg border-b border-slate-700">
+      <header className="bg-white shadow-sm border-b border-stone-200">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="bg-amber-500 p-3 rounded-xl">
-                <BookOpen className="h-8 w-8 text-slate-900" />
+                <BookOpen className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">
+                <h1 className="text-2xl font-bold text-stone-800">
                   ChristTask
                 </h1>
               </div>
@@ -31,13 +31,13 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             
             {/* Navigation - Center (Desktop) */}
             <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
-              <a href="#home" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+              <a href="#home" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                 Home
               </a>
-              <a href="#how-it-works" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+              <a href="#how-it-works" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                 How It Works
               </a>
-              <a href="#pricing" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+              <a href="#pricing" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                 Pricing
               </a>
             </nav>
@@ -47,12 +47,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               className="md:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <Menu className="h-5 w-5 text-slate-300" />
+              <Menu className="h-5 w-5 text-stone-600" />
             </button>
 
             {/* Desktop Buttons */}
             <div className="hidden md:flex space-x-4">
-              <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold">
+              <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold">
                 Begin Your Journey
               </Button>
             </div>
@@ -60,19 +60,19 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-slate-700">
+            <div className="md:hidden mt-4 pb-4 border-t border-stone-200">
               <nav className="flex flex-col space-y-3 pt-4">
-                <a href="#home" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+                <a href="#home" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                   Home
                 </a>
-                <a href="#how-it-works" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+                <a href="#how-it-works" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                   How It Works
                 </a>
-                <a href="#pricing" className="text-slate-300 hover:text-amber-500 transition-colors text-sm font-medium">
+                <a href="#pricing" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                   Pricing
                 </a>
                 <div className="flex flex-col space-y-2 pt-2">
-                  <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold w-full">
+                  <Button onClick={onGetStarted} className="bg-amber-500 hover:bg-amber-600 text-white font-bold w-full">
                     Begin Your Journey
                   </Button>
                 </div>
@@ -90,22 +90,22 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white">
+            <span className="text-stone-800">
               Defend Your Faith
             </span>
             <br />
-            <span className="text-3xl md:text-5xl text-slate-300 font-light">
+            <span className="text-3xl md:text-5xl text-stone-600 font-light">
               with Divine Wisdom
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-amber-500 mb-4 max-w-4xl mx-auto leading-relaxed font-semibold">
+          <p className="text-xl md:text-2xl text-amber-600 mb-4 max-w-4xl mx-auto leading-relaxed font-semibold">
             "Always be ready to give a defense for the hope within you."
           </p>
 
-          <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-stone-700 mb-8 max-w-4xl mx-auto leading-relaxed">
             Equipped with Scripture-based wisdom and scholarly apologetics, face every challenge to your faith with 
-            <span className="font-semibold text-amber-500"> divine confidence</span>. From evolution debates to biblical contradictions — 
+            <span className="font-semibold text-amber-600"> divine confidence</span>. From evolution debates to biblical contradictions — 
             truth prevails through knowledge.
           </p>
 
@@ -113,7 +113,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
             <Button 
               size="lg" 
               onClick={onGetStarted}
-              className="bg-amber-500 hover:bg-amber-600 text-slate-900 text-lg px-8 py-4 font-bold"
+              className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8 py-4 font-bold"
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Start Learning
@@ -122,7 +122,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               size="lg" 
               variant="outline" 
               onClick={onHowItWorks}
-              className="text-lg px-8 py-4 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-900"
+              className="text-lg px-8 py-4 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white"
             >
               <Lightbulb className="mr-2 h-5 w-5" />
               How It Works
@@ -130,9 +130,9 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           </div>
 
           {/* Scripture Quote */}
-          <div className="inline-flex items-center bg-slate-800 border border-slate-700 rounded-full px-8 py-4 mb-16">
+          <div className="inline-flex items-center bg-white border border-stone-200 rounded-full px-8 py-4 mb-16 shadow-sm">
             <BookOpen className="h-5 w-5 text-amber-500 mr-3" />
-            <span className="text-slate-300 font-medium italic">
+            <span className="text-stone-700 font-medium italic">
               "The fear of the LORD is the beginning of wisdom" - Proverbs 9:10
             </span>
           </div>
@@ -140,15 +140,15 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-16 bg-slate-800">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700">
-              <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
+            <div className="bg-stone-50 p-8 rounded-2xl border border-stone-200">
+              <h2 className="text-3xl font-bold text-stone-800 mb-6 flex items-center">
                 <Shield className="mr-3 h-8 w-8 text-amber-500" />
                 Facing Challenges?
               </h2>
-              <div className="space-y-4 text-slate-300">
+              <div className="space-y-4 text-stone-700">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
                   <p>Skeptics challenge your faith and you feel unprepared</p>
@@ -163,12 +163,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 </div>
               </div>
             </div>
-            <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700">
-              <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
+            <div className="bg-stone-50 p-8 rounded-2xl border border-stone-200">
+              <h2 className="text-3xl font-bold text-stone-800 mb-6 flex items-center">
                 <Cross className="mr-3 h-8 w-8 text-amber-500" />
                 Stand Firm in Truth
               </h2>
-              <div className="space-y-4 text-slate-300">
+              <div className="space-y-4 text-stone-700">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
                   <p>Receive instant, Scripture-backed responses to any challenge</p>
@@ -190,69 +190,69 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       {/* Features Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white">
+          <h2 className="text-4xl font-bold text-center mb-4 text-stone-800">
             Your Learning Tools
           </h2>
-          <p className="text-center text-slate-400 mb-12 text-lg">
+          <p className="text-center text-stone-600 mb-12 text-lg">
             "Put on the full armor of God" - Ephesians 6:11
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <Shield className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Instant Answers</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Instant Answers</CardTitle>
+                <CardDescription className="text-stone-600">
                   Get immediate, scholarly responses to evolution, suffering, biblical questions, and more
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <Brain className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Deep Learning</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Deep Learning</CardTitle>
+                <CardDescription className="text-stone-600">
                   Practice with challenging questions to strengthen your apologetic skills
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <Target className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Scripture Foundation</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Scripture Foundation</CardTitle>
+                <CardDescription className="text-stone-600">
                   Every answer is grounded in biblical truth and sound theology
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <Users className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Organized Topics</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Organized Topics</CardTitle>
+                <CardDescription className="text-stone-600">
                   Explore Creation, Morality, Christ's Divinity, Biblical Reliability, and more
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <MessageSquare className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Interactive Dialogue</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Interactive Dialogue</CardTitle>
+                <CardDescription className="text-stone-600">
                   Ask follow-up questions and dive deeper into any topic
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700 hover:border-amber-500 transition-colors">
+            <Card className="bg-white border-stone-200 hover:border-amber-500 transition-colors shadow-sm">
               <CardHeader>
                 <Zap className="h-12 w-12 text-amber-500 mb-4" />
-                <CardTitle className="text-xl text-white">Always Current</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-xl text-stone-800">Always Current</CardTitle>
+                <CardDescription className="text-stone-600">
                   Stay updated with the latest apologetic insights and responses
                 </CardDescription>
               </CardHeader>
@@ -262,17 +262,17 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
       </section>
 
       {/* Testimonial */}
-      <section className="py-16 bg-slate-800">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-8">
             <Cross className="h-12 w-12 text-amber-500 mx-auto mb-4" />
           </div>
-          <h2 className="text-3xl font-bold mb-8 text-white">Growing in Faith</h2>
-          <blockquote className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto italic leading-relaxed">
+          <h2 className="text-3xl font-bold mb-8 text-stone-800">Growing in Faith</h2>
+          <blockquote className="text-xl text-stone-700 mb-8 max-w-3xl mx-auto italic leading-relaxed">
             "I was once afraid to engage skeptics about my faith. Now I confidently share God's truth. 
             This tool has transformed my understanding and witness."
           </blockquote>
-          <cite className="text-amber-500 font-semibold">- Sarah M., Youth Pastor</cite>
+          <cite className="text-amber-600 font-semibold">- Sarah M., Youth Pastor</cite>
         </div>
       </section>
 
@@ -282,39 +282,39 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           <div className="mb-8">
             <BookOpen className="h-16 w-16 text-amber-500 mx-auto mb-4" />
           </div>
-          <h2 className="text-4xl font-bold mb-6 text-white">
+          <h2 className="text-4xl font-bold mb-6 text-stone-800">
             Ready to Grow in Faith?
           </h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-stone-700 mb-8 max-w-2xl mx-auto">
             Start your journey today and gain the knowledge to confidently defend the Gospel.
           </p>
           
-          <div className="bg-slate-800 rounded-2xl p-8 max-w-md mx-auto mb-8 border border-slate-700">
+          <div className="bg-white rounded-2xl p-8 max-w-md mx-auto mb-8 border border-stone-200 shadow-sm">
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
-                <span className="text-2xl font-bold text-slate-500 line-through mr-3">£34.99</span>
+                <span className="text-2xl font-bold text-stone-400 line-through mr-3">£34.99</span>
                 <div className="text-4xl font-bold text-amber-500">£21.99</div>
               </div>
-              <div className="text-slate-400 mb-4">per month</div>
-              <div className="bg-amber-500 text-slate-900 text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
+              <div className="text-stone-600 mb-4">per month</div>
+              <div className="bg-amber-500 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
                 Save £13 Monthly
               </div>
               <ul className="text-left space-y-2 mb-6">
                 <li className="flex items-center">
                   <CheckCircle className="h-4 w-4 text-amber-500 mr-2" />
-                  <span className="text-sm text-slate-300">Unlimited questions</span>
+                  <span className="text-sm text-stone-700">Unlimited questions</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-4 w-4 text-amber-500 mr-2" />
-                  <span className="text-sm text-slate-300">All topics covered</span>
+                  <span className="text-sm text-stone-700">All topics covered</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-4 w-4 text-amber-500 mr-2" />
-                  <span className="text-sm text-slate-300">24/7 access</span>
+                  <span className="text-sm text-stone-700">24/7 access</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-4 w-4 text-amber-500 mr-2" />
-                  <span className="text-sm text-slate-300">Cancel anytime</span>
+                  <span className="text-sm text-stone-700">Cancel anytime</span>
                 </li>
               </ul>
             </div>
@@ -323,13 +323,13 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
           <Button 
             size="lg" 
             onClick={onGetStarted}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-900 text-xl px-12 py-6 font-bold"
+            className="bg-amber-500 hover:bg-amber-600 text-white text-xl px-12 py-6 font-bold"
           >
             <Cross className="mr-2 h-6 w-6" />
             Begin Your Journey
           </Button>
           
-          <p className="text-sm text-slate-500 mt-4">7-day free trial • No commitment required</p>
+          <p className="text-sm text-stone-500 mt-4">7-day free trial • No commitment required</p>
         </div>
       </section>
     </div>
