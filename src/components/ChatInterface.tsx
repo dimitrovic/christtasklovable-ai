@@ -78,7 +78,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
 
     // Where did Jesus say he is God?
     if (lowerInput.includes("where") && lowerInput.includes("jesus") && (lowerInput.includes("say") || lowerInput.includes("claim")) && lowerInput.includes("god")) {
-      return `**Direct Answer:** Jesus claimed to be God multiple times, though not always using those exact words.
+      return `Jesus claimed to be God multiple times, though not always using those exact words.
 
 **Here's where Jesus said it:**
 
@@ -105,7 +105,7 @@ Jesus didn't need to say "I am God" in modern English - His Jewish audience unde
 
     // Trinity questions
     if (lowerInput.includes("trinity") || (lowerInput.includes("three") && lowerInput.includes("god"))) {
-      return `**Direct Answer:** The Trinity is one God existing as three distinct persons - not three gods.
+      return `The Trinity is one God existing as three distinct persons - not three gods.
 
 **Biblical Evidence:**
 - **Deuteronomy 6:4**: "The Lord our God, the Lord is one" (Hebrew: echad = compound unity)
@@ -122,7 +122,7 @@ It's like water being H2O - one substance, multiple expressions. The Trinity isn
 
     // Bible corruption
     if (lowerInput.includes("bible") && (lowerInput.includes("corrupt") || lowerInput.includes("changed") || lowerInput.includes("tampered"))) {
-      return `**Direct Answer:** The Bible has NOT been corrupted. We have manuscript evidence proving its preservation.
+      return `The Bible has NOT been corrupted. We have manuscript evidence proving its preservation.
 
 **The Evidence:**
 - **5,800+** Greek New Testament manuscripts
@@ -143,7 +143,7 @@ If God couldn't preserve His Word, how could we trust Him with anything else?`;
 
     // Problem of evil
     if (lowerInput.includes("evil") || lowerInput.includes("suffering") || (lowerInput.includes("good") && lowerInput.includes("bad"))) {
-      return `**Direct Answer:** Evil exists because love requires free choice, and God entered our suffering on the cross.
+      return `Evil exists because love requires free choice, and God entered our suffering on the cross.
 
 **Why God allows evil:**
 1. **Free will is necessary** - Love cannot be forced (Joshua 24:15)
@@ -164,7 +164,7 @@ The question isn't "Why does God allow evil?" but "Why did God enter evil to def
 
     // Resurrection
     if (lowerInput.includes("resurrection") || lowerInput.includes("rose") || (lowerInput.includes("dead") && lowerInput.includes("alive"))) {
-      return `**Direct Answer:** The resurrection has stronger historical evidence than most accepted ancient events.
+      return `The resurrection has stronger historical evidence than most accepted ancient events.
 
 **Historical facts even skeptics accept:**
 1. **Jesus died by crucifixion** - universally accepted by historians
