@@ -18,8 +18,8 @@ export const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
       isScrolled 
-        ? 'bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-amber-500/20 py-1' 
-        : 'bg-slate-900/90 backdrop-blur-sm border-b border-amber-500/10 py-2'
+        ? 'bg-slate-900/70 backdrop-blur-md shadow-xl border-b border-amber-500/20 py-1' 
+        : 'bg-slate-900/60 backdrop-blur-sm border-b border-amber-500/10 py-2'
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-center w-full">

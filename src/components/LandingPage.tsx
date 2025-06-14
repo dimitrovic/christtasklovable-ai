@@ -14,7 +14,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-stone-200">
+      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-stone-200/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -59,7 +59,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-stone-200">
+            <div className="md:hidden mt-4 pb-4 border-t border-stone-200/50 bg-white/90 backdrop-blur-sm rounded-b-lg">
               <nav className="flex flex-col space-y-3 pt-4">
                 <a href="#home" className="text-stone-600 hover:text-amber-600 transition-colors text-sm font-medium">
                   Home
