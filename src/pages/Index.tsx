@@ -1,36 +1,46 @@
+
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
+import { ChatInterface } from "@/components/ChatInterface";
+import { TopicCategories } from "@/components/TopicCategories";
 import { useAuth } from "@/hooks/useAuth";
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { LogOut, User } from "lucide-react";
 
 const Index = () => {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'payment' | 'auth'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'payment' | 'auth' | 'app'>('landing');
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
-  const { user, loading } = useAuth();
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [showTopics, setShowTopics] = useState(true);
+  const { user, loading, signOut } = useAuth();
 
-  // Redirect authenticated users to landing page
+  // Redirect authenticated users to app
   useEffect(() => {
     if (user && currentPage === 'auth') {
-      setCurrentPage('landing');
+      setCurrentPage('app');
+    } else if (user && currentPage === 'landing') {
+      setCurrentPage('app');
     }
   }, [user, currentPage]);
 
   const handleGetStarted = () => {
-    setCurrentPage('payment');
-    // Scroll to top when navigating to payment page
+    if (user) {
+      setCurrentPage('app');
+    } else {
+      setCurrentPage('payment');
+    }
     window.scrollTo(0, 0);
   };
 
   const handleAuthAction = (action: 'signin' | 'signup') => {
     setAuthMode(action);
     setCurrentPage('auth');
-    // Scroll to top when navigating to auth page
     window.scrollTo(0, 0);
   };
 
   const handleHowItWorks = () => {
-    // Scroll to how it works section or handle as needed
     const element = document.getElementById('how-it-works');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -39,8 +49,22 @@ const Index = () => {
 
   const handleBackToLanding = () => {
     setCurrentPage('landing');
-    // Scroll to top when navigating back to landing page
     window.scrollTo(0, 0);
+  };
+
+  const handleTopicSelect = (topic: string) => {
+    setSelectedTopic(topic);
+    setShowTopics(false);
+  };
+
+  const handleBackToTopics = () => {
+    setShowTopics(true);
+    setSelectedTopic(null);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    setCurrentPage('landing');
   };
 
   if (loading) {
@@ -57,6 +81,76 @@ const Index = () => {
 
   if (currentPage === 'payment') {
     return <PaymentPage onBack={handleBackToLanding} />;
+  }
+
+  if (currentPage === 'app' && user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+        {/* App Header */}
+        <div className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">CT</span>
+                </div>
+                <h1 className="text-xl font-bold text-gray-900">ChristTask</h1>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <User className="w-4 h-4" />
+                  <span>{user.email}</span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="flex items-center space-x-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign Out</span>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* App Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {showTopics ? (
+            <div className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Welcome to ChristTask
+                </h2>
+                <p className="text-lg text-gray-600 mb-8">
+                  Choose a topic to start your apologetics journey
+                </p>
+                <Button
+                  onClick={() => setShowTopics(false)}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                >
+                  Start Direct Chat
+                </Button>
+              </div>
+              <TopicCategories onTopicSelect={handleTopicSelect} />
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <Button
+                  variant="outline"
+                  onClick={handleBackToTopics}
+                >
+                  ← Back to Topics
+                </Button>
+              </div>
+              <ChatInterface selectedTopic={selectedTopic} />
+            </div>
+          )}
+        </div>
+      </div>
+    );
   }
 
   return (
