@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Shield, Zap, CheckCircle, Users, Brain, Target, Menu, Cross, Lightbulb, Sun, Moon, ChevronDown } from "lucide-react";
@@ -56,43 +55,34 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
               </div>
             </div>
             
-            {/* Navigation - Center (Desktop) */}
-            <nav className="hidden md:flex items-center justify-center flex-1 relative">
-              <button
-                onClick={() => setIsNavDropdownOpen(!isNavDropdownOpen)}
-                className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg px-4 py-2 shadow-sm flex items-center space-x-2 text-stone-600 dark:text-stone-300 hover:text-amber-600 transition-colors"
-              >
-                <span className="text-sm font-medium">Menu</span>
-                <ChevronDown className={`h-4 w-4 transition-transform ${isNavDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {isNavDropdownOpen && (
-                <div className="absolute top-full mt-2 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 rounded-lg shadow-lg p-2 z-50">
-                  <div className="grid grid-cols-2 gap-2 min-w-[200px]">
-                    <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
-                      Home
-                    </a>
-                    <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
-                      How It Works
-                    </a>
-                    <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center col-span-2">
-                      Pricing
-                    </a>
-                  </div>
-                </div>
-              )}
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <Menu className="h-5 w-5 text-stone-600 dark:text-stone-300" />
-            </button>
-
             {/* Desktop Buttons */}
             <div className="hidden md:flex items-center space-x-3">
+              {/* Navigation Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsNavDropdownOpen(!isNavDropdownOpen)}
+                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-stone-200 dark:border-slate-600 rounded-lg p-2 shadow-sm hover:bg-stone-100 dark:hover:bg-slate-700 transition-colors"
+                >
+                  <Menu className="h-4 w-4 text-stone-600 dark:text-stone-300" />
+                </button>
+                
+                {isNavDropdownOpen && (
+                  <div className="absolute top-full right-0 mt-2 bg-white dark:bg-slate-800 border border-stone-200 dark:border-slate-600 rounded-lg shadow-lg p-2 z-50">
+                    <div className="grid grid-cols-2 gap-2 min-w-[200px]">
+                      <a href="#home" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                        Home
+                      </a>
+                      <a href="#how-it-works" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center">
+                        How It Works
+                      </a>
+                      <a href="#pricing" className="px-3 py-2 text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-amber-600 hover:bg-stone-100 dark:hover:bg-slate-700 rounded-md transition-colors text-center col-span-2">
+                        Pricing
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <Button
                 onClick={toggleDarkMode}
                 variant="outline"
@@ -106,6 +96,14 @@ export const LandingPage = ({ onGetStarted, onHowItWorks }: LandingPageProps) =>
                 )}
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Menu className="h-5 w-5 text-stone-600 dark:text-stone-300" />
+            </button>
           </div>
 
           {/* Mobile Navigation Menu */}
