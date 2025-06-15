@@ -49,7 +49,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
                 Defend Your Faith
               </span>
               <br />
-              <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
+              <span className="text-4xl md:text-5xl bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
                 With Confidence
               </span>
             </h1>
