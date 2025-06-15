@@ -44,7 +44,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
               <span className="text-lg font-semibold text-amber-200">AI-Powered Apologetics Training</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
               <span className="bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent">
                 Defend Your Faith
               </span>
