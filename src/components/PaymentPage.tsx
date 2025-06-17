@@ -1,11 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { BookOpen, CheckCircle, ArrowLeft, Star, RefreshCw, Mail } from "lucide-react";
+import { BookOpen, CheckCircle, ArrowLeft, Star, RefreshCw } from "lucide-react";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/hooks/useAuth";
-import { useState } from "react";
 
 interface PaymentPageProps {
   onBack: () => void;
@@ -13,7 +11,6 @@ interface PaymentPageProps {
 
 export const PaymentPage = ({ onBack }: PaymentPageProps) => {
   const { user } = useAuth();
-  const [guestEmail, setGuestEmail] = useState("");
   const { 
     subscribed, 
     subscriptionTier, 
@@ -25,17 +22,8 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
   } = useSubscription();
 
   const handleSubscribe = async () => {
-    if (user) {
-      // User is authenticated, proceed normally
-      await createCheckout();
-    } else {
-      // Guest checkout with email
-      if (!guestEmail || !guestEmail.includes('@')) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-      await createCheckout(guestEmail);
-    }
+    // No email required - just proceed with checkout
+    await createCheckout();
   };
 
   const formatDate = (dateString: string) => {
@@ -142,12 +130,12 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              {subscribed ? "Manage Your Subscription" : "Get Started Today"}
+              {subscribed ? "Manage Your Subscription" : "Get Instant Access"}
             </h2>
             <p className="text-xl text-white font-light leading-relaxed max-w-2xl mx-auto">
               {subscribed 
                 ? "You have full access to ChristTask. Manage your subscription below."
-                : "Join ChristTask and equip yourself to defend the faith with confidence"
+                : "No sign-up required! Click below for instant access to ChristTask"
               }
             </p>
           </div>
@@ -194,25 +182,6 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                   </div>
                 </div>
 
-                {/* Email input for non-authenticated users */}
-                {!user && (
-                  <div className="mb-6">
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
-                      <Input
-                        type="email"
-                        placeholder="Enter your email address"
-                        value={guestEmail}
-                        onChange={(e) => setGuestEmail(e.target.value)}
-                        className="pl-10 py-3 text-lg bg-white border-slate-300 focus:border-amber-500 focus:ring-amber-500"
-                      />
-                    </div>
-                    <p className="text-sm text-slate-600 mt-2">
-                      No account required. You can create one later to manage your subscription.
-                    </p>
-                  </div>
-                )}
-
                 <Button
                   onClick={handleSubscribe}
                   disabled={loading}
@@ -220,11 +189,11 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                   className="w-full bg-white text-slate-800 hover:bg-amber-400 hover:text-white font-bold text-xl py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <BookOpen className="mr-3 h-6 w-6" />
-                  Start Your Subscription
+                  Get Instant Access - No Sign-up Required
                 </Button>
 
                 <p className="text-center text-sm text-slate-600 mt-6">
-                  Secure payment powered by Stripe. Cancel anytime.
+                  Secure payment powered by Stripe. Create account during checkout.
                 </p>
               </CardContent>
             </Card>

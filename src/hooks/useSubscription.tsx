@@ -10,7 +10,7 @@ interface SubscriptionContextType {
   subscriptionEnd: string | null;
   loading: boolean;
   checkSubscription: () => Promise<void>;
-  createCheckout: (email?: string) => Promise<void>;
+  createCheckout: () => Promise<void>;
   openCustomerPortal: () => Promise<void>;
 }
 
@@ -58,29 +58,17 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const createCheckout = async (email?: string) => {
+  const createCheckout = async () => {
     try {
-      const requestBody: any = {};
       const headers: any = {};
-
-      // If user is authenticated, use their session
+      
+      // Include auth header if user is logged in
       if (user && session) {
         headers.Authorization = `Bearer ${session.access_token}`;
-      } else if (email) {
-        // Guest checkout with provided email
-        requestBody.email = email;
-      } else {
-        toast({
-          title: "Email required",
-          description: "Please provide an email address to subscribe.",
-          variant: "destructive"
-        });
-        return;
       }
 
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         headers,
-        body: requestBody,
       });
 
       if (error) throw error;

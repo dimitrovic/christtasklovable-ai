@@ -30,13 +30,10 @@ serve(async (req) => {
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
     logStep("Stripe key verified");
 
-    const body = await req.json();
-    const { email } = body;
-
-    // Check if user is authenticated
+    // Check if user is authenticated (optional now)
     const authHeader = req.headers.get("Authorization");
     let user = null;
-    let userEmail = email; // Default to provided email for guest checkout
+    let customerEmail = null;
 
     if (authHeader) {
       try {
@@ -44,7 +41,7 @@ serve(async (req) => {
         const { data } = await supabaseClient.auth.getUser(token);
         user = data.user;
         if (user?.email) {
-          userEmail = user.email;
+          customerEmail = user.email;
           logStep("User authenticated", { userId: user.id, email: user.email });
         }
       } catch (error) {
@@ -52,30 +49,26 @@ serve(async (req) => {
       }
     }
 
-    if (!userEmail) {
-      throw new Error("Email is required for checkout");
-    }
-
-    logStep("Processing checkout", { email: userEmail, isGuest: !user });
+    // For guest users, we'll let Stripe collect the email during checkout
+    logStep("Processing checkout", { isGuest: !user, hasEmail: !!customerEmail });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     
-    // Check if customer already exists
-    const customers = await stripe.customers.list({ email: userEmail, limit: 1 });
+    // Check if customer already exists (only if we have an email)
     let customerId;
-    
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
-      logStep("Existing customer found", { customerId });
-    } else {
-      logStep("No existing customer found, will create during checkout");
+    if (customerEmail) {
+      const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
+      if (customers.data.length > 0) {
+        customerId = customers.data[0].id;
+        logStep("Existing customer found", { customerId });
+      }
     }
 
     const origin = req.headers.get("origin") || "http://localhost:3000";
     
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : userEmail,
+      customer_email: customerId ? undefined : customerEmail, // Only set if no customer ID and we have email
       line_items: [
         {
           price_data: {
@@ -96,7 +89,7 @@ serve(async (req) => {
       allow_promotion_codes: true,
       metadata: {
         user_id: user?.id || "guest",
-        email: userEmail,
+        email: customerEmail || "guest_checkout",
       }
     });
 
