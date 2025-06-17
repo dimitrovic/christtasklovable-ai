@@ -10,7 +10,7 @@ interface SubscriptionContextType {
   subscriptionEnd: string | null;
   loading: boolean;
   checkSubscription: () => Promise<void>;
-  createCheckout: () => Promise<void>;
+  createCheckout: (email?: string) => Promise<void>;
   openCustomerPortal: () => Promise<void>;
 }
 
