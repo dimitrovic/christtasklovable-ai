@@ -30,20 +30,38 @@ serve(async (req) => {
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
     logStep("Stripe key verified");
 
+    const body = await req.json();
+    const { email } = body;
+
+    // Check if user is authenticated
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) throw new Error("No authorization header provided");
-    
-    const token = authHeader.replace("Bearer ", "");
-    const { data } = await supabaseClient.auth.getUser(token);
-    const user = data.user;
-    if (!user?.email) throw new Error("User not authenticated or email not available");
-    
-    logStep("User authenticated", { userId: user.id, email: user.email });
+    let user = null;
+    let userEmail = email; // Default to provided email for guest checkout
+
+    if (authHeader) {
+      try {
+        const token = authHeader.replace("Bearer ", "");
+        const { data } = await supabaseClient.auth.getUser(token);
+        user = data.user;
+        if (user?.email) {
+          userEmail = user.email;
+          logStep("User authenticated", { userId: user.id, email: user.email });
+        }
+      } catch (error) {
+        logStep("Authentication failed, proceeding as guest", { error: error.message });
+      }
+    }
+
+    if (!userEmail) {
+      throw new Error("Email is required for checkout");
+    }
+
+    logStep("Processing checkout", { email: userEmail, isGuest: !user });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     
     // Check if customer already exists
-    const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+    const customers = await stripe.customers.list({ email: userEmail, limit: 1 });
     let customerId;
     
     if (customers.data.length > 0) {
@@ -57,7 +75,7 @@ serve(async (req) => {
     
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : user.email,
+      customer_email: customerId ? undefined : userEmail,
       line_items: [
         {
           price_data: {
@@ -77,7 +95,8 @@ serve(async (req) => {
       cancel_url: `${origin}/?cancelled=true`,
       allow_promotion_codes: true,
       metadata: {
-        user_id: user.id,
+        user_id: user?.id || "guest",
+        email: userEmail,
       }
     });
 

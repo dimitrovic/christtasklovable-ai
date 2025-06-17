@@ -58,21 +58,29 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const createCheckout = async () => {
-    if (!user || !session) {
-      toast({
-        title: "Authentication required",
-        description: "Please sign in to subscribe.",
-        variant: "destructive"
-      });
-      return;
-    }
-
+  const createCheckout = async (email?: string) => {
     try {
+      const requestBody: any = {};
+      const headers: any = {};
+
+      // If user is authenticated, use their session
+      if (user && session) {
+        headers.Authorization = `Bearer ${session.access_token}`;
+      } else if (email) {
+        // Guest checkout with provided email
+        requestBody.email = email;
+      } else {
+        toast({
+          title: "Email required",
+          description: "Please provide an email address to subscribe.",
+          variant: "destructive"
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
+        headers,
+        body: requestBody,
       });
 
       if (error) throw error;
