@@ -49,7 +49,6 @@ serve(async (req) => {
       }
     }
 
-    // For guest users, we'll let Stripe collect the email during checkout
     logStep("Processing checkout", { isGuest: !user, hasEmail: !!customerEmail });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
@@ -66,9 +65,7 @@ serve(async (req) => {
 
     const origin = req.headers.get("origin") || "http://localhost:3000";
     
-    const session = await stripe.checkout.sessions.create({
-      customer: customerId,
-      customer_email: customerId ? undefined : customerEmail, // Only set if no customer ID and we have email
+    const sessionConfig: any = {
       line_items: [
         {
           price_data: {
@@ -91,7 +88,17 @@ serve(async (req) => {
         user_id: user?.id || "guest",
         email: customerEmail || "guest_checkout",
       }
-    });
+    };
+
+    // Only set customer or customer_email if we have valid data
+    if (customerId) {
+      sessionConfig.customer = customerId;
+    } else if (customerEmail) {
+      sessionConfig.customer_email = customerEmail;
+    }
+    // For guest users without email, let Stripe collect email during checkout
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     logStep("Checkout session created", { sessionId: session.id, url: session.url });
 
