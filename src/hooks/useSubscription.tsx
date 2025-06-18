@@ -1,4 +1,3 @@
-
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
@@ -17,14 +16,19 @@ interface SubscriptionContextType {
 const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
 
 export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
-  const [subscribed, setSubscribed] = useState(false);
-  const [subscriptionTier, setSubscriptionTier] = useState<string | null>(null);
+  // Temporarily set subscribed to true for testing
+  const [subscribed, setSubscribed] = useState(true);
+  const [subscriptionTier, setSubscriptionTier] = useState<string | null>('Premium');
   const [subscriptionEnd, setSubscriptionEnd] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { user, session } = useAuth();
   const { toast } = useToast();
 
   const checkSubscription = async () => {
+    // Temporarily return early with subscription active for testing
+    setLoading(false);
+    return;
+
     if (!user || !session) {
       setSubscribed(false);
       setSubscriptionTier(null);
@@ -117,18 +121,14 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    checkSubscription();
+    // Skip subscription check for testing
+    setLoading(false);
   }, [user, session]);
 
-  // Auto-refresh subscription status every 30 seconds when user is active
+  // Skip auto-refresh for testing
   useEffect(() => {
     if (!user) return;
-
-    const interval = setInterval(() => {
-      checkSubscription();
-    }, 30000);
-
-    return () => clearInterval(interval);
+    // Auto-refresh disabled for testing
   }, [user]);
 
   return (
