@@ -74,7 +74,7 @@ serve(async (req) => {
               name: "ChristTask Premium Subscription",
               description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
             },
-            unit_amount: 2199, // £21.99
+            unit_amount: 1899, // £18.99
             recurring: { interval: "month" },
           },
           quantity: 1,
