@@ -297,11 +297,11 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
               <div className="text-center mb-12">
                 <div className="flex items-center justify-center space-x-4 mb-6">
                   <span className="text-3xl font-bold text-slate-400 line-through">£34.99</span>
-                  <div className="text-6xl font-black text-white">£21.99</div>
+                  <div className="text-6xl font-black text-white">£18.99</div>
                 </div>
                 <div className="text-slate-300 text-xl mb-6">per month</div>
                 <div className="bg-amber-600/30 text-amber-300 text-lg font-bold px-6 py-3 rounded-full inline-block border border-amber-500/50">
-                  Save £13 Monthly • Limited Time
+                  Save £16 Monthly • Limited Time
                 </div>
               </div>
 
