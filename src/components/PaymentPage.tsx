@@ -146,11 +146,11 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
               <CardHeader className="text-center py-12 px-8">
                 <div className="flex items-center justify-center space-x-3 mb-6">
                   <span className="text-3xl font-bold text-slate-400 line-through">£34.99</span>
-                  <div className="text-5xl font-bold text-slate-800">£21.99</div>
+                  <div className="text-5xl font-bold text-slate-800">£18.99</div>
                 </div>
                 <div className="text-slate-600 text-lg mb-4">per month</div>
                 <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-6 py-3 rounded-full inline-block border border-amber-200">
-                  Save £13 Monthly - Limited Time
+                  Save £16 Monthly - Limited Time
                 </div>
               </CardHeader>
 
