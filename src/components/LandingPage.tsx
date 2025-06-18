@@ -1,9 +1,10 @@
+
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
 import { VerseReference } from "./VerseReference";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Shield, Target, Trophy, Users, ChevronRight, Star, CheckCircle, AlertTriangle, ArrowRight, Sparkles, Brain, Heart } from "lucide-react";
+import { BookOpen, Shield, Target, Trophy, Users, ChevronRight, Star, CheckCircle, AlertTriangle, ArrowRight, Sparkles, Brain, Heart, Zap, Crown, Sword } from "lucide-react";
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -25,92 +26,141 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen bg-white">
       <Header onAuthAction={onAuthAction} onHowItWorks={onHowItWorks} onFeatures={handleFeatures} onLogoClick={onLogoClick} />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-amber-500/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-indigo-500/15 to-pink-600/15 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-amber-300/30 rounded-full px-8 py-4 mb-12 shadow-2xl">
-              <Sparkles className="h-5 w-5 text-amber-400 mr-3 animate-pulse" />
-              <span className="text-lg font-semibold text-amber-200">AI-Powered Apologetics Training</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent">
-                Defend Your Faith
-              </span>
-              <br />
-              <span className="text-4xl md:text-5xl bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                With Confidence
-              </span>
-            </h1>
-            
-            <p className="text-2xl md:text-3xl text-blue-100 font-light mb-8 max-w-5xl mx-auto leading-relaxed">
-              Master apologetics through intelligent AI conversations
-            </p>
-            
-            <p className="text-xl text-slate-300 mb-16 max-w-4xl mx-auto">
-              From silent uncertainty to unshakeable conviction — equipped with Scripture, sharpened by logic, ready for every challenge.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button
-                onClick={onGetStarted}
-                className="px-12 py-6 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold text-xl shadow-2xl hover:shadow-amber-500/25 transform hover:scale-110 transition-all duration-300 border-0"
-              >
-                Start Training Now
-                <ArrowRight className="ml-3 h-6 w-6" />
-              </Button>
+      {/* Hero Section - New Design */}
+      <section className="relative pt-20 pb-16 px-6 bg-white overflow-hidden">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-full px-6 py-3 shadow-sm">
+                <Crown className="h-5 w-5 text-blue-600 mr-3" />
+                <span className="text-lg font-semibold text-blue-800">Win Every Faith Debate</span>
+              </div>
               
-              <Button
-                onClick={onHowItWorks}
-                variant="outline"
-                className="px-8 py-6 rounded-2xl bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold text-lg backdrop-blur-sm transition-all duration-300"
-              >
-                See How It Works
-              </Button>
-            </div>
-          </div>
-
-          {/* Feature Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
-            <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20 hover:shadow-blue-500/25 hover:bg-white/15 transition-all duration-500 hover:scale-105">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl w-fit mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Brain className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Intelligent Conversations</h3>
-              <p className="text-blue-100 leading-relaxed text-lg">
-                Engage with advanced AI that adapts to your responses and challenges you at the perfect level.
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-gray-900">
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                  Master Apologetics
+                </span>
+                <br />
+                <span className="text-gray-900">
+                  With Scripture
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                  & Logic
+                </span>
+              </h1>
+              
+              <p className="text-2xl md:text-3xl text-gray-700 font-light leading-relaxed max-w-2xl">
+                Transform from uncertain to unshakeable. Defend your faith with confidence against any challenge.
               </p>
+              
+              <div className="flex items-center space-x-4 text-lg text-gray-600">
+                <div className="flex items-center">
+                  <Sword className="h-5 w-5 text-blue-600 mr-2" />
+                  <span>Biblical Foundation</span>
+                </div>
+                <div className="flex items-center">
+                  <Zap className="h-5 w-5 text-purple-600 mr-2" />
+                  <span>Logical Reasoning</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start gap-6 pt-8">
+                <Button
+                  onClick={onGetStarted}
+                  size="lg"
+                  className="px-12 py-6 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold text-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-0"
+                >
+                  Try It Now
+                  <ArrowRight className="ml-3 h-6 w-6" />
+                </Button>
+                
+                <Button
+                  onClick={onHowItWorks}
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-6 rounded-xl border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg transition-all duration-300"
+                >
+                  See How It Works
+                </Button>
+              </div>
+
+              {/* Social Proof */}
+              <div className="pt-8 border-t border-gray-200">
+                <p className="text-sm text-gray-500 mb-4">Trusted by Christian apologists worldwide</p>
+                <div className="flex items-center space-x-8">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">1,200+</div>
+                    <div className="text-sm text-gray-600">Active Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">50K+</div>
+                    <div className="text-sm text-gray-600">Debates Won</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">4.9/5</div>
+                    <div className="text-sm text-gray-600">User Rating</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20 hover:shadow-purple-500/25 hover:bg-white/15 transition-all duration-500 hover:scale-105">
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl w-fit mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <BookOpen className="h-10 w-10 text-white" />
+            {/* Right Column - Image */}
+            <div className="relative lg:order-last">
+              <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-2xl border border-gray-200">
+                {/* Debate Scene Illustration */}
+                <div className="aspect-[4/3] bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    alt="Two people engaged in thoughtful discussion representing a faith debate"
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Overlay Elements */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  
+                  {/* Floating UI Elements */}
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border border-gray-200">
+                    <div className="flex items-center space-x-2">
+                      <BookOpen className="h-4 w-4 text-blue-600" />
+                      <span className="text-sm font-semibold text-gray-800">Scripture-Based</span>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border border-gray-200">
+                    <div className="flex items-center space-x-2">
+                      <Brain className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm font-semibold text-gray-800">AI-Powered</span>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white rounded-lg px-4 py-2 shadow-lg">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4" />
+                      <span className="text-sm font-semibold">Debate Won!</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full blur-2xl opacity-60"></div>
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full blur-2xl opacity-40"></div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Scripture-Based</h3>
-              <p className="text-purple-100 leading-relaxed text-lg">
-                Every response grounded in biblical truth with verses and theological insights to strengthen your foundation.
-              </p>
-            </div>
-
-            <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20 hover:shadow-amber-500/25 hover:bg-white/15 transition-all duration-500 hover:scale-105">
-              <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-6 rounded-2xl w-fit mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Target className="h-10 w-10 text-white" />
+              
+              {/* University-style Detail Badge */}
+              <div className="absolute -bottom-6 left-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-200">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Trophy className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="text-lg font-bold text-gray-900">Academic Excellence</div>
+                  <div className="text-sm text-gray-600">University-Level Training</div>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Personalized Training</h3>
-              <p className="text-amber-100 leading-relaxed text-lg">
-                Track your progress and receive customized challenges that help you grow stronger in your faith defense.
-              </p>
             </div>
           </div>
         </div>
