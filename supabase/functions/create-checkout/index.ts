@@ -34,10 +34,11 @@ serve(async (req) => {
     const { plan = "monthly" } = await req.json().catch(() => ({}));
     logStep("Plan selected", { plan });
 
-    // Check if user is authenticated (optional now)
+    // Check if user is authenticated (optional now for guest checkout)
     const authHeader = req.headers.get("Authorization");
     let user = null;
     let customerEmail = null;
+    let isGuest = true;
 
     if (authHeader) {
       try {
@@ -46,6 +47,7 @@ serve(async (req) => {
         user = data.user;
         if (user?.email) {
           customerEmail = user.email;
+          isGuest = false;
           logStep("User authenticated", { userId: user.id, email: user.email });
         }
       } catch (error) {
@@ -53,7 +55,7 @@ serve(async (req) => {
       }
     }
 
-    logStep("Processing checkout", { isGuest: !user, hasEmail: !!customerEmail, plan });
+    logStep("Processing checkout", { isGuest, hasEmail: !!customerEmail, plan });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     
@@ -104,13 +106,14 @@ serve(async (req) => {
         },
       ],
       mode: "subscription",
-      success_url: `${origin}/?success=true`,
+      success_url: `${origin}/?success=true&guest=${isGuest ? 'true' : 'false'}`,
       cancel_url: `${origin}/?cancelled=true`,
       allow_promotion_codes: true,
       metadata: {
         user_id: user?.id || "guest",
         email: customerEmail || "guest_checkout",
         plan: planName,
+        is_guest: isGuest.toString(),
       }
     };
 
@@ -124,7 +127,7 @@ serve(async (req) => {
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url, plan: planName });
+    logStep("Checkout session created", { sessionId: session.id, url: session.url, plan: planName, isGuest });
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
