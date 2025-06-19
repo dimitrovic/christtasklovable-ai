@@ -91,7 +91,7 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">
-                        Subscription Status
+                        Current Subscription Status
                       </h3>
                       {loading ? (
                         <p className="text-white/70">Checking subscription...</p>
@@ -116,7 +116,7 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                         variant="outline"
                         className="bg-white/10 border-white/20 text-white hover:bg-white/20"
                       >
-                        Manage Subscription
+                        Manage Current Subscription
                       </Button>
                     )}
                   </div>
@@ -128,129 +128,143 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
           <div className="text-center mb-12 space-y-6">
             <div className="inline-flex items-center bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full px-6 py-3 mb-8 shadow-lg">
               <Star className="h-4 w-4 text-amber-500 mr-2" />
-              <span className="text-sm font-medium text-slate-700">Start Your Faith Journey</span>
+              <span className="text-sm font-medium text-slate-700">
+                {subscribed ? "Upgrade or Change Your Plan" : "Start Your Faith Journey"}
+              </span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              {subscribed ? "Manage Your Subscription" : "Choose Your Plan"}
+              {subscribed ? "Available Subscription Plans" : "Choose Your Plan"}
             </h2>
             <p className="text-xl text-white font-light leading-relaxed max-w-2xl mx-auto">
               {subscribed 
-                ? "You have full access to ChristTask. Manage your subscription below."
+                ? "Explore all available plans. You can change or upgrade your subscription at any time."
                 : "Select the plan that works best for you. No sign-up required - start instantly!"
               }
             </p>
           </div>
 
-          {/* Pricing Cards */}
-          {!subscribed && (
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* Weekly Plan */}
-              <Card className={`bg-white/70 backdrop-blur-sm border-2 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 ${selectedPlan === 'weekly' ? 'border-amber-400 ring-4 ring-amber-400/20' : 'border-white/20'}`}>
-                <CardHeader className="text-center py-8 px-6">
-                  <div className="mb-4">
-                    <span className="bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full">
-                      Perfect for Beginners
-                    </span>
-                  </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">£5.99</div>
-                  <div className="text-slate-600 text-lg mb-4">per week</div>
-                  <div className="text-slate-500 text-sm">
-                    Try it out risk-free
-                  </div>
-                </CardHeader>
-
-                <CardContent className="px-6 pb-8">
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Unlimited apologetic questions</span>
+          {/* Pricing Cards - Always Show */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Weekly Plan */}
+            <Card className={`bg-white/70 backdrop-blur-sm border-2 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 ${selectedPlan === 'weekly' ? 'border-amber-400 ring-4 ring-amber-400/20' : 'border-white/20'} ${subscribed && subscriptionTier?.toLowerCase().includes('weekly') ? 'ring-2 ring-emerald-400' : ''}`}>
+              <CardHeader className="text-center py-8 px-6">
+                <div className="mb-4">
+                  <span className="bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full">
+                    Perfect for Beginners
+                  </span>
+                  {subscribed && subscriptionTier?.toLowerCase().includes('weekly') && (
+                    <div className="mt-2">
+                      <span className="bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
+                        Current Plan
+                      </span>
                     </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">All topic categories</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Scripture-based responses</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Cancel anytime</span>
-                    </div>
-                  </div>
-
-                  <Button
-                    onClick={() => handleSubscribe('weekly')}
-                    disabled={loading}
-                    size="lg"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                  >
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Start Weekly Plan
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Monthly Plan */}
-              <Card className={`bg-white/70 backdrop-blur-sm border-2 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 relative ${selectedPlan === 'monthly' ? 'border-amber-400 ring-4 ring-amber-400/20' : 'border-white/20'}`}>
-                <div className="absolute top-4 right-4 bg-amber-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                  Best Value
+                  )}
                 </div>
-                
-                <CardHeader className="text-center py-8 px-6">
-                  <div className="mb-4">
-                    <span className="bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full">
-                      Most Popular
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-3 mb-4">
-                    <span className="text-2xl font-bold text-slate-400 line-through">£34.99</span>
-                    <div className="text-4xl font-bold text-slate-800">£18.99</div>
-                  </div>
-                  <div className="text-slate-600 text-lg mb-4">per month</div>
-                  <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full inline-block">
-                    Save £16 Monthly
-                  </div>
-                </CardHeader>
+                <div className="text-4xl font-bold text-slate-800 mb-2">£5.99</div>
+                <div className="text-slate-600 text-lg mb-4">per week</div>
+                <div className="text-slate-500 text-sm">
+                  Try it out risk-free
+                </div>
+              </CardHeader>
 
-                <CardContent className="px-6 pb-8">
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Unlimited apologetic questions</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">All topic categories</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Scripture-based responses</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Interactive dialogue feature</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-700">Cancel anytime</span>
-                    </div>
+              <CardContent className="px-6 pb-8">
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Unlimited apologetic questions</span>
                   </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">All topic categories</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Scripture-based responses</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Cancel anytime</span>
+                  </div>
+                </div>
 
-                  <Button
-                    onClick={() => handleSubscribe('monthly')}
-                    disabled={loading}
-                    size="lg"
-                    className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                  >
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Start Monthly Plan
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+                <Button
+                  onClick={() => handleSubscribe('weekly')}
+                  disabled={loading}
+                  size="lg"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  {subscribed && subscriptionTier?.toLowerCase().includes('weekly') ? 'Current Plan' : 'Start Weekly Plan'}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Monthly Plan */}
+            <Card className={`bg-white/70 backdrop-blur-sm border-2 shadow-xl rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 relative ${selectedPlan === 'monthly' ? 'border-amber-400 ring-4 ring-amber-400/20' : 'border-white/20'} ${subscribed && subscriptionTier?.toLowerCase().includes('monthly') ? 'ring-2 ring-emerald-400' : ''}`}>
+              <div className="absolute top-4 right-4 bg-amber-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                Best Value
+              </div>
+              
+              <CardHeader className="text-center py-8 px-6">
+                <div className="mb-4">
+                  <span className="bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full">
+                    Most Popular
+                  </span>
+                  {subscribed && subscriptionTier?.toLowerCase().includes('monthly') && (
+                    <div className="mt-2">
+                      <span className="bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
+                        Current Plan
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <span className="text-2xl font-bold text-slate-400 line-through">£34.99</span>
+                  <div className="text-4xl font-bold text-slate-800">£18.99</div>
+                </div>
+                <div className="text-slate-600 text-lg mb-4">per month</div>
+                <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full inline-block">
+                  Save £16 Monthly
+                </div>
+              </CardHeader>
+
+              <CardContent className="px-6 pb-8">
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Unlimited apologetic questions</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">All topic categories</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Scripture-based responses</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Interactive dialogue feature</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">Cancel anytime</span>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => handleSubscribe('monthly')}
+                  disabled={loading}
+                  size="lg"
+                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  {subscribed && subscriptionTier?.toLowerCase().includes('monthly') ? 'Current Plan' : 'Start Monthly Plan'}
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Trust Indicators */}
           <div className="mt-12 text-center">
