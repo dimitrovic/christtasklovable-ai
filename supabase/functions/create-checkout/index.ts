@@ -30,6 +30,10 @@ serve(async (req) => {
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
     logStep("Stripe key verified");
 
+    // Get the plan type from the request body
+    const { plan = "monthly" } = await req.json().catch(() => ({}));
+    logStep("Plan selected", { plan });
+
     // Check if user is authenticated (optional now)
     const authHeader = req.headers.get("Authorization");
     let user = null;
@@ -49,7 +53,7 @@ serve(async (req) => {
       }
     }
 
-    logStep("Processing checkout", { isGuest: !user, hasEmail: !!customerEmail });
+    logStep("Processing checkout", { isGuest: !user, hasEmail: !!customerEmail, plan });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     
@@ -65,18 +69,37 @@ serve(async (req) => {
 
     const origin = req.headers.get("origin") || "http://localhost:3000";
     
+    // Define pricing based on plan
+    let priceData;
+    let planName;
+    if (plan === "weekly") {
+      priceData = {
+        currency: "gbp",
+        product_data: { 
+          name: "ChristTask Weekly Subscription",
+          description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
+        },
+        unit_amount: 599, // £5.99
+        recurring: { interval: "week" },
+      };
+      planName = "Weekly";
+    } else {
+      priceData = {
+        currency: "gbp",
+        product_data: { 
+          name: "ChristTask Premium Subscription",
+          description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
+        },
+        unit_amount: 1899, // £18.99
+        recurring: { interval: "month" },
+      };
+      planName = "Monthly";
+    }
+
     const sessionConfig: any = {
       line_items: [
         {
-          price_data: {
-            currency: "gbp",
-            product_data: { 
-              name: "ChristTask Premium Subscription",
-              description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
-            },
-            unit_amount: 1899, // £18.99
-            recurring: { interval: "month" },
-          },
+          price_data: priceData,
           quantity: 1,
         },
       ],
@@ -87,6 +110,7 @@ serve(async (req) => {
       metadata: {
         user_id: user?.id || "guest",
         email: customerEmail || "guest_checkout",
+        plan: planName,
       }
     };
 
@@ -100,7 +124,7 @@ serve(async (req) => {
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url });
+    logStep("Checkout session created", { sessionId: session.id, url: session.url, plan: planName });
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

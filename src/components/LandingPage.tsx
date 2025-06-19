@@ -1,4 +1,3 @@
-
 import { Header } from "./Header";
 import { GameStats } from "./GameStats";
 import { TopicCategories } from "./TopicCategories";
@@ -330,66 +329,117 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
 
       {/* Pricing Section */}
       <section className="py-32 px-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
-              Get Started Today
+              Choose Your Plan
             </h2>
             <p className="text-2xl text-slate-200 max-w-4xl mx-auto font-light">
-              Join ChristTask and transform how you defend your faith
+              Select the plan that works best for you
             </p>
           </div>
 
-          {/* Pricing Card */}
-          <div className="relative group max-w-lg mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/30 to-orange-600/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-            <div className="relative bg-slate-800/90 backdrop-blur-md rounded-3xl p-12 shadow-2xl border border-amber-500/30 hover:shadow-amber-500/25 transition-all duration-300">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center space-x-4 mb-6">
-                  <span className="text-3xl font-bold text-slate-400 line-through">£34.99</span>
-                  <div className="text-6xl font-black text-white">£18.99</div>
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            {/* Weekly Plan */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-600/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative bg-slate-800/90 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-blue-500/30 hover:shadow-blue-500/25 transition-all duration-300">
+                <div className="text-center mb-8">
+                  <div className="bg-blue-600/30 text-blue-300 text-sm font-bold px-4 py-2 rounded-full inline-block border border-blue-500/50 mb-6">
+                    Perfect for Beginners
+                  </div>
+                  <div className="text-5xl font-black text-white mb-4">£5.99</div>
+                  <div className="text-slate-300 text-xl mb-4">per week</div>
+                  <div className="text-slate-400">Try it out risk-free</div>
                 </div>
-                <div className="text-slate-300 text-xl mb-6">per month</div>
-                <div className="bg-amber-600/30 text-amber-300 text-lg font-bold px-6 py-3 rounded-full inline-block border border-amber-500/50">
-                  Save £16 Monthly • Limited Time
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Unlimited apologetic conversations</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">All topic categories & modes</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Scripture-based responses</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Cancel anytime</span>
+                  </div>
                 </div>
+
+                <Button
+                  onClick={onGetStarted}
+                  className="w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 text-white font-bold text-lg shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300"
+                >
+                  Start Weekly Plan
+                </Button>
               </div>
+            </div>
 
-              <div className="space-y-6 mb-12">
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-400 mr-4 flex-shrink-0" />
-                  <span className="text-slate-200 text-lg">Unlimited apologetic conversations</span>
+            {/* Monthly Plan */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/30 to-orange-600/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative bg-slate-800/90 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-amber-500/30 hover:shadow-amber-500/25 transition-all duration-300">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-sm font-bold px-4 py-2 rounded-full">
+                  Best Value
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-400 mr-4 flex-shrink-0" />
-                  <span className="text-slate-200 text-lg">All topic categories & modes</span>
+                
+                <div className="text-center mb-8 mt-4">
+                  <div className="bg-amber-600/30 text-amber-300 text-sm font-bold px-4 py-2 rounded-full inline-block border border-amber-500/50 mb-6">
+                    Most Popular
+                  </div>
+                  <div className="flex items-center justify-center space-x-4 mb-4">
+                    <span className="text-2xl font-bold text-slate-400 line-through">£34.99</span>
+                    <div className="text-5xl font-black text-white">£18.99</div>
+                  </div>
+                  <div className="text-slate-300 text-xl mb-4">per month</div>
+                  <div className="bg-amber-600/30 text-amber-300 text-sm font-bold px-4 py-2 rounded-full inline-block border border-amber-500/50">
+                    Save £16 Monthly • Limited Time
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-400 mr-4 flex-shrink-0" />
-                  <span className="text-slate-200 text-lg">Scripture-based responses</span>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Unlimited apologetic conversations</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">All topic categories & modes</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Scripture-based responses</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Progress tracking & analytics</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <span className="text-slate-200">Cancel anytime</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-400 mr-4 flex-shrink-0" />
-                  <span className="text-slate-200 text-lg">Progress tracking & analytics</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-emerald-400 mr-4 flex-shrink-0" />
-                  <span className="text-slate-200 text-lg">Cancel anytime</span>
-                </div>
+
+                <Button
+                  onClick={onGetStarted}
+                  className="w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold text-lg shadow-2xl hover:shadow-amber-500/25 transform hover:scale-105 transition-all duration-300"
+                >
+                  Start Monthly Plan
+                </Button>
               </div>
-
-              <Button
-                onClick={onGetStarted}
-                className="w-full px-8 py-6 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold text-xl shadow-2xl hover:shadow-amber-500/25 transform hover:scale-105 transition-all duration-300"
-              >
-                Start Your Subscription
-              </Button>
-
-              <p className="text-center text-slate-400 mt-6 text-lg">
-                Secure payment • Cancel anytime
-              </p>
             </div>
           </div>
+
+          <p className="text-center text-slate-400 mt-12 text-lg">
+            Secure payment • Cancel anytime • No sign-up required
+          </p>
         </div>
       </section>
 

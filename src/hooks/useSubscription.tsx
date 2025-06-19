@@ -9,7 +9,7 @@ interface SubscriptionContextType {
   subscriptionEnd: string | null;
   loading: boolean;
   checkSubscription: () => Promise<void>;
-  createCheckout: () => Promise<void>;
+  createCheckout: (plan?: 'weekly' | 'monthly') => Promise<void>;
   openCustomerPortal: () => Promise<void>;
 }
 
@@ -62,7 +62,7 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const createCheckout = async () => {
+  const createCheckout = async (plan: 'weekly' | 'monthly' = 'monthly') => {
     try {
       const headers: any = {};
       
@@ -73,6 +73,7 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
 
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         headers,
+        body: { plan }
       });
 
       if (error) throw error;
