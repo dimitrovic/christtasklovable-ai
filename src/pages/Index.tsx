@@ -9,7 +9,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useGuestAuth } from "@/hooks/useGuestAuth";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { LogOut, User } from "lucide-react";
+import { LogOut, User, RefreshCw } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<'landing' | 'payment' | 'auth' | 'app'>('landing');
@@ -17,31 +18,72 @@ const Index = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [showTopics, setShowTopics] = useState(true);
   const [forceShowLanding, setForceShowLanding] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const { user, loading, signOut } = useAuth();
   const { isGuest, guestUser, handleGuestSuccess, showAccountPrompt } = useGuestAuth();
+  const { toast } = useToast();
 
-  // Handle guest success from URL params
+  // Handle payment success from URL params
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const success = urlParams.get('success');
     const isGuestCheckout = urlParams.get('guest') === 'true';
     const sessionId = urlParams.get('session_id');
 
-    if (success === 'true' && isGuestCheckout && sessionId) {
-      handleGuestSuccess(sessionId);
+    if (success === 'true') {
+      setIsProcessingPayment(true);
+      
+      if (isGuestCheckout && sessionId) {
+        // Handle guest checkout success
+        handleGuestSuccess(sessionId).then(() => {
+          setIsProcessingPayment(false);
+          setCurrentPage('app');
+          setShowTopics(false); // Go directly to chat
+          toast({
+            title: "Payment successful!",
+            description: "Welcome to ChristTask! You now have full access to the chatbot.",
+          });
+        }).catch((error) => {
+          setIsProcessingPayment(false);
+          console.error('Guest success handling failed:', error);
+          toast({
+            title: "Payment processed, but access failed",
+            description: "Your payment was successful, but we couldn't set up your account. Please contact support.",
+            variant: "destructive"
+          });
+        });
+      } else if (user) {
+        // Handle authenticated user payment success
+        setIsProcessingPayment(false);
+        setCurrentPage('app');
+        setShowTopics(false); // Go directly to chat
+        toast({
+          title: "Payment successful!",
+          description: "Welcome to ChristTask! You now have full access to the chatbot.",
+        });
+      } else {
+        // Payment success but no user - this shouldn't happen but handle gracefully
+        setIsProcessingPayment(false);
+        toast({
+          title: "Payment successful",
+          description: "Please sign in to access your subscription.",
+        });
+        setCurrentPage('auth');
+      }
+      
       // Clean up URL
       window.history.replaceState({}, document.title, window.location.pathname);
     }
-  }, [handleGuestSuccess]);
+  }, [handleGuestSuccess, user, toast]);
 
   // Redirect authenticated users to app (but only if not forced to show landing)
   useEffect(() => {
-    if ((user || (isGuest && guestUser)) && currentPage === 'auth') {
+    if ((user || (isGuest && guestUser)) && currentPage === 'auth' && !isProcessingPayment) {
       setCurrentPage('app');
-    } else if ((user || (isGuest && guestUser)) && currentPage === 'landing' && !forceShowLanding) {
+    } else if ((user || (isGuest && guestUser)) && currentPage === 'landing' && !forceShowLanding && !isProcessingPayment) {
       setCurrentPage('app');
     }
-  }, [user, guestUser, isGuest, currentPage, forceShowLanding]);
+  }, [user, guestUser, isGuest, currentPage, forceShowLanding, isProcessingPayment]);
 
   const handleGetStarted = () => {
     setForceShowLanding(false);
@@ -102,10 +144,15 @@ const Index = () => {
     setCurrentPage('landing');
   };
 
-  if (loading) {
+  if (loading || isProcessingPayment) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
-        <div className="text-slate-600 dark:text-slate-400">Loading...</div>
+        <div className="text-center space-y-4">
+          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-blue-600" />
+          <div className="text-slate-600 dark:text-slate-400">
+            {isProcessingPayment ? 'Setting up your account...' : 'Loading...'}
+          </div>
+        </div>
       </div>
     );
   }

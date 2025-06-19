@@ -106,7 +106,7 @@ serve(async (req) => {
         },
       ],
       mode: "subscription",
-      success_url: `${origin}/?success=true&guest=${isGuest ? 'true' : 'false'}`,
+      success_url: `${origin}/?success=true&guest=${isGuest ? 'true' : 'false'}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/?cancelled=true`,
       allow_promotion_codes: true,
       metadata: {

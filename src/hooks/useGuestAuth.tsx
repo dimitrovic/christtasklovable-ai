@@ -11,6 +11,7 @@ interface GuestAuthContextType {
   promoteGuestToFullAccount: (password: string) => Promise<{ error: any }>;
   skipAccountCreation: () => void;
   showAccountPrompt: boolean;
+  retryGuestSetup: (sessionId: string) => Promise<void>;
 }
 
 const GuestAuthContext = createContext<GuestAuthContextType | undefined>(undefined);
@@ -44,11 +45,20 @@ export const GuestAuthProvider = ({ children }: { children: ReactNode }) => {
 
   const handleGuestSuccess = async (sessionId: string) => {
     try {
+      console.log('Processing guest success for session:', sessionId);
+      
       const { data, error } = await supabase.functions.invoke('handle-guest-success', {
         body: { sessionId }
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Edge function error:', error);
+        throw new Error(error.message || 'Failed to process guest account');
+      }
+
+      if (!data || !data.user) {
+        throw new Error('Invalid response from server');
+      }
 
       // Store guest user data
       localStorage.setItem('guest_user_data', JSON.stringify({
@@ -60,19 +70,27 @@ export const GuestAuthProvider = ({ children }: { children: ReactNode }) => {
       setIsGuest(true);
       setShowAccountPrompt(true);
 
-      toast({
-        title: "Welcome to ChristTask!",
-        description: "Your subscription is active. You can start using the app immediately.",
-      });
+      console.log('Guest account setup successful');
 
     } catch (error) {
       console.error('Error handling guest success:', error);
+      
+      // Show a more specific error with retry option
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
       toast({
-        title: "Error processing payment",
-        description: "Please contact support if you were charged.",
-        variant: "destructive"
+        title: "Account setup failed",
+        description: `${errorMessage}. Please try refreshing the page or contact support if the issue persists.`,
+        variant: "destructive",
+        duration: 10000, // Longer duration for error messages
       });
+      
+      throw error; // Re-throw so the calling code can handle it
     }
+  };
+
+  const retryGuestSetup = async (sessionId: string) => {
+    return handleGuestSuccess(sessionId);
   };
 
   const promoteGuestToFullAccount = async (password: string) => {
@@ -116,7 +134,8 @@ export const GuestAuthProvider = ({ children }: { children: ReactNode }) => {
       handleGuestSuccess,
       promoteGuestToFullAccount,
       skipAccountCreation,
-      showAccountPrompt
+      showAccountPrompt,
+      retryGuestSetup
     }}>
       {children}
     </GuestAuthContext.Provider>
