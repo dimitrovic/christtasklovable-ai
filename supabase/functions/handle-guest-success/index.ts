@@ -51,22 +51,53 @@ serve(async (req) => {
 
     logStep("Processing guest success", { email: customerEmail });
 
-    // Create anonymous user account
-    const tempPassword = crypto.randomUUID();
-    const { data: authData, error: authError } = await supabaseClient.auth.admin.createUser({
-      email: customerEmail,
-      password: tempPassword,
-      email_confirm: true, // Skip email confirmation for guest accounts
-      user_metadata: {
-        is_guest: true,
-        stripe_session_id: sessionId,
-        subscription_plan: session.metadata?.plan || "Premium",
-        created_via: "guest_checkout"
-      }
-    });
+    // Check if user already exists
+    const { data: existingUsers, error: listError } = await supabaseClient.auth.admin.listUsers();
+    if (listError) throw listError;
 
-    if (authError) throw authError;
-    logStep("Created guest user", { userId: authData.user.id, email: customerEmail });
+    const existingUser = existingUsers.users.find(u => u.email === customerEmail);
+    
+    let userData;
+    if (existingUser) {
+      logStep("User already exists, updating existing user", { userId: existingUser.id, email: customerEmail });
+      
+      // Update existing user with guest metadata
+      const { data: updateData, error: updateError } = await supabaseClient.auth.admin.updateUserById(
+        existingUser.id,
+        {
+          user_metadata: {
+            ...existingUser.user_metadata,
+            is_guest: true,
+            stripe_session_id: sessionId,
+            subscription_plan: session.metadata?.plan || "Premium",
+            created_via: "guest_checkout"
+          }
+        }
+      );
+      
+      if (updateError) throw updateError;
+      userData = updateData;
+    } else {
+      logStep("Creating new guest user", { email: customerEmail });
+      
+      // Create anonymous user account
+      const tempPassword = crypto.randomUUID();
+      const { data: authData, error: authError } = await supabaseClient.auth.admin.createUser({
+        email: customerEmail,
+        password: tempPassword,
+        email_confirm: true, // Skip email confirmation for guest accounts
+        user_metadata: {
+          is_guest: true,
+          stripe_session_id: sessionId,
+          subscription_plan: session.metadata?.plan || "Premium",
+          created_via: "guest_checkout"
+        }
+      });
+
+      if (authError) throw authError;
+      userData = authData;
+      logStep("Created guest user", { userId: authData.user.id, email: customerEmail });
+    }
 
     // Update subscription status in database
     const subscriptionTier = session.metadata?.plan || "Premium";
@@ -75,7 +106,7 @@ serve(async (req) => {
 
     await supabaseClient.from("subscribers").upsert({
       email: customerEmail,
-      user_id: authData.user.id,
+      user_id: userData.user.id,
       stripe_customer_id: session.customer as string,
       subscribed: true,
       subscription_tier: subscriptionTier,
@@ -85,7 +116,7 @@ serve(async (req) => {
 
     logStep("Updated subscription status");
 
-    // Generate a session for the guest user
+    // Generate a session for the user
     const { data: sessionData, error: sessionError } = await supabaseClient.auth.admin.generateLink({
       type: 'recovery',
       email: customerEmail,
@@ -95,9 +126,9 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ 
       success: true,
-      user: authData.user,
+      user: userData.user,
       access_token: sessionData.properties?.action_link || null,
-      message: "Guest account created successfully"
+      message: existingUser ? "Existing account updated successfully" : "Guest account created successfully"
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,

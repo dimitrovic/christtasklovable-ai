@@ -1,3 +1,4 @@
+
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
@@ -16,19 +17,14 @@ interface SubscriptionContextType {
 const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
 
 export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
-  // Temporarily set subscribed to true for testing
-  const [subscribed, setSubscribed] = useState(true);
-  const [subscriptionTier, setSubscriptionTier] = useState<string | null>('Premium');
+  const [subscribed, setSubscribed] = useState(false);
+  const [subscriptionTier, setSubscriptionTier] = useState<string | null>(null);
   const [subscriptionEnd, setSubscriptionEnd] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { user, session } = useAuth();
   const { toast } = useToast();
 
   const checkSubscription = async () => {
-    // Temporarily return early with subscription active for testing
-    setLoading(false);
-    return;
-
     if (!user || !session) {
       setSubscribed(false);
       setSubscriptionTier(null);
@@ -122,14 +118,18 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    // Skip subscription check for testing
-    setLoading(false);
+    checkSubscription();
   }, [user, session]);
 
-  // Skip auto-refresh for testing
+  // Auto-refresh subscription status every 30 seconds if user is logged in
   useEffect(() => {
     if (!user) return;
-    // Auto-refresh disabled for testing
+    
+    const interval = setInterval(() => {
+      checkSubscription();
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, [user]);
 
   return (
