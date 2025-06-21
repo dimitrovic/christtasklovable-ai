@@ -349,7 +349,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
                   <div className="bg-blue-600/30 text-blue-300 text-sm font-bold px-4 py-2 rounded-full inline-block border border-blue-500/50 mb-6">
                     Perfect for Beginners
                   </div>
-                  <div className="text-5xl font-black text-white mb-4">£5.99</div>
+                  <div className="text-5xl font-black text-white mb-4">£4.50</div>
                   <div className="text-slate-300 text-xl mb-4">per week</div>
                   <div className="text-slate-400">Try it out risk-free</div>
                 </div>
@@ -395,12 +395,12 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
                     Most Popular
                   </div>
                   <div className="flex items-center justify-center space-x-4 mb-4">
-                    <span className="text-2xl font-bold text-slate-400 line-through">£34.99</span>
-                    <div className="text-5xl font-black text-white">£18.99</div>
+                    <span className="text-2xl font-bold text-slate-400 line-through">£19.50</span>
+                    <div className="text-5xl font-black text-white">£13.99</div>
                   </div>
                   <div className="text-slate-300 text-xl mb-4">per month</div>
                   <div className="bg-amber-600/30 text-amber-300 text-sm font-bold px-4 py-2 rounded-full inline-block border border-amber-500/50">
-                    Save £16 Monthly • Limited Time
+                    Save £5.51 Monthly • Limited Time
                   </div>
                 </div>
 

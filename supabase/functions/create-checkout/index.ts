@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
@@ -81,7 +80,7 @@ serve(async (req) => {
           name: "ChristTask Weekly Subscription",
           description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
         },
-        unit_amount: 599, // £5.99
+        unit_amount: 450, // £4.50
         recurring: { interval: "week" },
       };
       planName = "Weekly";
@@ -92,7 +91,7 @@ serve(async (req) => {
           name: "ChristTask Premium Subscription",
           description: "Unlimited apologetic questions, all topic categories, and scripture-based responses"
         },
-        unit_amount: 1899, // £18.99
+        unit_amount: 1399, // £13.99
         recurring: { interval: "month" },
       };
       planName = "Monthly";
