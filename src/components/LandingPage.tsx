@@ -230,7 +230,7 @@ export const LandingPage = ({ onGetStarted, onHowItWorks, onAuthAction, onLogoCl
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-32 px-6">
+      <section id="how-it-works" className="py-32 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-24">
             <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
