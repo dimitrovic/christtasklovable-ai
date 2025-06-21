@@ -11,22 +11,25 @@ export const GuestAccountPrompt = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { promoteGuestToFullAccount, skipAccountCreation, guestUser } = useGuestAuth();
 
   const handleCreateAccount = async () => {
+    setError('');
+    
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      setError('Passwords do not match');
       return;
     }
     if (password.length < 6) {
-      alert('Password must be at least 6 characters');
+      setError('Password must be at least 6 characters');
       return;
     }
 
     setLoading(true);
-    const { error } = await promoteGuestToFullAccount(password);
-    if (error) {
-      alert('Error creating account: ' + error.message);
+    const { error: promotionError } = await promoteGuestToFullAccount(password);
+    if (promotionError) {
+      setError('Error creating account: ' + (promotionError.message || 'Unknown error'));
     }
     setLoading(false);
   };
@@ -65,6 +68,12 @@ export const GuestAccountPrompt = () => {
               <span>Email: {guestUser?.email}</span>
             </div>
           </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+              <p className="text-red-700 text-sm">{error}</p>
+            </div>
+          )}
 
           <div className="space-y-3">
             <div>

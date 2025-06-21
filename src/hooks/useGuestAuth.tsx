@@ -97,13 +97,16 @@ export const GuestAuthProvider = ({ children }: { children: ReactNode }) => {
     if (!guestUser?.email) return { error: "No guest user found" };
 
     try {
-      // Update the user's password and remove guest status
-      const { error } = await supabase.auth.updateUser({
-        password: password,
-        data: { is_guest: false }
+      // First, try to sign in the user with a recovery link approach
+      // Since we don't have their current password, we'll use the admin recovery function
+      const { data, error: recoveryError } = await supabase.functions.invoke('promote-guest-account', {
+        body: { 
+          email: guestUser.email,
+          newPassword: password
+        }
       });
 
-      if (error) throw error;
+      if (recoveryError) throw recoveryError;
 
       // Clear guest data and update state
       localStorage.removeItem('guest_user_data');
@@ -113,12 +116,16 @@ export const GuestAuthProvider = ({ children }: { children: ReactNode }) => {
 
       toast({
         title: "Account created!",
-        description: "Your account has been secured. You can now sign in with your email and password.",
+        description: "Your account has been secured. Please sign in with your email and new password.",
       });
+
+      // Refresh the page to reset the auth state
+      window.location.reload();
 
       return { error: null };
     } catch (error) {
-      return { error };
+      console.error('Error promoting guest account:', error);
+      return { error: error instanceof Error ? error : new Error('Failed to create account') };
     }
   };
 
