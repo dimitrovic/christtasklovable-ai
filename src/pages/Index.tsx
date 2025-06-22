@@ -34,11 +34,11 @@ const Index = () => {
       setIsProcessingPayment(true);
       
       if (isGuestCheckout && sessionId) {
-        // Handle guest checkout success
+        // Handle guest checkout success - go directly to chatbot
         handleGuestSuccess(sessionId).then(() => {
           setIsProcessingPayment(false);
           setCurrentPage('app');
-          setShowTopics(false); // Go directly to chat
+          setShowTopics(false); // Skip topics, go directly to chat
           toast({
             title: "Payment successful!",
             description: "Welcome to ChristTask! You now have full access to the chatbot.",
@@ -53,10 +53,10 @@ const Index = () => {
           });
         });
       } else if (user) {
-        // Handle authenticated user payment success
+        // Handle authenticated user payment success - go directly to chatbot
         setIsProcessingPayment(false);
         setCurrentPage('app');
-        setShowTopics(false); // Go directly to chat
+        setShowTopics(false); // Skip topics, go directly to chat
         toast({
           title: "Payment successful!",
           description: "Welcome to ChristTask! You now have full access to the chatbot.",
@@ -80,6 +80,7 @@ const Index = () => {
   useEffect(() => {
     if ((user || (isGuest && guestUser)) && currentPage === 'auth' && !isProcessingPayment) {
       setCurrentPage('app');
+      // Don't automatically skip topics unless coming from payment
     } else if ((user || (isGuest && guestUser)) && currentPage === 'landing' && !forceShowLanding && !isProcessingPayment) {
       setCurrentPage('app');
     }
