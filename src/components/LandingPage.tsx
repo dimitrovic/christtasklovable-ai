@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
   MessageSquare, 
   Shield, 
@@ -11,7 +12,14 @@ import {
   CheckCircle,
   Star,
   Brain,
-  Cross
+  Cross,
+  ExternalLink,
+  Heart,
+  Globe,
+  Book,
+  Video,
+  Mic,
+  Calendar
 } from "lucide-react";
 
 interface LandingPageProps {
@@ -28,7 +36,20 @@ export const LandingPage = ({
   onLogoClick 
 }: LandingPageProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+      {/* Background Particles */}
+      <div className="hero-particles">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+      </div>
+
       {/* Header */}
       <header className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +58,7 @@ export const LandingPage = ({
               className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity duration-300"
               onClick={onLogoClick}
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center animate-glow">
                 <Cross className="w-4 h-4 text-white" />
               </div>
               <h1 className="text-xl font-bold text-white">ChristTask</h1>
@@ -63,7 +84,7 @@ export const LandingPage = ({
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 animate-wave"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
             <Badge className="bg-blue-500/20 text-blue-200 border-blue-400/30 mb-6 animate-fade-in">
@@ -75,36 +96,36 @@ export const LandingPage = ({
               AI Christian
               <span className="block gradient-text">
                 Apologetics
-              </span>
-            </h1>
-            
+                </span>
+              </h1>
+              
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
               Get biblical answers to tough questions with AI-powered Christian apologetics. 
               Defend your faith with confidence using Scripture-backed responses.
-            </p>
-            
+              </p>
+              
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
-              <Button
-                onClick={onGetStarted}
-                size="lg"
-                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover-lift"
-              >
+                <Button
+                  onClick={onGetStarted}
+                  size="lg"
+                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover-lift animate-float"
+                >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Start Asking Questions
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              
-              <Button
-                onClick={onHowItWorks}
-                variant="outline"
-                size="lg"
+                </Button>
+                
+                <Button
+                  onClick={onHowItWorks}
+                  variant="outline"
+                  size="lg"
                 className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg hover-lift"
-              >
+                >
                 How It Works
-              </Button>
-            </div>
-          </div>
-
+                </Button>
+                    </div>
+                  </div>
+                  
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             <div className="text-center animate-slide-in-left">
@@ -145,7 +166,7 @@ export const LandingPage = ({
                 <h3 className="text-xl font-semibold mb-3">Biblical Defense</h3>
                 <p className="text-blue-200">
                   Get Scripture-backed responses to defend your faith against common objections and challenges.
-                </p>
+              </p>
               </CardContent>
             </Card>
 
@@ -169,6 +190,94 @@ export const LandingPage = ({
                 <h3 className="text-xl font-semibold mb-3">Deep Knowledge</h3>
                 <p className="text-blue-200">
                   Access comprehensive apologetics knowledge covering theology, philosophy, and biblical studies.
+            </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white/5 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              What Our Users Say
+            </h2>
+            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+              Join thousands of Christians who have strengthened their faith with ChristTask
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="testimonial-card bg-white/10 backdrop-blur-sm border-white/20 text-white animate-slide-in-left">
+              <CardContent className="p-6">
+                <div className="flex items-center mb-4">
+                  <Avatar className="w-12 h-12 mr-4">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback className="bg-blue-500 text-white">SM</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h4 className="font-semibold">Sarah Mitchell</h4>
+                    <p className="text-blue-200 text-sm">Youth Pastor</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-blue-200 italic">
+                  "ChristTask has been invaluable for my youth group. The AI provides thoughtful, 
+                  Scripture-based answers that help our teens defend their faith with confidence."
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="testimonial-card bg-white/10 backdrop-blur-sm border-white/20 text-white animate-fade-in-up">
+              <CardContent className="p-6">
+                <div className="flex items-center mb-4">
+                  <Avatar className="w-12 h-12 mr-4">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback className="bg-purple-500 text-white">MJ</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h4 className="font-semibold">Michael Johnson</h4>
+                    <p className="text-blue-200 text-sm">College Student</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-blue-200 italic">
+                  "As a college student, I face challenging questions about my faith daily. 
+                  ChristTask gives me the tools and confidence to engage in meaningful discussions."
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="testimonial-card bg-white/10 backdrop-blur-sm border-white/20 text-white animate-slide-in-right">
+              <CardContent className="p-6">
+                <div className="flex items-center mb-4">
+                  <Avatar className="w-12 h-12 mr-4">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback className="bg-indigo-500 text-white">DL</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h4 className="font-semibold">David Lee</h4>
+                    <p className="text-blue-200 text-sm">Small Group Leader</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-blue-200 italic">
+                  "The depth of knowledge and biblical accuracy is impressive. 
+                  It's like having a theology professor available 24/7 for our small group discussions."
                 </p>
               </CardContent>
             </Card>
@@ -197,12 +306,113 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-blue-200">
-            © 2024 ChristTask. Empowering Christians with AI-powered apologetics.
-          </p>
+      {/* Enhanced Footer */}
+      <footer className="py-16 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Brand Section */}
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center">
+                  <Cross className="w-4 h-4 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white">ChristTask</h3>
+              </div>
+              <p className="text-blue-200 mb-4 max-w-md">
+                Empowering Christians with AI-powered apologetics. Defend your faith with confidence 
+                using Scripture-backed responses to challenging questions.
+              </p>
+              <div className="flex space-x-4">
+                <Button variant="ghost" size="sm" className="text-blue-200 hover:text-white">
+                  <Heart className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="text-blue-200 hover:text-white">
+                  <Globe className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Christian Resources */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Christian Resources</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="https://www.biblegateway.com" target="_blank" rel="noopener noreferrer" 
+                     className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Book className="w-4 h-4 mr-2" />
+                    Bible Gateway
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.gotquestions.org" target="_blank" rel="noopener noreferrer" 
+                     className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    Got Questions
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.desiringgod.org" target="_blank" rel="noopener noreferrer" 
+                     className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Heart className="w-4 h-4 mr-2" />
+                    Desiring God
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ligonier.org" target="_blank" rel="noopener noreferrer" 
+                     className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Video className="w-4 h-4 mr-2" />
+                    Ligonier Ministries
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <button onClick={onHowItWorks} 
+                          className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Zap className="w-4 h-4 mr-2" />
+                    How It Works
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onAuthAction('signin')} 
+                          className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Users className="w-4 h-4 mr-2" />
+                    Sign In
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onAuthAction('signup')} 
+                          className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Get Started
+                  </button>
+                </li>
+                <li>
+                  <a href="#contact" 
+                     className="resource-link text-blue-200 hover:text-white flex items-center">
+                    <Mic className="w-4 h-4 mr-2" />
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 mt-8 pt-8 text-center">
+            <p className="text-blue-200">
+              © 2024 ChristTask. Empowering Christians with AI-powered apologetics. 
+              Made with <Heart className="w-4 h-4 inline text-red-400" /> for the Kingdom.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

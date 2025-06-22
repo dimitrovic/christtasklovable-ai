@@ -1,145 +1,158 @@
-import { BookOpen, User, LogOut } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { 
+  Cross, 
+  Menu, 
+  User, 
+  Settings, 
+  LogOut, 
+  BookOpen, 
+  MessageSquare,
+  Heart,
+  ExternalLink
+} from "lucide-react";
 
 interface HeaderProps {
+  onLogoClick: () => void;
   onAuthAction?: (action: 'signin' | 'signup') => void;
-  onHowItWorks?: () => void;
-  onFeatures?: () => void;
-  onLogoClick?: () => void;
+  onSignOut?: () => void;
+  user?: any;
+  isGuest?: boolean;
+  className?: string;
+  variant?: 'landing' | 'app';
 }
 
-export const Header = ({ onAuthAction, onHowItWorks, onFeatures, onLogoClick }: HeaderProps) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { user, signOut } = useAuth();
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      toast({
-        title: "Signed out",
-        description: "You've been signed out successfully."
-      });
-    } catch (error) {
-      toast({
-        title: "Error signing out",
-        description: "Please try again.",
-        variant: "destructive"
-      });
-    }
-  };
+export const Header = ({ 
+  onLogoClick, 
+  onAuthAction, 
+  onSignOut, 
+  user, 
+  isGuest = false,
+  className = "",
+  variant = "landing"
+}: HeaderProps) => {
+  const isAuthenticated = user || isGuest;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
-      isScrolled 
-        ? 'px-6 pt-6' 
-        : 'px-0 pt-0'
-    }`}>
-      <div className={`transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'bg-slate-900/80 backdrop-blur-lg shadow-2xl border border-amber-500/30 py-3 rounded-full mx-auto max-w-5xl' 
-          : 'bg-slate-900/60 backdrop-blur-sm border-b border-amber-500/10 py-4 w-full rounded-none'
-      }`}>
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between w-full">
-            {/* Logo - Left side */}
-            <div 
-              className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity duration-300"
-              onClick={onLogoClick}
+    <header className={`relative z-10 ${className}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div 
+            className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+            onClick={onLogoClick}
+          >
+            <div className={`w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center ${
+              variant === 'landing' ? 'animate-glow' : ''
+            }`}>
+              <Cross className="w-4 h-4 text-white" />
+            </div>
+            <h1 className="text-xl font-bold text-white">ChristTask</h1>
+          </div>
+
+          {/* Navigation Menu - Desktop */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a 
+              href="#features" 
+              className="text-white/80 hover:text-white transition-colors duration-200"
             >
-              <div className={`bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-lg relative overflow-hidden transition-all duration-500 ${
-                isScrolled ? 'p-2 rounded-full' : 'p-2.5 rounded-xl'
-              }`}>
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-300/20 to-transparent"></div>
-                <BookOpen className={`text-slate-900 relative z-10 transition-all duration-500 ${
-                  isScrolled ? 'h-4 w-4' : 'h-5 w-5'
-                }`} />
-              </div>
-              <div>
-                <h1 className={`font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent transition-all duration-500 ${
-                  isScrolled ? 'text-base' : 'text-xl'
-                }`}>
-                  ChristTask
-                </h1>
-              </div>
-            </div>
+              Features
+            </a>
+            <a 
+              href="#testimonials" 
+              className="text-white/80 hover:text-white transition-colors duration-200"
+            >
+              Testimonials
+            </a>
+            <a 
+              href="#resources" 
+              className="text-white/80 hover:text-white transition-colors duration-200"
+            >
+              Resources
+            </a>
+            <a 
+              href="#about" 
+              className="text-white/80 hover:text-white transition-colors duration-200"
+            >
+              About
+            </a>
+          </nav>
 
-            {/* Navigation and Auth Section - Right side */}
-            <div className="flex items-center space-x-4">
-              {/* Navigation Buttons */}
-              <div className="hidden md:flex items-center space-x-2">
+          {/* User Actions */}
+          <div className="flex items-center space-x-4">
+            {isAuthenticated ? (
+              <>
+                {/* User Info */}
+                <div className="hidden sm:flex items-center space-x-2 text-sm text-white/80">
+                  <User className="w-4 h-4" />
+                  <span>{user?.email || 'Guest User'}</span>
+                  {isGuest && (
+                    <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs">
+                      Guest
+                    </span>
+                  )}
+                </div>
+
+                {/* User Menu */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
+                      <Menu className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuItem className="flex items-center">
+                      <User className="w-4 h-4 mr-2" />
+                      Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center">
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      My Conversations
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center">
+                      <Settings className="w-4 h-4 mr-2" />
+                      Settings
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center">
+                      <Heart className="w-4 h-4 mr-2" />
+                      Support Us
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Resources
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
+                      className="flex items-center text-red-600"
+                      onClick={onSignOut}
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <>
                 <Button
-                  onClick={onHowItWorks}
                   variant="ghost"
-                  size={isScrolled ? "sm" : "default"}
-                  className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+                  onClick={() => onAuthAction?.('signin')}
+                  className="text-white hover:bg-white/10"
                 >
-                  How It Works
+                  Sign In
                 </Button>
                 <Button
-                  onClick={onFeatures}
-                  variant="ghost"
-                  size={isScrolled ? "sm" : "default"}
-                  className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
+                  onClick={() => onAuthAction?.('signup')}
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
                 >
-                  Features
+                  Get Started
                 </Button>
-              </div>
-
-              {/* Auth Section */}
-              <div className="flex items-center space-x-3">
-                {user ? (
-                  <div className="flex items-center space-x-3">
-                    <div className="hidden sm:flex items-center space-x-2 text-white/80">
-                      <User className="h-4 w-4" />
-                      <span className={`${isScrolled ? 'text-sm' : 'text-base'} transition-all duration-500`}>
-                        {user.email}
-                      </span>
-                    </div>
-                    <Button
-                      onClick={handleSignOut}
-                      variant="outline"
-                      size={isScrolled ? "sm" : "default"}
-                      className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white transition-all duration-300"
-                    >
-                      <LogOut className="h-4 w-4 mr-2" />
-                      <span className="hidden sm:inline">Sign Out</span>
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      onClick={() => onAuthAction?.('signin')}
-                      variant="ghost"
-                      size={isScrolled ? "sm" : "default"}
-                      className="text-white hover:bg-white/10 hover:text-amber-300 transition-all duration-300"
-                    >
-                      Sign In
-                    </Button>
-                    <Button
-                      onClick={() => onAuthAction?.('signup')}
-                      size={isScrolled ? "sm" : "default"}
-                      className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold transition-all duration-300"
-                    >
-                      Sign Up
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
