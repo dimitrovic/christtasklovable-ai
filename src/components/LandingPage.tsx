@@ -93,25 +93,26 @@ export const LandingPage = ({
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-              AI Christian
+              Defend Your Faith
               <span className="block gradient-text">
-                Apologetics
+                With Confidence
                 </span>
               </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-              Get biblical answers to tough questions with AI-powered Christian apologetics. 
-              Defend your faith with confidence using Scripture-backed responses.
+              Get instant, biblical answers to challenging questions about Christianity. 
+              Our AI assistant helps you defend your faith with Scripture-backed responses 
+              that strengthen your understanding and witness.
               </p>
               
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
                 <Button
                   onClick={onGetStarted}
                   size="lg"
-                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover-lift"
+                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 transform"
                 >
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Start Asking Questions
+                Start Your Journey
                 <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                 
@@ -119,9 +120,10 @@ export const LandingPage = ({
                   onClick={onHowItWorks}
                   variant="outline"
                   size="lg"
-                className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg hover-lift"
+                className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg hover:scale-105 transform transition-all duration-300"
                 >
-                How It Works
+                <Video className="w-5 h-5 mr-2" />
+                See How It Works
                 </Button>
                     </div>
                   </div>
