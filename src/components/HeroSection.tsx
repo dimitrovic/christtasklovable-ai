@@ -102,7 +102,7 @@ export const HeroSection = ({
             <Button
               onClick={onGetStarted}
               size="lg"
-              className={`px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 hover-lift animate-float ${
+              className={`px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 hover-lift ${
                 isLanding 
                   ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white hover:shadow-blue-500/25' 
                   : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
