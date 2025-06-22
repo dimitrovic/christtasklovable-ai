@@ -12,10 +12,9 @@ interface TypewriterEffectProps {
 
 export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   phrases = [
-    'never said he was God',
+    'never claimed he was God',
     'is just a prophet',
     'prayed to the Father',
-    'called God his Father',
     'claimed divinity'
   ],
   speed = 100,
