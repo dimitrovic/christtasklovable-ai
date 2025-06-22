@@ -166,6 +166,62 @@ const Index = () => {
     setPaidUser(false); // Reset paid user status on sign out
   };
 
+  // TEST: Show navigation for any logged-in user
+  if (user || (isGuest && guestUser)) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 pb-20">
+        {/* Debug Info */}
+        <div className="bg-red-100 p-2 text-center text-sm font-bold">
+          TEST: Navigation should be visible below! currentPage={currentPage}, user={user?.email || 'guest'}
+        </div>
+        
+        {/* App Header */}
+        <div className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">CT</span>
+                </div>
+                <h1 className="text-xl font-bold text-gray-900">ChristTask</h1>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <User className="w-4 h-4" />
+                  <span>{user?.email || guestUser?.email}</span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="flex items-center space-x-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign Out</span>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Navigation Test
+            </h2>
+            <p className="text-lg text-gray-600 mb-8">
+              You should see the bottom navigation bar below!
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom Navigation Bar */}
+        <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+      </div>
+    );
+  }
+
   if (loading || isProcessingPayment) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
