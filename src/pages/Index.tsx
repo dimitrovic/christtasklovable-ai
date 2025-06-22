@@ -1,4 +1,3 @@
-
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
@@ -19,6 +18,7 @@ const Index = () => {
   const [showTopics, setShowTopics] = useState(true);
   const [forceShowLanding, setForceShowLanding] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paidUser, setPaidUser] = useState(false); // Track if user just paid
   const { user, loading, signOut } = useAuth();
   const { isGuest, guestUser, handleGuestSuccess, showAccountPrompt } = useGuestAuth();
   const { toast } = useToast();
@@ -32,6 +32,7 @@ const Index = () => {
 
     if (success === 'true') {
       setIsProcessingPayment(true);
+      setPaidUser(true); // Mark user as having just paid
       
       if (isGuestCheckout && sessionId) {
         // Handle guest checkout success - go directly to chatbot
@@ -76,15 +77,22 @@ const Index = () => {
     }
   }, [handleGuestSuccess, user, toast]);
 
-  // Redirect authenticated users to app (but only if not forced to show landing)
+  // Redirect authenticated users to app
   useEffect(() => {
     if ((user || (isGuest && guestUser)) && currentPage === 'auth' && !isProcessingPayment) {
       setCurrentPage('app');
-      // Don't automatically skip topics unless coming from payment
+      // If user just paid, skip topics and go to chat
+      if (paidUser) {
+        setShowTopics(false);
+      }
     } else if ((user || (isGuest && guestUser)) && currentPage === 'landing' && !forceShowLanding && !isProcessingPayment) {
       setCurrentPage('app');
+      // If user just paid, skip topics and go to chat
+      if (paidUser) {
+        setShowTopics(false);
+      }
     }
-  }, [user, guestUser, isGuest, currentPage, forceShowLanding, isProcessingPayment]);
+  }, [user, guestUser, isGuest, currentPage, forceShowLanding, isProcessingPayment, paidUser]);
 
   const handleGetStarted = () => {
     setForceShowLanding(false);
@@ -120,6 +128,7 @@ const Index = () => {
     setForceShowLanding(true);
     setShowTopics(true);
     setSelectedTopic(null);
+    setPaidUser(false); // Reset paid user status when going back to landing
     window.scrollTo(0, 0);
   };
 
@@ -143,6 +152,7 @@ const Index = () => {
       await signOut();
     }
     setCurrentPage('landing');
+    setPaidUser(false); // Reset paid user status on sign out
   };
 
   if (loading || isProcessingPayment) {
@@ -211,7 +221,7 @@ const Index = () => {
 
           {/* App Content */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {showTopics ? (
+            {showTopics && !paidUser ? (
               <div className="space-y-8">
                 <div className="text-center">
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">
