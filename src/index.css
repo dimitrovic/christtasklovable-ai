@@ -563,7 +563,7 @@
 }
 
 .typewriter-cursor {
-  animation: blink 1s infinite;
+  animation: blink 0.5s infinite;
 }
 
 .typewriter-text {

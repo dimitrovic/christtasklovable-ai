@@ -66,7 +66,7 @@ export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
       <span className={`${jesusClassName} mr-2`}>Jesus</span>
       <span className={`${typewriterClassName} min-w-[1ch]`}>
         {currentText}
-        <span className="animate-pulse">|</span>
+        <span className="typewriter-cursor">|</span>
       </span>
     </div>
   );
