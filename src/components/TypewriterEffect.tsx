@@ -15,7 +15,7 @@ export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
     'never claimed he was God',
     'is just a prophet',
     'prayed to the Father',
-    'claimed divinity'
+    'never claimed divinity'
   ],
   speed = 100,
   deleteSpeed = 50,
