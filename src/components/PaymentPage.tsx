@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BookOpen, CheckCircle, ArrowLeft, Star, RefreshCw } from "lucide-react";
@@ -161,7 +160,7 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="text-4xl font-bold text-slate-800 mb-2">£4.50</div>
+                <div className="text-4xl font-bold text-slate-800 mb-2">$5.99</div>
                 <div className="text-slate-600 text-lg mb-4">per week</div>
                 <div className="text-slate-500 text-sm">
                   Try it out risk-free
@@ -220,12 +219,12 @@ export const PaymentPage = ({ onBack }: PaymentPageProps) => {
                   )}
                 </div>
                 <div className="flex items-center justify-center space-x-3 mb-4">
-                  <span className="text-2xl font-bold text-slate-400 line-through">£19.50</span>
-                  <div className="text-4xl font-bold text-slate-800">£13.99</div>
+                  <span className="text-2xl font-bold text-slate-400 line-through">$19.99</span>
+                  <div className="text-4xl font-bold text-slate-800">$13.99</div>
                 </div>
                 <div className="text-slate-600 text-lg mb-4">per month</div>
                 <div className="bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full inline-block">
-                  Save £5.51 Monthly
+                  Save $6.00 Monthly
                 </div>
               </CardHeader>
 
