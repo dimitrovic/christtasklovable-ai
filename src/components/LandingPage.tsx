@@ -89,9 +89,9 @@ export const LandingPage = ({
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-              Defend Your Faith
+              Always have the right answer
               <span className="block gradient-text">
-                Always have the right answer — no matter the challenge.
+                — no matter the challenge.
                 </span>
               </h1>
               
@@ -275,7 +275,7 @@ export const LandingPage = ({
                 <p className="text-blue-200 italic">
                   "The depth of knowledge and biblical accuracy is impressive. 
                   It's like having a theology professor available 24/7 for our small group discussions."
-                </p>
+            </p>
               </CardContent>
             </Card>
           </div>
@@ -405,10 +405,10 @@ export const LandingPage = ({
           </div>
 
           <div className="border-t border-white/10 mt-8 pt-8 text-center">
-            <p className="text-blue-200">
-              © 2024 ChristTask. Empowering Christians with AI-powered apologetics. 
+          <p className="text-blue-200">
+            © 2024 ChristTask. Empowering Christians with AI-powered apologetics.
               Made with <Heart className="w-4 h-4 inline text-red-400" /> for the Kingdom.
-            </p>
+          </p>
           </div>
         </div>
       </footer>
