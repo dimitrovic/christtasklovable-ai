@@ -107,20 +107,10 @@ const Index = () => {
   }, [user, guestUser, isGuest, currentPage]);
 
   const handleGetStarted = () => {
-    console.log('handleGetStarted called');
-    console.log('User:', user);
-    console.log('IsGuest:', isGuest);
-    console.log('GuestUser:', guestUser);
-    console.log('Current page before:', currentPage);
-    
+    console.log('handleGetStarted called - directing to payment page');
     setForceShowLanding(false);
-    if (user || (isGuest && guestUser)) {
-      console.log('User is authenticated, going to app');
-      setCurrentPage('app');
-    } else {
-      console.log('User is not authenticated, going to payment');
-      setCurrentPage('payment');
-    }
+    // Always go to payment page for immediate access
+    setCurrentPage('payment');
     window.scrollTo(0, 0);
   };
 
