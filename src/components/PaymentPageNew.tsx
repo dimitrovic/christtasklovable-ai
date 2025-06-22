@@ -105,7 +105,7 @@ export const PaymentPageNew = () => {
                 selectedPlan === 'weekly' ? 'border-blue-400 ring-4 ring-blue-400/20' : 'border-white/20'
               }`}>
                 <CardHeader className="text-center py-6">
-                  <div className="text-3xl font-bold text-white mb-2">$5.99</div>
+                  <div className="text-3xl font-bold text-white mb-2">£4.50</div>
                   <div className="text-blue-200 text-lg">per week</div>
                   <div className="text-blue-300 text-sm">Perfect for beginners</div>
                 </CardHeader>
@@ -297,7 +297,7 @@ export const PaymentPageNew = () => {
                       ) : (
                         <>
                           <Zap className="w-5 h-5 mr-2" />
-                          Pay ${selectedPlan === 'weekly' ? '5.99' : '13.99'} - Start Now
+                          Pay {selectedPlan === 'weekly' ? '£4.50' : '$13.99'} - Start Now
                         </>
                       )}
                     </Button>
