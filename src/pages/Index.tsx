@@ -1,3 +1,4 @@
+// TEST: If you see this, deployment works!
 import { LandingPage } from "@/components/LandingPage";
 import { PaymentPage } from "@/components/PaymentPage";
 import { AuthPage } from "@/components/AuthPage";
