@@ -78,17 +78,9 @@ export const LandingPage = ({
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-              Always have the right answer
-              <span className="block gradient-text">
-                — no matter the challenge.
-                </span>
-              </h1>
-              
-            {/* Typewriter Effect Demo */}
-            <div className="mb-8 animate-fade-in">
               <TypewriterEffect 
                 phrases={[
-                  'never said he was God',
+                  'never claimed he was God',
                   'is just a prophet',
                   'prayed to the Father',
                   'called God his Father',
@@ -97,11 +89,11 @@ export const LandingPage = ({
                 speed={80}
                 deleteSpeed={40}
                 pauseTime={1500}
-                className="text-2xl md:text-3xl font-semibold justify-center"
+                className="justify-center"
                 jesusClassName="text-blue-400 font-bold"
                 typewriterClassName="text-white"
               />
-            </div>
+            </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
               Get instant, biblical answers to challenging questions about Christianity. 
