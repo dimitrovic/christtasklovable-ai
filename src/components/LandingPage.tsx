@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "@/components/HamburgerMenu";
+import { ChristianBackground } from "@/components/ChristianBackground";
 import { 
   MessageSquare, 
   Shield, 
@@ -44,20 +45,7 @@ export const LandingPage = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden">
-      {/* Background Particles */}
-      <div className="hero-particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-      </div>
-
+    <ChristianBackground>
       {/* Header */}
       <header className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -412,6 +400,6 @@ export const LandingPage = ({
           </div>
         </div>
       </footer>
-    </div>
+    </ChristianBackground>
   );
 };
