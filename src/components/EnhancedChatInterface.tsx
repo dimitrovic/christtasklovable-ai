@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Bot, User, AlertCircle, Download, ThumbsUp, ThumbsDown, Share2, Mic, MicOff, Settings } from "lucide-react";
+import { Send, Bot, User, AlertCircle, Download, ThumbsUp, ThumbsDown, Share2, Mic, MicOff, Settings, MessageSquare } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMessageUsage } from "@/hooks/useMessageUsage";
 import { supabase } from "@/integrations/supabase/client";
@@ -25,15 +25,16 @@ interface ChatInterfaceProps {
   selectedTopic?: string | null;
 }
 
-export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
+export const EnhancedChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [autoScroll, setAutoScroll] = useState(false);
+  const [autoScroll, setAutoScroll] = useState(true);
   const [conversationId, setConversationId] = useState<string | null>(null);
+  const [showStats, setShowStats] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { user } = useAuth();
@@ -273,6 +274,16 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
     }
   };
 
+  const getConversationStats = () => {
+    const userMessages = messages.filter(m => m.sender === 'user').length;
+    const botMessages = messages.filter(m => m.sender === 'bot').length;
+    const positiveFeedback = messages.filter(m => m.feedback === 'positive').length;
+    const negativeFeedback = messages.filter(m => m.feedback === 'negative').length;
+    const totalWords = messages.reduce((acc, msg) => acc + msg.content.split(' ').length, 0);
+    
+    return { userMessages, botMessages, positiveFeedback, negativeFeedback, totalWords };
+  };
+
   if (usageLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -280,6 +291,8 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
       </div>
     );
   }
+
+  const stats = getConversationStats();
 
   return (
     <div className="flex flex-col h-[600px] bg-white rounded-lg shadow-lg">
@@ -307,6 +320,23 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
                   <Button
                     variant="ghost"
                     size="sm"
+                    onClick={() => setShowStats(!showStats)}
+                    className="text-white hover:bg-white/20"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Conversation stats</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() => setShowSettings(!showSettings)}
                     className="text-white hover:bg-white/20"
                   >
@@ -320,6 +350,30 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
             </TooltipProvider>
           </div>
         </div>
+        
+        {/* Stats panel */}
+        {showStats && (
+          <div className="mt-3 p-3 bg-white/10 rounded-lg">
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <div className="font-semibold">Messages</div>
+                <div>You: {stats.userMessages} | AI: {stats.botMessages}</div>
+              </div>
+              <div>
+                <div className="font-semibold">Feedback</div>
+                <div>👍 {stats.positiveFeedback} | 👎 {stats.negativeFeedback}</div>
+              </div>
+              <div>
+                <div className="font-semibold">Words</div>
+                <div>{stats.totalWords} total</div>
+              </div>
+              <div>
+                <div className="font-semibold">Session</div>
+                <div>{conversationId?.slice(-8)}</div>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Settings panel */}
         {showSettings && (
@@ -531,7 +585,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
             </div>
             
             <div className="text-xs text-slate-500">
-              {messages.filter(m => m.sender === 'user').length} messages sent
+              {stats.userMessages} messages sent
             </div>
           </div>
         )}
