@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,7 @@ import { SubscriptionProvider } from "@/hooks/useSubscription";
 import { GuestAuthProvider } from "@/hooks/useGuestAuth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { PaymentPageNew } from "@/components/PaymentPageNew";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +23,7 @@ const App = () => (
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/payment" element={<PaymentPageNew />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
