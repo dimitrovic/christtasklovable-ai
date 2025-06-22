@@ -186,8 +186,7 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
                 setIsOpen(false);
                 onAuthAction('signin');
               }}
-              variant="outline"
-              className="w-full border-white/20 text-white hover:bg-white/10"
+              className="w-full bg-white/10 border border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300"
             >
               Sign In
             </Button>
