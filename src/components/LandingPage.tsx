@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { 
   MessageSquare, 
   Shield, 
@@ -71,19 +72,7 @@ export const LandingPage = ({
               <h1 className="text-xl font-bold text-white">ChristTask</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                onClick={() => onAuthAction('signin')}
-                className="text-white hover:bg-white/10"
-              >
-                Sign In
-              </Button>
-              <Button
-                onClick={() => onAuthAction('signup')}
-                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
-              >
-                Get Started
-              </Button>
+              <HamburgerMenu onAuthAction={onAuthAction} />
             </div>
           </div>
         </div>
