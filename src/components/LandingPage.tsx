@@ -91,7 +91,7 @@ export const LandingPage = ({
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
               Defend Your Faith
               <span className="block gradient-text">
-                With Confidence
+                Always have the right answer — no matter the challenge.
                 </span>
               </h1>
               
