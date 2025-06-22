@@ -8,7 +8,6 @@ import {
   BookOpen, 
   DollarSign, 
   Info, 
-  Mail,
   ChevronRight
 } from "lucide-react";
 
@@ -99,7 +98,6 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
     { icon: BookOpen, label: 'Resources', action: 'resources' },
     { icon: DollarSign, label: 'Pricing', action: 'pricing' },
     { icon: Info, label: 'About', action: 'about' },
-    { icon: Mail, label: 'Contact', action: 'contact' },
   ];
 
   return (
