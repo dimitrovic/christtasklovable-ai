@@ -75,12 +75,6 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
       case 'pricing':
         navigate('/payment');
         break;
-      case 'about':
-        const aboutSection = document.getElementById('about');
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        break;
       case 'contact':
         const contactSection = document.getElementById('contact');
         if (contactSection) {
@@ -97,7 +91,6 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
     { icon: MessageSquare, label: 'Chat with AI', action: 'chat' },
     { icon: BookOpen, label: 'Resources', action: 'resources' },
     { icon: DollarSign, label: 'Pricing', action: 'pricing' },
-    { icon: Info, label: 'About', action: 'about' },
   ];
 
   return (

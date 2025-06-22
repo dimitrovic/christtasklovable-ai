@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { ChristianBackground } from "@/components/ChristianBackground";
+import { TypewriterEffect } from "@/components/TypewriterEffect";
 import { 
   MessageSquare, 
   Shield, 
@@ -82,6 +83,25 @@ export const LandingPage = ({
                 — no matter the challenge.
                 </span>
               </h1>
+              
+            {/* Typewriter Effect Demo */}
+            <div className="mb-8 animate-fade-in">
+              <TypewriterEffect 
+                phrases={[
+                  'never said he was God',
+                  'is just a prophet',
+                  'prayed to the Father',
+                  'called God his Father',
+                  'claimed divinity'
+                ]}
+                speed={80}
+                deleteSpeed={40}
+                pauseTime={1500}
+                className="text-2xl md:text-3xl font-semibold justify-center"
+                jesusClassName="text-blue-400 font-bold"
+                typewriterClassName="text-white"
+              />
+            </div>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
               Get instant, biblical answers to challenging questions about Christianity. 
