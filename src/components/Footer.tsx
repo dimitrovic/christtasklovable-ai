@@ -132,35 +132,6 @@ export const Footer = ({
             </div>
           </div>
 
-          {/* Christian Resources */}
-          <div>
-            <h4 className={`text-lg font-semibold mb-4 ${
-              variant === 'landing' ? 'text-white' : 'text-slate-900 dark:text-white'
-            }`}>
-              Christian Resources
-            </h4>
-            <ul className="space-y-2">
-              {christianResources.slice(0, 4).map((resource, index) => (
-                <li key={index}>
-                  <a 
-                    href={resource.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className={`resource-link flex items-center ${
-                      variant === 'landing' 
-                        ? 'text-blue-200 hover:text-white' 
-                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
-                    }`}
-                  >
-                    <resource.icon className="w-4 h-4 mr-2" />
-                    {resource.name}
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Quick Links */}
           <div>
             <h4 className={`text-lg font-semibold mb-4 ${
@@ -185,34 +156,6 @@ export const Footer = ({
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* Additional Resources Section */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <h4 className={`text-lg font-semibold mb-4 text-center ${
-            variant === 'landing' ? 'text-white' : 'text-slate-900 dark:text-white'
-          }`}>
-            More Christian Resources
-          </h4>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {christianResources.map((resource, index) => (
-              <a 
-                key={index}
-                href={resource.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`resource-link p-3 rounded-lg text-center transition-all duration-200 ${
-                  variant === 'landing' 
-                    ? 'text-blue-200 hover:text-white hover:bg-white/10' 
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800'
-                }`}
-              >
-                <resource.icon className="w-6 h-6 mx-auto mb-2" />
-                <div className="text-sm font-medium">{resource.name}</div>
-                <div className="text-xs opacity-75 mt-1">{resource.description}</div>
-              </a>
-            ))}
           </div>
         </div>
 

@@ -66,12 +66,6 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
       case 'chat':
         navigate('/payment');
         break;
-      case 'resources':
-        const resourcesSection = document.getElementById('resources');
-        if (resourcesSection) {
-          resourcesSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        break;
       case 'pricing':
         navigate('/payment');
         break;
@@ -89,7 +83,6 @@ export const HamburgerMenu = ({ onAuthAction }: HamburgerMenuProps) => {
   const menuItems = [
     { icon: Home, label: 'Home', action: 'home' },
     { icon: MessageSquare, label: 'Chat with AI', action: 'chat' },
-    { icon: BookOpen, label: 'Resources', action: 'resources' },
     { icon: DollarSign, label: 'Pricing', action: 'pricing' },
   ];
 
