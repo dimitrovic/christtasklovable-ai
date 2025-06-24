@@ -413,12 +413,12 @@
 /* Hero section floating crosses - more subtle */
 .hero-floating-cross {
   position: absolute;
-  color: rgba(255, 255, 255, 0.08);
-  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 1.5rem;
   animation: crossFloat 15s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 .hero-floating-cross:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
