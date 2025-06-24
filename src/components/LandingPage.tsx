@@ -82,9 +82,7 @@ export const LandingPage = ({
                 phrases={[
                   'never claimed he was God',
                   'is just a prophet',
-                  'prayed to the Father',
-                  'called God his Father',
-                  'claimed divinity'
+                  'is only human'
                 ]}
                 speed={80}
                 deleteSpeed={40}
