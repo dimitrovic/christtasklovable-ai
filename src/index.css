@@ -426,7 +426,7 @@
   position: absolute;
   color: rgba(255, 255, 255, 0.25);
   font-size: 1.5rem;
-  animation: heroCrossFloat 7s linear infinite;
+  animation: heroCrossFloat 2.5s linear infinite;
   pointer-events: none;
   z-index: 1;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
