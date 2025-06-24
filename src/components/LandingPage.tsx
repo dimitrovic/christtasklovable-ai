@@ -96,8 +96,8 @@ export const LandingPage = ({
                   'is just a prophet',
                   'is only human'
                 ]}
-                speed={80}
-                deleteSpeed={40}
+                speed={30}
+                deleteSpeed={15}
                 pauseTime={1500}
                 className="justify-center"
                 jesusClassName="text-black font-bold"
