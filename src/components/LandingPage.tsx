@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { ChristianBackground } from "@/components/ChristianBackground";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
+import { WavyDivider } from "@/components/WavyDivider";
 import { 
   MessageSquare, 
   Shield, 
@@ -151,8 +152,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Simple Wavy Divider */}
-      <div className="wavy-divider-simple"></div>
+      {/* Wavy Divider */}
+      <WavyDivider color="rgba(59, 130, 246, 0.1)" />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -207,8 +208,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Simple Wavy Divider */}
-      <div className="wavy-divider-simple"></div>
+      {/* Wavy Divider */}
+      <WavyDivider color="rgba(59, 130, 246, 0.1)" />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -298,8 +299,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Simple Wavy Divider */}
-      <div className="wavy-divider-simple"></div>
+      {/* Wavy Divider */}
+      <WavyDivider color="rgba(59, 130, 246, 0.1)" />
 
       {/* CTA Section */}
       <section className="py-20">
