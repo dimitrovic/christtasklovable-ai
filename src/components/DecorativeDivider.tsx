@@ -11,13 +11,13 @@ export const DecorativeDivider = ({
 }: DecorativeDividerProps) => {
   return (
     <svg 
-      viewBox="0 0 1200 40" 
+      viewBox="0 0 1200 30" 
       width="100%" 
       height="auto"
       style={{ display: 'block' }}
     >
       <path 
-        d="M0,20 L400,20 Q450,20 475,15 T500,20 L700,20 Q750,20 775,15 T800,20 L1200,20" 
+        d="M0,15 L500,15 Q550,15 560,18 T570,15 L630,15 Q640,15 650,18 T660,15 L1200,15" 
         stroke={color}
         strokeWidth={strokeWidth}
         fill="none"
