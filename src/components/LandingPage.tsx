@@ -151,8 +151,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Wavy Divider */}
-      <div className="wavy-divider"></div>
+      {/* Wavy Divider - Medium */}
+      <div className="wavy-divider-medium"></div>
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -207,8 +207,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Wavy Divider */}
-      <div className="wavy-divider-reverse"></div>
+      {/* Wavy Divider - Large Reverse */}
+      <div className="wavy-divider-large-reverse"></div>
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -298,8 +298,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Wavy Divider */}
-      <div className="wavy-divider-curvy"></div>
+      {/* Wavy Divider - Medium */}
+      <div className="wavy-divider-medium"></div>
 
       {/* CTA Section */}
       <section className="py-20">
@@ -321,6 +321,9 @@ export const LandingPage = ({
           </Button>
         </div>
       </section>
+
+      {/* Animated Wavy Divider */}
+      <div className="wavy-divider-animated"></div>
 
       {/* Enhanced Footer */}
       <footer className="py-16 border-t border-white/10 bg-black/20 backdrop-blur-sm">
