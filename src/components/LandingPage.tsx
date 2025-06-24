@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { ChristianBackground } from "@/components/ChristianBackground";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
-import { DecorativeDivider } from "@/components/DecorativeDivider";
+import { OrganicWaveDivider } from "@/components/OrganicWaveDivider";
 import { 
   MessageSquare, 
   Shield, 
@@ -152,8 +152,12 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Decorative Divider */}
-      <DecorativeDivider color="rgba(59, 130, 246, 0.1)" />
+      {/* Organic Wave Divider */}
+      <OrganicWaveDivider 
+        topColor="rgba(139, 92, 246, 0.05)"
+        bottomColor="rgba(59, 130, 246, 0.05)"
+        waveColor="rgba(139, 92, 246, 0.2)"
+      />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -209,7 +213,7 @@ export const LandingPage = ({
       </section>
 
       {/* Decorative Divider */}
-      <DecorativeDivider color="rgba(59, 130, 246, 0.1)" />
+      <OrganicWaveDivider color="rgba(59, 130, 246, 0.1)" />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -299,8 +303,12 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Decorative Divider */}
-      <DecorativeDivider color="rgba(59, 130, 246, 0.1)" />
+      {/* Organic Wave Divider */}
+      <OrganicWaveDivider 
+        topColor="rgba(59, 130, 246, 0.05)"
+        bottomColor="rgba(139, 92, 246, 0.05)"
+        waveColor="rgba(59, 130, 246, 0.2)"
+      />
 
       {/* CTA Section */}
       <section className="py-20">
