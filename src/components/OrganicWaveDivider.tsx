@@ -4,13 +4,23 @@ interface OrganicWaveDividerProps {
   color?: string;
   strokeWidth?: number;
   height?: number;
+  variant?: 'default' | 'hero';
 }
 
 export const OrganicWaveDivider = ({ 
   color = "#000000", // black
   strokeWidth = 2,
-  height = 40
+  height = 40,
+  variant = 'default'
 }: OrganicWaveDividerProps) => {
+  // Hero variant with gentle dips in the middle
+  const heroPath = "M0,20 L400,20 Q450,20 475,15 T500,20 L600,20 Q650,20 675,15 T700,20 L800,20 Q850,20 875,15 T900,20 L1200,20";
+  
+  // Default variant with flowing curves
+  const defaultPath = "M0,20 Q150,10 300,20 T600,20 T900,20 T1200,20";
+  
+  const pathData = variant === 'hero' ? heroPath : defaultPath;
+
   return (
     <div style={{ 
       position: 'relative', 
@@ -31,7 +41,7 @@ export const OrganicWaveDivider = ({
         preserveAspectRatio="none"
       >
         <path 
-          d="M0,20 Q150,10 300,20 T600,20 T900,20 T1200,20" 
+          d={pathData}
           stroke={color}
           strokeWidth={strokeWidth}
           fill="none"

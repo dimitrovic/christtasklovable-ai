@@ -152,8 +152,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Organic Wave Divider */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} />
+      {/* Organic Wave Divider - Hero */}
+      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="hero" />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
