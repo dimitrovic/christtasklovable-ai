@@ -454,7 +454,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder={remainingMessages > 0 ? "Type your message..." : "Daily limit reached. Try again tomorrow."}
-            className="flex-1 min-h-[40px] max-h-[120px] resize-none"
+            className="flex-1 min-h-[40px] max-h-[120px] resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-500"
             disabled={isLoading || remainingMessages <= 0}
           />
           <div className="flex flex-col space-y-2">

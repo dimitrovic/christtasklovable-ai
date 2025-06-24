@@ -206,19 +206,19 @@
 @keyframes crossFloat {
   0%, 100% {
     transform: translateY(0px) rotate(0deg) scale(1);
-    opacity: 0.1;
+    opacity: 0.12;
   }
   25% {
-    transform: translateY(-15px) rotate(90deg) scale(1.1);
-    opacity: 0.2;
+    transform: translateY(-10px) rotate(45deg) scale(1.05);
+    opacity: 0.18;
   }
   50% {
-    transform: translateY(-25px) rotate(180deg) scale(1);
+    transform: translateY(-15px) rotate(90deg) scale(1);
     opacity: 0.15;
   }
   75% {
-    transform: translateY(-10px) rotate(270deg) scale(0.9);
-    opacity: 0.25;
+    transform: translateY(-8px) rotate(135deg) scale(0.95);
+    opacity: 0.20;
   }
 }
 
@@ -410,13 +410,32 @@
   pointer-events: none;
 }
 
+/* Hero section floating crosses - more subtle */
+.hero-floating-cross {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.08);
+  font-size: 1.2rem;
+  animation: crossFloat 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.hero-floating-cross:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+.hero-floating-cross:nth-child(2) { top: 25%; right: 12%; animation-delay: 3s; }
+.hero-floating-cross:nth-child(3) { top: 45%; left: 18%; animation-delay: 6s; }
+.hero-floating-cross:nth-child(4) { top: 65%; right: 15%; animation-delay: 9s; }
+.hero-floating-cross:nth-child(5) { top: 35%; left: 75%; animation-delay: 12s; }
+.hero-floating-cross:nth-child(6) { top: 55%; right: 8%; animation-delay: 15s; }
+
 /* Floating crosses */
 .floating-cross {
   position: absolute;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.15);
   font-size: 1.5rem;
   animation: crossFloat 12s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1;
 }
 
 .floating-cross:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
@@ -526,6 +545,10 @@
 @media (max-width: 768px) {
   .floating-cross {
     font-size: 1.2rem;
+  }
+  
+  .hero-floating-cross {
+    font-size: 1rem;
   }
   
   .biblical-verse {
