@@ -107,7 +107,7 @@ export const LandingPage = ({
             </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-              Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
+              <span className="fancy-underline">Never lose a debate again.</span> Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
