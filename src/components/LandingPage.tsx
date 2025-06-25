@@ -110,28 +110,19 @@ export const LandingPage = ({
               Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
-                <Button
-                  onClick={handleStartJourney}
-                  size="lg"
+            <div className="flex justify-center items-center mb-12 animate-fade-in-up">
+              <Button
+                onClick={handleStartJourney}
+                size="lg"
                 className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 transform"
-                >
+              >
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Start Your Journey
+                Win Every Debate — Start Now
                 <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-                
-                <Button
-                  onClick={onHowItWorks}
-                  size="lg"
-                className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-indigo-500/25 transition-all duration-300 hover:scale-105 transform"
-                >
-                <Video className="w-5 h-5 mr-2" />
-                See How It Works
-                </Button>
-                    </div>
-                  </div>
-                  
+              </Button>
+            </div>
+          </div>
+          
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             <div className="text-center animate-slide-in-left">
