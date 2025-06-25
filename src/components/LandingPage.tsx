@@ -107,9 +107,7 @@ export const LandingPage = ({
             </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-              Not sure how to respond when you're told "Jesus is just a prophet" or "Jesus is a myth"?
-              <br />
-              You're not alone — and I'm here to equip you with the words, the evidence, and the confidence to stand strong.
+              Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
@@ -153,7 +151,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Hero */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="hero" />
+      <OrganicWaveDivider color="#000000" strokeWidth={2} />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -211,7 +209,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Two Dips */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="two-dips" />
+      <OrganicWaveDivider color="#000000" strokeWidth={2} />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
