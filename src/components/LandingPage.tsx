@@ -107,7 +107,12 @@ export const LandingPage = ({
             </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-              <span className="fancy-underline">Never lose a debate again.</span> Speak with unshakable confidence, dismantle objections, and prove your point.
+              <span className="relative inline-block fancy-underline-animated">
+                Never lose a debate again.
+                <svg className="absolute left-0 bottom-0 w-full h-3 underline-svg" viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10 Q 40 2, 80 10 T 160 10 T 218 10" stroke="#ffe066" stroke-width="4" fill="none"/>
+                </svg>
+              </span> Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
