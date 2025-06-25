@@ -162,10 +162,12 @@ export const LandingPage = ({
             <h2 className="text-4xl font-bold text-white mb-4">
               Why Choose ChristTask?
             </h2>
-            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-              Get instant, biblical answers to challenging questions about Christianity, 
-              atheism, Islam, and more.
-            </p>
+            <div className="subtitle-bubble">
+              <p className="text-xl text-blue-900 font-medium text-center">
+                Get instant, biblical answers to challenging questions about Christianity, 
+                atheism, Islam, and more.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
