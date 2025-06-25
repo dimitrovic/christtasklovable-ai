@@ -111,17 +111,15 @@ export const LandingPage = ({
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
-              <div className="hero-bubble">
-                <Button
-                  onClick={handleStartJourney}
-                  size="lg"
-                  className="bg-white text-black rounded-full px-10 py-4 font-bold text-lg shadow-lg transition hover:bg-gray-100 hover:scale-105"
-                >
-                  <MessageSquare className="w-5 h-5 mr-2" />
-                  Win Every Debate — Start Now
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </div>
+              <Button
+                onClick={handleStartJourney}
+                size="lg"
+                className="bg-white text-black rounded-full px-10 py-4 font-bold text-lg shadow-lg transition hover:bg-gray-100 hover:scale-105"
+              >
+                <MessageSquare className="w-5 h-5 mr-2" />
+                Win Every Debate — Start Now
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
             </div>
           </div>
           
