@@ -107,10 +107,10 @@ export const LandingPage = ({
             </h1>
               
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-              Get instant, biblical answers to challenging questions about Christianity. 
-              Our AI assistant helps you defend your faith with Scripture-backed responses 
-              that strengthen your understanding and witness.
-              </p>
+              Not sure how to respond when you're told "Jesus is just a prophet" or "Jesus is a myth"?
+              <br />
+              You're not alone — and I'm here to equip you with the words, the evidence, and the confidence to stand strong.
+            </p>
               
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
                 <Button
@@ -153,7 +153,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Hero */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="hero" />
+      <OrganicWaveDivider color="#1e293b" strokeWidth={2} variant="hero" />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -209,7 +209,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Two Dips */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="two-dips" />
+      <OrganicWaveDivider color="#1e293b" strokeWidth={2} variant="two-dips" />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -300,7 +300,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} />
+      <OrganicWaveDivider color="#1e293b" strokeWidth={2} />
 
       {/* CTA Section */}
       <section className="py-20">
@@ -347,45 +347,6 @@ export const LandingPage = ({
                   <Globe className="w-4 h-4" />
                 </Button>
               </div>
-            </div>
-
-            {/* Christian Resources */}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Christian Resources</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="https://www.biblegateway.com" target="_blank" rel="noopener noreferrer" 
-                     className="resource-link text-blue-200 hover:text-white flex items-center">
-                    <Book className="w-4 h-4 mr-2" />
-                    Bible Gateway
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.gotquestions.org" target="_blank" rel="noopener noreferrer" 
-                     className="resource-link text-blue-200 hover:text-white flex items-center">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Got Questions
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.desiringgod.org" target="_blank" rel="noopener noreferrer" 
-                     className="resource-link text-blue-200 hover:text-white flex items-center">
-                    <Heart className="w-4 h-4 mr-2" />
-                    Desiring God
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.ligonier.org" target="_blank" rel="noopener noreferrer" 
-                     className="resource-link text-blue-200 hover:text-white flex items-center">
-                    <Video className="w-4 h-4 mr-2" />
-                    Ligonier Ministries
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                </li>
-              </ul>
             </div>
 
             {/* Quick Links */}
