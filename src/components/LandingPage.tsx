@@ -208,8 +208,8 @@ export const LandingPage = ({
         </div>
       </section>
 
-      {/* Decorative Divider */}
-      <OrganicWaveDivider color="#000000" strokeWidth={2} />
+      {/* Organic Wave Divider - Two Dips */}
+      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="two-dips" />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">

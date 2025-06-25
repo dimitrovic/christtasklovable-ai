@@ -4,7 +4,7 @@ interface OrganicWaveDividerProps {
   color?: string;
   strokeWidth?: number;
   height?: number;
-  variant?: 'default' | 'hero';
+  variant?: 'default' | 'hero' | 'two-dips';
 }
 
 export const OrganicWaveDivider = ({ 
@@ -16,10 +16,15 @@ export const OrganicWaveDivider = ({
   // Hero variant with gentle dips in the middle
   const heroPath = "M0,20 L400,20 Q450,20 475,15 T500,20 L600,20 Q650,20 675,15 T700,20 L800,20 Q850,20 875,15 T900,20 L1200,20";
   
+  // Two dips variant
+  const twoDipsPath = "M0,20 L350,20 Q400,20 425,15 T450,20 L750,20 Q800,20 825,15 T850,20 L1200,20";
+  
   // Default variant with flowing curves
   const defaultPath = "M0,20 Q150,10 300,20 T600,20 T900,20 T1200,20";
   
-  const pathData = variant === 'hero' ? heroPath : defaultPath;
+  const pathData = variant === 'hero' ? heroPath : 
+                   variant === 'two-dips' ? twoDipsPath : 
+                   defaultPath;
 
   return (
     <div style={{ 
