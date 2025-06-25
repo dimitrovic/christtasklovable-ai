@@ -106,7 +106,7 @@ export const LandingPage = ({
               />
             </h1>
               
-            <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+            <p className="text-lg md:text-xl text-gray-500 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ fontFamily: 'Quicksand, sans-serif' }}>
               Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
