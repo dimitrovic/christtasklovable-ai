@@ -1106,3 +1106,18 @@
     stroke-dashoffset: 0;
   }
 }
+
+.hero-bubble {
+  background: rgba(255,255,255,0.12);
+  border-radius: 9999px;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s;
+}
+.hero-bubble:hover {
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.16);
+}
