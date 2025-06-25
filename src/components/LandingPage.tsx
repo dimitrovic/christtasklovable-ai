@@ -153,7 +153,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Hero */}
-      <OrganicWaveDivider color="#1e293b" strokeWidth={2} variant="hero" />
+      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="hero" />
 
       {/* Features Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -209,7 +209,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider - Two Dips */}
-      <OrganicWaveDivider color="#1e293b" strokeWidth={2} variant="two-dips" />
+      <OrganicWaveDivider color="#000000" strokeWidth={2} variant="two-dips" />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white/5 backdrop-blur-sm">
@@ -300,7 +300,7 @@ export const LandingPage = ({
       </section>
 
       {/* Organic Wave Divider */}
-      <OrganicWaveDivider color="#1e293b" strokeWidth={2} />
+      <OrganicWaveDivider color="#000000" strokeWidth={2} />
 
       {/* CTA Section */}
       <section className="py-20">
