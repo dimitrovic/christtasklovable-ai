@@ -114,7 +114,7 @@ export const LandingPage = ({
               <Button
                 onClick={handleStartJourney}
                 size="lg"
-                className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 transform"
+                className="bg-white text-black rounded-full px-10 py-4 font-bold text-lg shadow-lg transition hover:bg-gray-100 hover:scale-105"
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Win Every Debate — Start Now
