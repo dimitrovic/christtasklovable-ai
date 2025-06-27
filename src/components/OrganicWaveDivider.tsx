@@ -45,7 +45,7 @@ export const OrganicWaveDivider = ({
         style={{
           width: '100%',
           height: '1px',
-          background: 'linear-gradient(90deg, #e5e5e5 0%, #f5f5f5 100%)',
+          background: 'linear-gradient(90deg, #F0F8FF 0%, #E6F3FF 100%)',
           margin: '32px 0',
           border: 'none',
         }}
