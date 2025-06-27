@@ -4,7 +4,7 @@ interface OrganicWaveDividerProps {
   color?: string;
   strokeWidth?: number;
   height?: number;
-  variant?: 'default' | 'hero' | 'two-dips' | 'straight';
+  variant?: 'default' | 'hero' | 'two-dips' | 'straight' | 'horizontal';
 }
 
 /**
@@ -13,7 +13,8 @@ interface OrganicWaveDividerProps {
  * - 'default': flowing curves
  * - 'hero': gentle dips in the middle
  * - 'two-dips': two dips
- * - 'straight': straight horizontal line
+ * - 'straight': straight horizontal line (SVG)
+ * - 'horizontal': 1px high, full-width horizontal divider with subtle gradient or light gray color (#e5e5e5), margin spacing above and below (uses <div> not SVG)
  */
 export const OrganicWaveDivider = ({ 
   color = "#000000", // black
@@ -37,6 +38,21 @@ export const OrganicWaveDivider = ({
                    variant === 'two-dips' ? twoDipsPath : 
                    variant === 'straight' ? straightPath :
                    defaultPath;
+
+  if (variant === 'horizontal') {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '1px',
+          background: 'linear-gradient(90deg, #e5e5e5 0%, #f5f5f5 100%)',
+          margin: '32px 0',
+          border: 'none',
+        }}
+        aria-hidden="true"
+      />
+    );
+  }
 
   return (
     <div style={{ 
