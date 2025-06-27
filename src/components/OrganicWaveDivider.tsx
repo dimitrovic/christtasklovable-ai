@@ -4,9 +4,17 @@ interface OrganicWaveDividerProps {
   color?: string;
   strokeWidth?: number;
   height?: number;
-  variant?: 'default' | 'hero' | 'two-dips';
+  variant?: 'default' | 'hero' | 'two-dips' | 'straight';
 }
 
+/**
+ * OrganicWaveDivider component renders a decorative SVG divider.
+ * Variants:
+ * - 'default': flowing curves
+ * - 'hero': gentle dips in the middle
+ * - 'two-dips': two dips
+ * - 'straight': straight horizontal line
+ */
 export const OrganicWaveDivider = ({ 
   color = "#000000", // black
   strokeWidth = 2,
@@ -21,9 +29,13 @@ export const OrganicWaveDivider = ({
   
   // Default variant with flowing curves
   const defaultPath = "M0,20 Q150,10 300,20 T600,20 T900,20 T1200,20";
+
+  // Straight line variant
+  const straightPath = "M0,20 L1200,20";
   
   const pathData = variant === 'hero' ? heroPath : 
                    variant === 'two-dips' ? twoDipsPath : 
+                   variant === 'straight' ? straightPath :
                    defaultPath;
 
   return (
