@@ -673,12 +673,14 @@
 
 /* Hero button font styling */
 .hero-button {
-  font-family: 'Nunito', sans-serif !important;
-  font-weight: 600 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 700 !important;
   font-size: 1rem !important;
   font-style: normal !important;
   line-height: 1.5 !important;
   letter-spacing: normal !important;
   text-transform: none !important;
-  background-color: #ff0000 !important;
+  background-color: #2563eb !important;
+  color: #fff !important;
+  text-shadow: none !important;
 }
