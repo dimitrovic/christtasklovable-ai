@@ -118,7 +118,10 @@ export const LandingPage = ({
                 <button
                   onClick={handleStartJourney}
                   className="bg-blue-700 text-white rounded-md px-6 py-3 font-semibold text-base transition-all duration-200 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                  style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }}
+                  style={{ 
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                    fontWeight: 600
+                  }}
                 >
                   Never Lose a Debate - Instantly
                 </button>
