@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { ChristianBackground } from "@/components/ChristianBackground";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
 import { OrganicWaveDivider } from "@/components/OrganicWaveDivider";
@@ -62,9 +61,13 @@ export const LandingPage = ({
               </div>
               <h1 className="text-xl font-bold text-white">ChristTask</h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <HamburgerMenu onAuthAction={onAuthAction} />
-            </div>
+            <nav className="flex items-center space-x-6">
+              <button onClick={() => navigate('/')} className="text-white hover:text-blue-300 font-medium transition">Home</button>
+              <button onClick={() => navigate('/payment')} className="text-white hover:text-blue-300 font-medium transition">Chat with AI</button>
+              <button onClick={() => navigate('/payment')} className="text-white hover:text-blue-300 font-medium transition">Pricing</button>
+              <button onClick={() => onAuthAction('signin')} className="text-white hover:text-blue-300 font-medium transition">Sign In</button>
+              <button onClick={() => onAuthAction('signup')} className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded font-semibold transition">Get Started</button>
+            </nav>
           </div>
         </div>
       </header>
