@@ -109,7 +109,10 @@ export const LandingPage = ({
               />
             </h1>
               
-            <p className="text-lg md:text-xl text-gray-300 font-bold tracking-wide mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ fontFamily: 'Nunito, sans-serif' }}>
+            <p className="text-lg md:text-xl text-gray-300 font-bold tracking-wide mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ 
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              fontWeight: 600
+            }}>
               Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
