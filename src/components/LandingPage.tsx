@@ -114,10 +114,10 @@ export const LandingPage = ({
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
-              <div className="bg-white rounded-xl p-1 shadow-lg">
+              <div className="bg-blue-700 rounded-lg p-0.5 shadow-lg">
                 <button
                   onClick={handleStartJourney}
-                  className="bg-white text-gray-900 rounded-lg px-8 py-4 font-semibold text-lg transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                  className="bg-blue-700 text-white rounded-md px-6 py-3 font-semibold text-base transition-all duration-200 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                   style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }}
                 >
                   Never Lose a Debate - Instantly
