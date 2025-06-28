@@ -5,11 +5,11 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, ArrowLeft, CreditCard, Shield, Zap, BookOpen } from "lucide-react";
+import { CheckCircle, CreditCard, Shield, Zap, BookOpen } from "lucide-react";
 
 export const PaymentPageNew = () => {
   const navigate = useNavigate();
-  const [selectedPlan, setSelectedPlan] = useState<'weekly' | 'monthly'>('monthly');
+  const [selectedPlan, setSelectedPlan] = useState('monthly');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +27,7 @@ export const PaymentPageNew = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsProcessing(true);
     
@@ -76,7 +76,7 @@ export const PaymentPageNew = () => {
               variant="ghost"
               className="flex items-center space-x-2 text-white hover:bg-white/10"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <span className="h-4 w-4">←</span>
               <span>Back to Home</span>
             </Button>
           </div>
@@ -143,7 +143,7 @@ export const PaymentPageNew = () => {
                 selectedPlan === 'monthly' ? 'border-purple-400 ring-4 ring-purple-400/20' : 'border-white/20'
               }`}>
                 <CardHeader className="text-center py-6">
-                  <div className="text-3xl font-bold text-white mb-2">$13.99</div>
+                  <div className="text-3xl font-bold text-white mb-2">£11.99</div>
                   <div className="text-purple-200 text-lg">per month</div>
                   <div className="text-purple-300 text-sm">Most popular choice</div>
                 </CardHeader>
@@ -290,15 +290,15 @@ export const PaymentPageNew = () => {
                       className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 text-lg font-semibold"
                     >
                       {isProcessing ? (
-                        <>
+                        <div>
                           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                           Processing Payment...
-                        </>
+                        </div>
                       ) : (
-                        <>
+                        <div>
                           <Zap className="w-5 h-5 mr-2" />
-                          Pay {selectedPlan === 'weekly' ? '£4.50' : '$13.99'} - Start Now
-                        </>
+                          Pay {selectedPlan === 'weekly' ? '£4.50' : '£11.99'} - Start Now
+                        </div>
                       )}
                     </Button>
                   </form>

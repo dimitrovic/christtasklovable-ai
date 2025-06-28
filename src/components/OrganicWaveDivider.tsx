@@ -45,9 +45,7 @@ export const OrganicWaveDivider = ({
         style={{
           width: '100%',
           height: '1px',
-          backgroundColor: '#f7f7f7',
-          backgroundImage: 'repeating-radial-gradient(circle, #e5e5e5 1px, transparent 2px)',
-          backgroundSize: '12px 12px',
+          backgroundColor: '#e5e5e5',
           margin: '32px 0',
           border: 'none',
         }}

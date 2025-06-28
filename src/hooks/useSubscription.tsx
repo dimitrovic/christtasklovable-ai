@@ -1,5 +1,4 @@
-
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -10,16 +9,16 @@ interface SubscriptionContextType {
   subscriptionEnd: string | null;
   loading: boolean;
   checkSubscription: () => Promise<void>;
-  createCheckout: (plan?: 'weekly' | 'monthly') => Promise<void>;
+  createCheckout: (plan: 'weekly' | 'monthly') => Promise<void>;
   openCustomerPortal: () => Promise<void>;
 }
 
-const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
+const SubscriptionContext = createContext(undefined);
 
-export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
+export const SubscriptionProvider = ({ children }: { children: any }) => {
   const [subscribed, setSubscribed] = useState(false);
-  const [subscriptionTier, setSubscriptionTier] = useState<string | null>(null);
-  const [subscriptionEnd, setSubscriptionEnd] = useState<string | null>(null);
+  const [subscriptionTier, setSubscriptionTier] = useState(null);
+  const [subscriptionEnd, setSubscriptionEnd] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, session } = useAuth();
   const { toast } = useToast();
@@ -58,22 +57,27 @@ export const SubscriptionProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const createCheckout = async (plan: 'weekly' | 'monthly' = 'monthly') => {
+  const createCheckout = async (plan: 'weekly' | 'monthly') => {
     try {
-      const headers: any = {};
+      const priceId = plan === 'weekly' ? 'price_1ReOQ7FEfjI8S6GYiTNrAvPb' : 'price_1ReOLjFEfjI8S6GYAe7YSlOt';
       
-      // Include auth header if user is logged in
-      if (user && session) {
-        headers.Authorization = `Bearer ${session.access_token}`;
-      }
-
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        headers,
-        body: { plan }
+      const response = await fetch('http://localhost:3000/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId,
+          email: 'test@example.com' // Test email as requested
+        })
       });
 
-      if (error) throw error;
-      if (data?.url) {
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      const data = await response.json();
+      if (data.url) {
         window.open(data.url, '_blank');
       }
     } catch (error) {

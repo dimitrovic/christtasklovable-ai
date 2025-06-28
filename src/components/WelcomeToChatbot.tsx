@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
+import { MessageSquare, Star, ArrowRight, CheckCircle } from "lucide-react";
 
 interface WelcomeToChatbotProps {
   onStartChat: () => void;
@@ -13,16 +13,16 @@ export const WelcomeToChatbot = ({ onStartChat }: WelcomeToChatbotProps) => {
       {/* Welcome Header */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center space-x-2">
-          <Sparkles className="h-8 w-8 text-yellow-500" />
+          <Star className="h-8 w-8 text-yellow-500" />
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Welcome to ChristTask!
           </h1>
-          <Sparkles className="h-8 w-8 text-yellow-500" />
+          <Star className="h-8 w-8 text-yellow-500" />
         </div>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Your payment was successful! You now have full access to your AI Debate Buddy.
         </p>
-        <Badge variant="secondary" className="bg-green-100 text-green-800 px-4 py-2 text-sm">
+        <Badge variant="secondary" className="px-4 py-2 text-sm">
           <CheckCircle className="w-4 h-4 mr-2" />
           Premium Access Activated
         </Badge>
