@@ -114,15 +114,12 @@ export const LandingPage = ({
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
-              <Button
+              <button
                 onClick={handleStartJourney}
-                size="lg"
-                className="bg-white text-black rounded-full px-10 py-4 font-bold text-lg shadow-lg transition hover:bg-gray-100 hover:scale-105"
+                className="bg-[#4F46E5] text-white rounded-lg px-8 py-4 font-bold text-lg shadow-lg transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
               >
-                <MessageSquare className="w-5 h-5 mr-2" />
-                Win Every Debate — Start Now
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+                Never Lose a Debate - Instantly
+              </button>
             </div>
           </div>
           
