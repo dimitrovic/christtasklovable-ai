@@ -109,7 +109,7 @@ export const LandingPage = ({
               />
             </h1>
               
-            <p className="text-lg md:text-xl text-gray-300 font-bold tracking-wide mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in hero-subtitle">
+            <p className="text-lg md:text-xl text-gray-300 tracking-wide mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in hero-subtitle">
               Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
             </p>
               
