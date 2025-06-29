@@ -709,6 +709,6 @@
 }
 
 .cta-sub {
-  color: #D1D5DBCC !important;
+  color: #6B7280 !important; /* Tailwind gray-500 */
   font-weight: 400 !important;
 }
