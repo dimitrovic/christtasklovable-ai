@@ -1,16 +1,12 @@
 /* Fix white edges - targeted solution */
 
-/* Remove default body margins and padding */
-html, body {
+/* Only remove default body/html margins and background */
+html, body, #root {
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: hidden !important;
-}
-
-/* Ensure root element takes full width */
-#root {
-  width: 100% !important;
-  min-height: 100vh !important;
+  background: transparent !important;
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* Remove max-width constraints from main containers */

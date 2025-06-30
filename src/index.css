@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+body, html, #root {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body, button, .jenni-text {
+  font-family: 'Inter', "Helvetica Neue", Arial, sans-serif;
+}
+
+.sub-header {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: #bfdbfe;
+  margin-bottom: 2rem;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
@@ -732,34 +751,9 @@
   transform: scale(1.03);
 }
 
-body, button, .jenni-text {
-  font-family: 'Inter', "Helvetica Neue", Arial, sans-serif;
-}
-
-.sub-header {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: #bfdbfe;
-  margin-bottom: 2rem;
-}
-
-/* Force remove all white backgrounds and edges */
-* {
-  background-color: transparent !important;
-}
-
 /* Override any Tailwind background classes that might cause white edges */
 .bg-slate-50, .bg-slate-900, .bg-white, .bg-gray-50, .bg-gray-100 {
   background: transparent !important;
-}
-
-/* Ensure the main app container has no white background */
-#root, html, body {
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
 }
 
 /* Override any container padding */
@@ -780,11 +774,4 @@ main, section, div {
 * {
   margin: 0 !important;
   padding: 0 !important;
-}
-
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
 }
