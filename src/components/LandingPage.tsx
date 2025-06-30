@@ -66,7 +66,7 @@ export const LandingPage = ({
               <button onClick={() => navigate('/payment')} className="text-white hover:text-blue-300 font-medium transition">Chat with AI</button>
               <button onClick={() => navigate('/payment')} className="text-white hover:text-blue-300 font-medium transition">Pricing</button>
               <button onClick={() => onAuthAction('signin')} className="text-white hover:text-blue-300 font-medium transition">Sign In</button>
-              <button onClick={() => onAuthAction('signup')} className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded font-semibold transition">Get Started</button>
+              <button onClick={() => navigate('/payment')} className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded font-semibold transition">Get Started</button>
             </nav>
           </div>
         </div>
