@@ -1,0 +1,51 @@
+/* Fix white edges - comprehensive solution */
+
+/* Remove all default margins and padding */
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Force html and body to fill viewport */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* Ensure root element fills viewport */
+#root {
+  width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Override any container classes */
+.container, .container-fluid {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Remove white backgrounds from common Tailwind classes */
+.bg-slate-50, .bg-slate-900, .bg-white, .bg-gray-50, .bg-gray-100, .bg-gray-200 {
+  background: transparent !important;
+}
+
+/* Ensure all sections take full width */
+section, div, main, header, footer {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Force all elements to have transparent background */
+* {
+  background-color: transparent !important;
+} 
