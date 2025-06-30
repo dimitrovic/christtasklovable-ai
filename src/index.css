@@ -713,23 +713,21 @@
   font-weight: 400 !important;
 }
 
-/* Jenni.ai inspired button style */
+/* Jenni.ai inspired button style - gradient pill */
 .jenni-style-button {
-  background-color: #3B49DF;
+  background: linear-gradient(to bottom, #4C5BFF, #3B49DF);
   color: white;
   padding: 14px 28px;
   font-size: 18px;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
+  border-radius: 999px;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 4px 20px rgba(59, 73, 223, 0.35);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .jenni-style-button:hover {
-  background-color: #2f3ecb;
+  background: linear-gradient(to bottom, #3f4ede, #2f3ecb);
   transform: scale(1.03);
-  box-shadow: 0 6px 24px rgba(59, 73, 223, 0.45);
 }
