@@ -109,8 +109,8 @@ export const LandingPage = ({
               />
             </h1>
               
-            <p className="text-lg md:text-xl text-gray-300 tracking-wide mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in hero-subtitle">
-              Never lose a debate again. Speak with unshakable confidence, dismantle objections, and prove your point.
+            <p className="sub-header jenni-text animate-fade-in" style={{ fontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif' }}>
+              Debunk every lie with clarity. Expose false claims, counter misinformation, and back your truth with confidence.
             </p>
               
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">

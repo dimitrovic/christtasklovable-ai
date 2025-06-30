@@ -731,3 +731,15 @@
   background: linear-gradient(to bottom, #3f4ede, #2f3ecb);
   transform: scale(1.03);
 }
+
+body, button, .jenni-text {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+.sub-header {
+  font-size: 18px;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 24px;
+  line-height: 1.45;
+}
