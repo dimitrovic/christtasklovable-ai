@@ -6,19 +6,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, CreditCard, Shield, Zap, BookOpen } from "lucide-react";
+// Stripe imports
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-export const PaymentPageNew = () => {
-  const navigate = useNavigate();
-  const [selectedPlan, setSelectedPlan] = useState('monthly');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || "");
+
+const PaymentForm = ({ selectedPlan, setSelectedPlan, navigate }: any) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    cardNumber: '',
-    expiryMonth: '',
-    expiryYear: '',
-    cvv: ''
   });
+  const [couponCode, setCouponCode] = useState('');
+  const [discount, setDiscount] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -27,33 +31,175 @@ export const PaymentPageNew = () => {
     }));
   };
 
+  const applyCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setIsApplyingCoupon(true);
+    try {
+      // Simulate coupon validation - replace with your actual coupon logic
+      const validCoupons = {
+        'WELCOME10': 10, // 10% off
+        'SAVE20': 20,    // 20% off
+        'FIRST50': 50    // £5 off
+      };
+      
+      const discountPercent = validCoupons[couponCode.toUpperCase()];
+      if (discountPercent) {
+        setDiscount(discountPercent);
+        alert(`Coupon applied! ${discountPercent}% discount added.`);
+      } else {
+        alert('Invalid coupon code. Please try again.');
+      }
+    } catch (error) {
+      alert('Error applying coupon. Please try again.');
+    } finally {
+      setIsApplyingCoupon(false);
+    }
+  };
+
+  const getDiscountedPrice = () => {
+    const basePrice = selectedPlan === 'weekly' ? 4.50 : 11.99;
+    if (discount > 0) {
+      return (basePrice * (100 - discount) / 100).toFixed(2);
+    }
+    return basePrice.toFixed(2);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (!stripe || !elements) return;
     setIsProcessing(true);
-    
-    // Simulate payment processing
-    setTimeout(() => {
+    try {
+      // Call backend to create payment intent
+      const res = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: selectedPlan,
+          email: formData.email,
+          name: formData.name,
+          couponCode: couponCode,
+          discount: discount
+        })
+      });
+      const data = await res.json();
+      if (!data.clientSecret) throw new Error("No client secret returned");
+      // Confirm card payment
+      const result = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement)!,
+          billing_details: {
+            name: formData.name,
+            email: formData.email
+          }
+        }
+      });
+      if (result.error) {
+        alert(result.error.message);
+      } else if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+        alert("Payment successful! Welcome to ChristTask " + selectedPlan + " plan.");
+        navigate('/');
+      }
+    } catch (err: any) {
+      alert("Payment failed: " + err.message);
+    } finally {
       setIsProcessing(false);
-      alert(`Payment successful! Welcome to ChristTask ${selectedPlan} plan.`);
-      navigate('/');
-    }, 2000);
-  };
-
-  const formatCardNumber = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    const matches = v.match(/\d{4,16}/g);
-    const match = matches && matches[0] || '';
-    const parts = [];
-    for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4));
-    }
-    if (parts.length) {
-      return parts.join(' ');
-    } else {
-      return v;
     }
   };
 
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Personal Information */}
+      <div className="space-y-4">
+        <div>
+          <Label htmlFor="name" className="text-white">Full Name</Label>
+          <Input
+            id="name"
+            type="text"
+            value={formData.name}
+            onChange={(e) => handleInputChange('name', e.target.value)}
+            className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="email" className="text-white">Email Address</Label>
+          <Input
+            id="email"
+            type="email"
+            value={formData.email}
+            onChange={(e) => handleInputChange('email', e.target.value)}
+            className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+      </div>
+
+      {/* Coupon Code */}
+      <div className="space-y-2">
+        <Label className="text-white">Have a coupon code?</Label>
+        <div className="flex space-x-2">
+          <Input
+            type="text"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+            placeholder="Enter coupon code"
+          />
+          <Button
+            type="button"
+            onClick={applyCoupon}
+            disabled={isApplyingCoupon || !couponCode.trim()}
+            className="bg-green-600 hover:bg-green-700 text-white px-4"
+          >
+            {isApplyingCoupon ? 'Applying...' : 'Apply'}
+          </Button>
+        </div>
+        {discount > 0 && (
+          <div className="text-green-400 text-sm">
+            ✓ {discount}% discount applied! New price: £{getDiscountedPrice()}
+          </div>
+        )}
+      </div>
+
+      {/* Stripe Card Element */}
+      <div>
+        <Label className="text-white">Card Details</Label>
+        <div className="bg-white/20 border-white/30 rounded p-3 mt-2">
+          <CardElement options={{ style: { base: { color: '#fff', fontSize: '16px' } } }} />
+        </div>
+      </div>
+      {/* Security Notice */}
+      <div className="flex items-center space-x-2 text-blue-200 text-sm">
+        <Shield className="h-4 w-4" />
+        <span>Your payment information is secure and encrypted</span>
+      </div>
+      {/* Submit Button */}
+      <Button
+        type="submit"
+        disabled={isProcessing || !stripe || !elements}
+        className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 text-lg font-semibold"
+      >
+        {isProcessing ? (
+          <div>
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+            Processing Payment...
+          </div>
+        ) : (
+          <div>
+            <Zap className="w-5 h-5 mr-2" />
+            Pay £{getDiscountedPrice()} - Start Now
+          </div>
+        )}
+      </Button>
+    </form>
+  );
+};
+
+export const PaymentPageNew = () => {
+  const [selectedPlan, setSelectedPlan] = useState('monthly');
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
       {/* Background Elements */}
@@ -177,131 +323,14 @@ export const PaymentPageNew = () => {
               </Card>
             </div>
 
-            {/* Payment Form */}
+            {/* Stripe Payment Form */}
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">Payment Information</h3>
               <Card className="bg-white/10 backdrop-blur-sm border border-white/20">
                 <CardContent className="p-6">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Personal Information */}
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="name" className="text-white">Full Name</Label>
-                        <Input
-                          id="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
-                          placeholder="Enter your full name"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email" className="text-white">Email Address</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
-                          className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
-                          placeholder="Enter your email"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Card Information */}
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="cardNumber" className="text-white">Card Number</Label>
-                        <div className="relative">
-                          <CreditCard className="absolute left-3 top-3 h-4 w-4 text-white/50" />
-                          <Input
-                            id="cardNumber"
-                            type="text"
-                            value={formData.cardNumber}
-                            onChange={(e) => handleInputChange('cardNumber', formatCardNumber(e.target.value))}
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/50 pl-10"
-                            placeholder="1234 5678 9012 3456"
-                            maxLength={19}
-                            required
-                          />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-3 gap-4">
-                        <div>
-                          <Label htmlFor="expiryMonth" className="text-white">Month</Label>
-                          <Select value={formData.expiryMonth} onValueChange={(value) => handleInputChange('expiryMonth', value)}>
-                            <SelectTrigger className="bg-white/20 border-white/30 text-white">
-                              <SelectValue placeholder="MM" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {Array.from({length: 12}, (_, i) => i + 1).map(month => (
-                                <SelectItem key={month} value={month.toString().padStart(2, '0')}>
-                                  {month.toString().padStart(2, '0')}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div>
-                          <Label htmlFor="expiryYear" className="text-white">Year</Label>
-                          <Select value={formData.expiryYear} onValueChange={(value) => handleInputChange('expiryYear', value)}>
-                            <SelectTrigger className="bg-white/20 border-white/30 text-white">
-                              <SelectValue placeholder="YY" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {Array.from({length: 10}, (_, i) => new Date().getFullYear() + i).map(year => (
-                                <SelectItem key={year} value={year.toString().slice(-2)}>
-                                  {year}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div>
-                          <Label htmlFor="cvv" className="text-white">CVV</Label>
-                          <Input
-                            id="cvv"
-                            type="text"
-                            value={formData.cvv}
-                            onChange={(e) => handleInputChange('cvv', e.target.value.replace(/\D/g, ''))}
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
-                            placeholder="123"
-                            maxLength={4}
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Security Notice */}
-                    <div className="flex items-center space-x-2 text-blue-200 text-sm">
-                      <Shield className="h-4 w-4" />
-                      <span>Your payment information is secure and encrypted</span>
-                    </div>
-
-                    {/* Submit Button */}
-                    <Button
-                      type="submit"
-                      disabled={isProcessing}
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 text-lg font-semibold"
-                    >
-                      {isProcessing ? (
-                        <div>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Processing Payment...
-                        </div>
-                      ) : (
-                        <div>
-                          <Zap className="w-5 h-5 mr-2" />
-                          Pay {selectedPlan === 'weekly' ? '£4.50' : '£11.99'} - Start Now
-                        </div>
-                      )}
-                    </Button>
-                  </form>
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} navigate={navigate} />
+                  </Elements>
                 </CardContent>
               </Card>
             </div>
