@@ -70,7 +70,11 @@ const PaymentForm = ({ selectedPlan, setSelectedPlan, navigate }: any) => {
     setIsProcessing(true);
     try {
       // Call backend to create payment intent
-      const res = await fetch("/api/create-payment-intent", {
+      const backendUrl = import.meta.env.PROD 
+        ? "https://your-backend-url.vercel.app/create-payment-intent"  // Replace with your actual backend URL
+        : "/api/create-payment-intent";
+        
+      const res = await fetch(backendUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
