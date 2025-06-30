@@ -40,3 +40,48 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Testimonial Styles */
+.testimonial { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  font-family: system-ui; 
+}
+
+.profiles { 
+  display: flex; 
+}
+
+.profile { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  border: 2px solid #ddd; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-weight: bold; 
+  color: white; 
+  margin-left: -10px; 
+}
+
+.profile:first-child { 
+  margin-left: 0; 
+}
+
+.profile:nth-child(1) { 
+  background: #4CAF50; 
+}
+
+.profile:nth-child(2) { 
+  background: #2196F3; 
+}
+
+.profile:nth-child(3) { 
+  background: #FF9800; 
+}
+
+.profile:nth-child(4) { 
+  background: #9C27B0; 
+}

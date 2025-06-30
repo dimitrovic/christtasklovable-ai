@@ -122,6 +122,19 @@ export const LandingPage = ({
                   <span className="cta-sub">- instantly</span>
                 </button>
             </div>
+            
+            {/* Simple Testimonial Section */}
+            <div className="flex justify-center items-center mb-12 animate-fade-in-up">
+              <div className="testimonial">
+                <div className="profiles">
+                  <div className="profile">M</div>
+                  <div className="profile">S</div>
+                  <div className="profile">D</div>
+                  <div className="profile">R</div>
+                </div>
+                <span className="text-blue-200">Used by <strong className="text-white">believers worldwide</strong> to defend the Gospel with confidence</span>
+              </div>
+            </div>
           </div>
           
           {/* Stats */}
