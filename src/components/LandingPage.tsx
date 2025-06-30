@@ -116,7 +116,7 @@ export const LandingPage = ({
             <div className="flex justify-center items-center mb-12 animate-fade-in-up">
                 <button
                   onClick={handleStartJourney}
-                  className="cta-button"
+                  className="jenni-style-button"
                 >
                   <span className="cta-main">Never lose a debate</span>
                   <span className="cta-sub">- instantly</span>
