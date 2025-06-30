@@ -1,0 +1,116 @@
+/* Override all problematic layout CSS with high specificity */
+
+/* Override the aggressive * selector */
+*:not(html):not(body):not(#root) {
+  margin: initial !important;
+  padding: initial !important;
+  background-color: initial !important;
+}
+
+/* Restore proper container behavior */
+.container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+}
+
+/* Restore proper section spacing */
+section {
+  padding: 2rem 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Restore proper header spacing */
+header {
+  padding: 1rem 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Restore proper main content spacing */
+main {
+  padding: 1rem 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Restore proper card spacing */
+.card {
+  padding: 1.5rem !important;
+  margin: 0 !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-content {
+  padding: 1.5rem !important;
+  margin: 0 !important;
+}
+
+/* Restore proper button spacing */
+button {
+  padding: 0.5rem 1rem !important;
+  margin: 0.25rem !important;
+}
+
+/* Restore proper text spacing */
+p {
+  margin: 0.5rem 0 !important;
+  padding: 0 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5rem 0 !important;
+  padding: 0 !important;
+}
+
+/* Restore proper grid spacing */
+.grid {
+  gap: 1rem !important;
+}
+
+/* Restore proper flex spacing */
+.flex {
+  gap: 0.5rem !important;
+}
+
+/* Restore proper list spacing */
+ul, ol {
+  padding-left: 1.5rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+li {
+  margin: 0.25rem 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure proper backgrounds */
+.bg-white {
+  background-color: white !important;
+}
+
+.bg-slate-50, .bg-gray-50 {
+  background-color: #f8fafc !important;
+}
+
+.bg-slate-900, .bg-gray-900 {
+  background-color: #0f172a !important;
+}
+
+/* Override the problematic html/body rules */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+
+#root {
+  width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+} 
